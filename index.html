@@ -184,17 +184,18 @@
     .mobile-overlay{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,.45);
-      backdrop-filter:blur(4px);
+      background:rgba(0,0,0,.28);
+      backdrop-filter:blur(2px);
       opacity:0;
       pointer-events:none;
-      transition:opacity .28s ease;
+      transition:opacity .22s ease;
       z-index:1400;
     }
     .mobile-overlay.show{
       opacity:1;
       pointer-events:auto;
     }
+
     .body-no-scroll{
       overflow:hidden;
       touch-action:none;
@@ -276,7 +277,6 @@
       display:grid;
       gap:18px;
     }
-
     .features-grid{grid-template-columns:repeat(4,1fr)}
     .products-grid{grid-template-columns:repeat(3,1fr)}
     .articles-grid{grid-template-columns:repeat(3,1fr)}
@@ -316,7 +316,7 @@
 
     .product-media{
       position:relative;
-      aspect-ratio:4/3;
+      height:240px;
       overflow:hidden;
       background:#dbeafe;
     }
@@ -799,6 +799,57 @@
         height:40px;
       }
 
+      .hero-content{
+        grid-template-columns:1fr;
+        padding:56px 0;
+        justify-items:center;
+        text-align:center;
+      }
+
+      .hero-content > div{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+      }
+
+      .hero p{
+        margin-left:auto;
+        margin-right:auto;
+      }
+
+      .hero-actions,
+      .actions{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+        width:100%;
+      }
+
+      .hero-actions .btn,
+      .actions .btn{
+        width:100%;
+        max-width:320px;
+      }
+
+      .hero{
+        text-align:center;
+      }
+
+      .hero-card{
+        margin-inline:auto;
+      }
+
+      .hero h1,
+      .hero p{
+        text-align:center;
+      }
+
+      .hero-actions{
+        margin-inline:auto;
+      }
+
       .products-grid{
         grid-template-columns:repeat(2,1fr);
         gap:12px;
@@ -806,14 +857,12 @@
 
       .product-body{padding:12px}
       .thumb{width:48px;height:34px}
-      .product-media{aspect-ratio:1/1}
-      .hero-content{grid-template-columns:1fr;padding:56px 0}
+      .product-media{height:auto;aspect-ratio:1/1}
       .section{padding:64px 0}
       .features-grid,.articles-grid,.reviews-grid,.suggest-grid,.form-grid,.footer-grid,.result-grid,.detail-top,.cols-2{
         grid-template-columns:1fr;
       }
       .hero h1{font-size:2.35rem}
-      .hero-actions,.actions{flex-direction:column}
     }
 
     @media (max-width: 480px){
@@ -1224,8 +1273,8 @@
         <div>
           <h4>Contact</h4>
           <ul>
-            <li><i class="fa-solid fa-location-dot"></i> souse, Tunisie</li>
-            <li><i class="fa-solid fa-phone"></i> +216 25 943 150</li>
+            <li><i class="fa-solid fa-location-dot"></i> Paris, France</li>
+            <li><i class="fa-solid fa-phone"></i> +33 1 23 45 67 89</li>
             <li><i class="fa-solid fa-envelope"></i> contact@velosportpro.fr</li>
           </ul>
         </div>
@@ -1292,15 +1341,9 @@
     });
 
     mobileOverlay.addEventListener('click', closeMenu);
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape'){
-        closeMenu();
-        closeDetails();
-      }
-    });
-
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', closeMenu);
+    navLinks.addEventListener('click', e => e.stopPropagation());
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
     });
 
     function showToast(msg){
@@ -1310,24 +1353,10 @@
       window.toastTimer = setTimeout(() => toast.style.display = 'none', 2400);
     }
 
-    function copyText(text){
-      if(navigator.clipboard && window.isSecureContext){
-        return navigator.clipboard.writeText(text);
-      }
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
-      return Promise.resolve();
-    }
-
     document.querySelectorAll('.product-card').forEach(card => {
       const mainImg = card.querySelector('.main-img');
       const thumbs = card.querySelectorAll('.thumb');
+
       thumbs.forEach(thumb => {
         thumb.addEventListener('click', () => {
           thumbs.forEach(t => t.classList.remove('active'));
@@ -1336,7 +1365,7 @@
         });
       });
 
-      card.querySelector('.details-btn').addEventListener('click', async () => {
+      card.querySelector('.details-btn').addEventListener('click', () => {
         const data = JSON.parse(card.dataset.product);
         modalTitle.textContent = data.name;
 
@@ -1424,6 +1453,7 @@
 
     closeModal.addEventListener('click', closeDetails);
     modal.addEventListener('click', e => { if(e.target === modal) closeDetails(); });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetails(); });
 
     function sizeFromHeight(h, type){
       if(type === 'Route'){
@@ -1483,7 +1513,13 @@
       const wheel = wheelFromType(type);
       const speeds = speedsFromProfile(age, weight, use);
 
-      const message = `Recommandation personnalisée:\nType conseillé: ${type}\nTaille cadre: ${frame}\nTaille roues: ${wheel}\nVitesses conseillées: ${speeds}\nUsage: ${use}\nProfil: ${height} cm, ${weight} kg, ${age} ans`;
+      const message = `Recommandation personnalisée:
+Type conseillé: ${type}
+Taille cadre: ${frame}
+Taille roues: ${wheel}
+Vitesses conseillées: ${speeds}
+Usage: ${use}
+Profil: ${height} cm, ${weight} kg, ${age} ans`;
 
       document.getElementById('resultText').textContent = message;
       document.getElementById('recFrame').textContent = frame;
