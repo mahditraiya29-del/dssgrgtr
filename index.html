@@ -184,8 +184,8 @@
     .mobile-overlay{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,.28);
-      backdrop-filter:blur(2px);
+      background:rgba(0,0,0,.22);
+      backdrop-filter:blur(1px);
       opacity:0;
       pointer-events:none;
       transition:opacity .22s ease;
@@ -811,9 +811,12 @@
         display:flex;
         flex-direction:column;
         align-items:center;
+        justify-content:center;
+        text-align:center;
       }
 
       .hero p{
+        max-width:100%;
         margin-left:auto;
         margin-right:auto;
       }
@@ -821,10 +824,11 @@
       .hero-actions,
       .actions{
         display:flex;
-        justify-content:center;
-        align-items:center;
         flex-direction:column;
+        align-items:center;
+        justify-content:center;
         width:100%;
+        gap:12px;
       }
 
       .hero-actions .btn,
@@ -833,12 +837,22 @@
         max-width:320px;
       }
 
-      .hero{
-        text-align:center;
+      .hero-card{
+        width:100%;
+        max-width:420px;
+        margin-inline:auto;
       }
 
-      .hero-card{
-        margin-inline:auto;
+      .hero-stats{
+        grid-template-columns:1fr;
+        gap:10px;
+        width:100%;
+      }
+
+      .stat{
+        width:100%;
+        max-width:100%;
+        padding:12px;
       }
 
       .hero h1,
@@ -1342,9 +1356,7 @@
 
     mobileOverlay.addEventListener('click', closeMenu);
     navLinks.addEventListener('click', e => e.stopPropagation());
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
     function showToast(msg){
       toast.textContent = msg;
@@ -1513,15 +1525,7 @@
       const wheel = wheelFromType(type);
       const speeds = speedsFromProfile(age, weight, use);
 
-      const message = `Recommandation personnalisée:
-Type conseillé: ${type}
-Taille cadre: ${frame}
-Taille roues: ${wheel}
-Vitesses conseillées: ${speeds}
-Usage: ${use}
-Profil: ${height} cm, ${weight} kg, ${age} ans`;
-
-      document.getElementById('resultText').textContent = message;
+      document.getElementById('resultText').textContent = `Recommandation personnalisée : Type conseillé ${type}, taille cadre ${frame}, roues ${wheel}, vitesses ${speeds}, usage ${use}.`;
       document.getElementById('recFrame').textContent = frame;
       document.getElementById('recType').textContent = type;
       document.getElementById('recWheel').textContent = wheel;
