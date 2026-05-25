@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="VéloSport Pro - Boutique moderne de vélos, conseils et choix intelligent selon votre profil." />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="theme-color" content="#2563eb" />
   <title>VéloSport Pro</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +31,7 @@
       --warning:#f59e0b;
       --danger:#ef4444;
       --radius:22px;
+      --tap:48px;
       --transition:.28s ease;
     }
 
@@ -41,7 +46,7 @@
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;overflow-x:hidden}
+    html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
     body{
       font-family:"Inter",sans-serif;
       background:var(--bg);
@@ -51,29 +56,16 @@
       transition:background var(--transition), color var(--transition);
     }
 
+    a,button{touch-action:manipulation}
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;height:auto;object-fit:cover}
     button,input,select{font:inherit}
 
-    .container{
-      width:min(1240px, calc(100% - 28px));
-      margin-inline:auto;
-    }
-
+    .container{width:min(1240px, calc(100% - 28px));margin-inline:auto}
     .section{padding:84px 0}
-    .section-title{
-      text-align:center;
-      margin-bottom:34px;
-    }
-    .section-title h2{
-      font-size:clamp(28px,4vw,44px);
-      margin-bottom:10px;
-      font-weight:900;
-    }
-    .section-title p{
-      color:var(--muted);
-      font-size:1.03rem;
-    }
+    .section-title{text-align:center;margin-bottom:34px}
+    .section-title h2{font-size:clamp(28px,4vw,44px);margin-bottom:10px;font-weight:900}
+    .section-title p{color:var(--muted);font-size:1.03rem}
     .accent{color:var(--primary)}
 
     .btn{
@@ -81,6 +73,7 @@
       align-items:center;
       justify-content:center;
       gap:10px;
+      min-height:var(--tap);
       padding:14px 20px;
       border-radius:999px;
       border:1px solid transparent;
@@ -90,21 +83,9 @@
       white-space:nowrap;
     }
     .btn:hover{transform:translateY(-2px)}
-    .btn-primary{
-      background:linear-gradient(135deg,var(--primary),var(--primary-2));
-      color:#fff;
-      box-shadow:0 12px 26px rgba(37,99,235,.24);
-    }
-    .btn-outline{
-      background:transparent;
-      border-color:var(--border);
-      color:var(--text);
-    }
-    .btn-light{
-      background:#fff;
-      color:var(--primary);
-      border-color:#fff;
-    }
+    .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 12px 26px rgba(37,99,235,.24)}
+    .btn-outline{background:transparent;border-color:var(--border);color:var(--text)}
+    .btn-light{background:#fff;color:var(--primary);border-color:#fff}
 
     .topbar{
       position:sticky;
@@ -118,38 +99,38 @@
       background:rgba(11,18,32,.82);
       border-bottom:1px solid var(--border);
     }
-    .nav{
-      min-height:80px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:900;
-      font-size:1.3rem;
-      letter-spacing:.2px;
-    }
-    .logo i{
-      font-size:1.6rem;
-      color:var(--primary);
-    }
+
+    .nav{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.3rem;letter-spacing:.2px;min-height:var(--tap)}
+    .logo i{font-size:1.6rem;color:var(--primary)}
 
     .nav-links{
       display:flex;
       align-items:center;
       gap:24px;
       list-style:none;
+      position:static;
+      transform:none;
+      opacity:1;
+      pointer-events:auto;
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      padding:0;
+      max-width:100%;
     }
+
     .nav-links a{
       font-weight:700;
       color:var(--text);
       opacity:.92;
       position:relative;
+      display:flex;
+      align-items:center;
+      min-height:var(--tap);
+      padding:10px 0;
     }
+
     .nav-links a::after{
       content:"";
       position:absolute;
@@ -160,23 +141,19 @@
       background:linear-gradient(90deg,var(--primary),var(--accent));
       transition:width var(--transition);
     }
+
     .nav-links a:hover::after{width:100%}
-    .nav-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
+
+    .nav-actions{display:flex;align-items:center;gap:10px}
     .icon-btn{
-      width:44px;
-      height:44px;
-      border:none;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
+      width:44px;height:44px;
+      border:none;border-radius:50%;
+      display:grid;place-items:center;
       background:var(--card);
       color:var(--text);
       box-shadow:var(--shadow-soft);
       cursor:pointer;
+      touch-action:manipulation;
     }
     .hamburger{display:none}
 
@@ -189,71 +166,8 @@
       transition:opacity .25s ease;
       z-index:1400;
     }
-    .mobile-overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .nav-links{
-      position:fixed;
-      top:12px;
-      right:12px;
-      width:min(60vw, 280px);
-      max-height:calc(100vh - 24px);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      padding:16px 14px;
-      list-style:none;
-      background:rgba(255, 255, 255, 0.40);
-      backdrop-filter:blur(8px);
-      -webkit-backdrop-filter:blur(8px);
-      border:1px solid rgba(255, 255, 255, 0.28);
-      border-radius:22px;
-      box-shadow:0 18px 40px rgba(15, 23, 42, .18);
-      overflow-y:auto;
-      -webkit-overflow-scrolling:touch;
-      transform:translateX(120%);
-      opacity:0;
-      pointer-events:none;
-      transition:transform .28s ease, opacity .28s ease, box-shadow .28s ease;
-      z-index:1501;
-    }
-    .nav-links.show{
-      transform:translateX(0);
-      opacity:1;
-      pointer-events:auto;
-    }
-    .nav-links li{width:100%}
-    .nav-links a{
-      display:block;
-      width:100%;
-      padding:12px 14px;
-      border-radius:14px;
-      color:var(--text);
-      font-weight:700;
-      text-decoration:none;
-      transition:background .2s ease, transform .2s ease, color .2s ease, box-shadow .2s ease;
-      pointer-events:auto;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus{
-      background:rgba(37,99,235,0.10);
-      transform:translateX(2px);
-      box-shadow:inset 0 0 0 1px rgba(37,99,235,0.10);
-    }
-    .nav-links a:active{
-      transform:scale(.98);
-    }
-
-    [data-theme="dark"] .nav-links{
-      background:rgba(16, 26, 47, 0.48);
-      border:1px solid rgba(255, 255, 255, 0.10);
-    }
-    [data-theme="dark"] .nav-links a:hover,
-    [data-theme="dark"] .nav-links a:focus{
-      background:rgba(255, 255, 255, 0.08);
-    }
+    .mobile-overlay.show{opacity:1;pointer-events:auto}
+    .mobile-no-scroll{overflow:hidden}
 
     .hero{
       position:relative;
@@ -266,12 +180,14 @@
         linear-gradient(135deg, rgba(37,99,235,.92), rgba(249,115,22,.88)),
         url("https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
     }
+
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
       background:linear-gradient(120deg, rgba(0,0,0,.12), rgba(0,0,0,.18));
     }
+
     .hero-content{
       position:relative;
       z-index:1;
@@ -281,24 +197,28 @@
       align-items:center;
       padding:70px 0;
     }
+
     .hero h1{
       font-size:clamp(34px,5vw,66px);
       line-height:1.02;
       margin-bottom:16px;
       font-weight:900;
     }
+
     .hero p{
       font-size:1.08rem;
       max-width:680px;
       opacity:.95;
       margin-bottom:26px;
     }
+
     .hero-actions{
       display:flex;
       flex-wrap:wrap;
       gap:14px;
       margin-bottom:20px;
     }
+
     .hero-card{
       background:rgba(255,255,255,.14);
       border:1px solid rgba(255,255,255,.24);
@@ -307,12 +227,14 @@
       backdrop-filter:blur(16px);
       box-shadow:0 20px 54px rgba(0,0,0,.16);
     }
+
     .hero-stats{
       margin-top:18px;
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:14px;
     }
+
     .stat{
       border-radius:18px;
       background:rgba(255,255,255,.12);
@@ -320,6 +242,7 @@
       padding:16px;
       text-align:center;
     }
+
     .stat h3{font-size:1.4rem;margin-bottom:4px}
     .stat p{opacity:.92;font-size:.95rem}
 
@@ -345,6 +268,7 @@
       overflow:hidden;
       transition:transform var(--transition), box-shadow var(--transition);
     }
+
     .card:hover{
       transform:translateY(-6px);
       box-shadow:var(--shadow);
@@ -354,6 +278,7 @@
       padding:22px;
       text-align:center;
     }
+
     .feature .ico{
       width:68px;
       height:68px;
@@ -365,6 +290,7 @@
       background:linear-gradient(135deg,var(--primary),var(--accent));
       font-size:1.35rem;
     }
+
     .feature h3{margin-bottom:8px}
     .feature p{color:var(--muted);font-size:.96rem}
 
@@ -379,6 +305,7 @@
       height:100%;
       object-fit:cover;
     }
+
     .badge{
       position:absolute;
       top:14px;
@@ -402,6 +329,7 @@
       border-top:1px solid var(--border);
       background:rgba(148,163,184,.04);
     }
+
     .thumb{
       width:58px;
       height:38px;
@@ -412,6 +340,7 @@
       opacity:.86;
       transition:transform var(--transition), border-color var(--transition), opacity var(--transition);
     }
+
     .thumb.active{
       border-color:var(--primary);
       opacity:1;
@@ -427,51 +356,14 @@
       flex-wrap:wrap;
       margin:10px 0 12px;
     }
-    .price{
-      font-size:1.3rem;
-      font-weight:900;
-      color:var(--primary);
-    }
-    .old-price{
-      color:var(--muted);
-      text-decoration:line-through;
-    }
-    .meta{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:12px;
-      color:var(--muted);
-      font-size:.92rem;
-    }
-    .meta span{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      background:rgba(37,99,235,.07);
-      padding:7px 10px;
-      border-radius:999px;
-    }
+    .price{font-size:1.3rem;font-weight:900;color:var(--primary)}
+    .old-price{color:var(--muted);text-decoration:line-through}
+    .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;color:var(--muted);font-size:.92rem}
+    .meta span{display:inline-flex;align-items:center;gap:6px;background:rgba(37,99,235,.07);padding:7px 10px;border-radius:999px}
     .stars{color:#f59e0b}
-    .specs{
-      display:grid;
-      gap:8px;
-      margin:14px 0;
-      color:var(--muted);
-      font-size:.95rem;
-    }
-    .specs div{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      border-bottom:1px dashed var(--border);
-      padding-bottom:8px;
-    }
-    .actions{
-      display:flex;
-      gap:10px;
-      margin-top:16px;
-    }
+    .specs{display:grid;gap:8px;margin:14px 0;color:var(--muted);font-size:.95rem}
+    .specs div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--border);padding-bottom:8px}
+    .actions{display:flex;gap:10px;margin-top:16px}
     .actions .btn{flex:1}
 
     .smart-form{
@@ -546,18 +438,10 @@
     }
     .article h3{margin-bottom:8px}
     .article p{color:var(--muted)}
-    .article .read{margin-top:14px;color:var(--primary);font-weight:800}
 
-    .reviews{
-      background:linear-gradient(180deg, transparent, rgba(37,99,235,.05));
-    }
+    .reviews{background:linear-gradient(180deg, transparent, rgba(37,99,235,.05))}
     .review{padding:22px}
-    .review-head{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:12px;
-    }
+    .review-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
     .avatar{
       width:52px;
       height:52px;
@@ -582,15 +466,12 @@
       gap:20px;
     }
     .footer h4{color:#fff;margin-bottom:14px}
-    .footer p,
-    .footer li{color:#b9c7db;margin-bottom:10px}
+    .footer p,.footer li{color:#b9c7db;margin-bottom:10px}
     .footer ul{list-style:none}
     .footer a:hover{color:#fff}
-    .social{
-      display:flex;
-      gap:10px;
-      margin-top:14px;
-    }
+    .footer a{min-height:44px;display:inline-flex;align-items:center}
+
+    .social{display:flex;gap:10px;margin-top:14px}
     .social a{
       width:42px;
       height:42px;
@@ -599,6 +480,7 @@
       place-items:center;
       background:rgba(255,255,255,.08);
     }
+
     .footer-bottom{
       margin-top:28px;
       padding-top:18px;
@@ -651,10 +533,7 @@
       padding:18px 20px;
       border-bottom:1px solid var(--border);
     }
-    .modal-title{
-      font-size:1.25rem;
-      font-weight:900;
-    }
+    .modal-title{font-size:1.25rem;font-weight:900}
     .close-btn{
       width:42px;
       height:42px;
@@ -664,14 +543,10 @@
       background:transparent;
       color:var(--text);
       font-size:1.1rem;
+      min-height:var(--tap);
     }
     .modal-body{padding:20px}
-    .detail-top{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-      margin-bottom:18px;
-    }
+    .detail-top{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
     .detail-images{
       border-radius:22px;
       overflow:hidden;
@@ -710,11 +585,7 @@
     }
     .detail-card h3{margin-bottom:8px}
     .detail-card p{color:var(--muted)}
-    .info-list{
-      display:grid;
-      gap:10px;
-      margin-top:14px;
-    }
+    .info-list{display:grid;gap:10px;margin-top:14px}
     .info-item{
       display:flex;
       justify-content:space-between;
@@ -724,12 +595,7 @@
     }
     .info-item:last-child{border-bottom:none}
     .info-item span:first-child{color:var(--muted);font-weight:700}
-    .cols-2{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-      margin-top:18px;
-    }
+    .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
     .box{
       border:1px solid var(--border);
       border-radius:22px;
@@ -769,178 +635,67 @@
       display:none;
     }
 
-    @media (min-width: 768px) and (max-width: 1024px){
-      .products-grid{grid-template-columns:repeat(3,1fr)}
-      .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)}
-      .form-grid{grid-template-columns:repeat(2,1fr)}
-      .footer-grid{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:1100px){
+      .features-grid,.products-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
+      .form-grid{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
       .detail-top,.cols-2{grid-template-columns:1fr}
-      .result-grid{grid-template-columns:repeat(2,1fr)}
+      .result-grid{grid-template-columns:1fr 1fr}
     }
 
-    @media (min-width: 1200px){
-      .products-grid{grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))}
-    }
-
-    @media (max-width: 767px){
-      .nav{
-        min-height:60px;
-      }
-
-      .hamburger{
-        display:grid;
-      }
-
+    @media (max-width:780px){
+      .hamburger{display:grid}
       .nav-links{
         position:fixed;
-        top:12px;
-        right:12px;
-        width:min(60vw, 280px);
-        max-height:calc(100vh - 24px);
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:flex-start;
-        gap:10px;
-        padding:16px 14px;
+        top:80px;
+        right:0;
+        width:min(92vw, 340px);
+        height:calc(100dvh - 80px);
         background:var(--card);
-        border:1px solid var(--border);
-        border-top-left-radius:22px;
-        border-bottom-left-radius:22px;
-        border-top-right-radius:18px;
-        border-bottom-right-radius:18px;
-        box-shadow:0 18px 40px rgba(15,23,42,.18);
-        overflow-y:auto;
-        -webkit-overflow-scrolling:touch;
-        transform:translateX(120%);
-        opacity:0;
-        pointer-events:none;
-        transition:transform .3s ease, opacity .3s ease;
-        z-index:1501;
-      }
-
-      .nav-links.show{
-        transform:translateX(0);
-        opacity:1;
-        pointer-events:auto;
-      }
-
-      .nav-links li{
-        width:100%;
-      }
-
-      .nav-links a{
-        display:block;
-        width:100%;
-        padding:10px 12px;
-        border-radius:12px;
-        font-size:.95rem;
-        line-height:1.2;
-      }
-
-      .nav-links a::after{
-        display:none;
-      }
-
-      .nav-actions{
-        gap:8px;
-      }
-
-      .icon-btn{
-        width:40px;
-        height:40px;
-      }
-
-      .hero-content{
-        grid-template-columns:1fr;
-        padding:56px 0;
-        justify-items:center;
-        text-align:center;
-      }
-
-      .hero-content > div{
-        width:100%;
-        display:flex;
         flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        text-align:center;
-      }
-
-      .hero p{
-        max-width:100%;
-        margin-left:auto;
-        margin-right:auto;
-      }
-
-      .hero-actions,
-      .actions{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        width:100%;
-        gap:12px;
-      }
-
-      .hero-actions .btn,
-      .actions .btn{
-        width:100%;
-        max-width:320px;
-      }
-
-      .hero-card{
-        width:100%;
-        max-width:420px;
-        margin-inline:auto;
-      }
-
-      .hero-stats{
-        grid-template-columns:1fr;
+        align-items:flex-start;
+        padding:18px;
         gap:10px;
+        border-left:1px solid var(--border);
+        box-shadow:var(--shadow);
+        transform:translateX(105%);
+        transition:transform var(--transition);
+        z-index:1501;
+        overflow-y:auto;
+        overflow-x:hidden;
+      }
+      .nav-links.show{transform:translateX(0)}
+      .nav-links li{width:100%}
+      .nav-links a{
         width:100%;
+        min-height:48px;
+        padding:12px 14px;
+        border-radius:14px;
+        background:rgba(37,99,235,.04);
       }
-
-      .stat{
-        width:100%;
-        max-width:100%;
-        padding:12px;
-      }
-
-      .hero h1,
-      .hero p{
-        text-align:center;
-      }
-
-      .hero-actions{
-        margin-inline:auto;
-      }
-
-      .products-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
-      }
-
-      .product-body{padding:12px}
-      .thumb{width:48px;height:34px}
-      .product-media{height:auto;aspect-ratio:1/1}
+      .nav-links a::after{display:none}
+      .hero-content{grid-template-columns:1fr;padding:56px 0}
       .section{padding:64px 0}
-      .features-grid,.articles-grid,.reviews-grid,.suggest-grid,.form-grid,.footer-grid,.result-grid,.detail-top,.cols-2{
-        grid-template-columns:1fr;
-      }
+      .features-grid,.products-grid,.articles-grid,.reviews-grid,.suggest-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
       .hero h1{font-size:2.35rem}
     }
 
-    @media (max-width: 480px){
+    @media (max-width:480px){
       .container{width:min(100% - 18px,1240px)}
       .hero h1{font-size:2rem}
+      .hero-actions,.actions{flex-direction:column}
+      .nav-links{width:100vw;max-width:100vw}
+    }
+
+    @media (hover:none) and (pointer:coarse){
+      .btn:hover,.card:hover{transform:none}
+      .nav-links a:hover::after{width:0}
     }
   </style>
 </head>
 <body>
-
-  <div class="toast" id="toast">Message copié</div>
   <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="toast" id="toast">Message copié</div>
 
   <header class="topbar">
     <div class="container nav">
@@ -955,8 +710,8 @@
       </ul>
 
       <div class="nav-actions">
-        <button class="icon-btn" id="themeToggle" aria-label="Changer le thème"><i class="fa-solid fa-moon"></i></button>
-        <button class="icon-btn hamburger" id="menuToggle" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+        <button type="button" class="icon-btn" id="themeToggle" aria-label="Changer le thème"><i class="fa-solid fa-moon"></i></button>
+        <button type="button" class="icon-btn hamburger" id="menuToggle" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </header>
@@ -979,6 +734,7 @@
           </div>
         </div>
       </div>
+
       <div>
         <div class="card" style="overflow:hidden">
           <div class="product-media" style="height:360px">
@@ -1038,7 +794,7 @@
       </div>
 
       <div class="products-grid">
-        <article class="card product-card" data-product='{"name":"Aero MTX 29","price":"1 299 €","type":"MTB","size":"M (17\")","speeds":"12 vitesses","brakes":"Hydraulique","state":"Neuf","weight":"13.4 kg","tires":"29 x 2.25","use":"Montagne, sentiers, sport","pros":["Très stable en descente","Suspension confortable","Freinage puissant"],"cons":["Un peu lourd sur route","Prix plus élevé"],"compare":"Plus robuste qu’un vélo de ville, plus confortable qu’un VTT d’entrée de gamme.","suggestions":["Trail Master 27.5","Peak Race 29","Canyon Enduro One"],"rating":"4.8/5","images":["https://images.unsplash.com/photo-1508974239320-0a029497e820?q=80&w=1200&auto=format&fit=crop","https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop","https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=1200&auto=format&fit=crop"]}'>
+        <article class="card product-card" data-product='{"name":"Aero MTX 29","price":"1 299 €","type":"MTB","size":"M (17\\")","speeds":"12 vitesses","brakes":"Hydraulique","state":"Neuf","weight":"13.4 kg","tires":"29 x 2.25","use":"Montagne, sentiers, sport","pros":["Très stable en descente","Suspension confortable","Freinage puissant"],"cons":["Un peu lourd sur route","Prix plus élevé"],"compare":"Plus robuste qu’un vélo de ville, plus confortable qu’un VTT d’entrée de gamme.","suggestions":["Trail Master 27.5","Peak Race 29","Canyon Enduro One"],"rating":"4.8/5","images":["https://images.unsplash.com/photo-1508974239320-0a029497e820?q=80&w=1200&auto=format&fit=crop","https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop","https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=1200&auto=format&fit=crop"]}'>
           <div class="badge">Neuf</div>
           <div class="product-media">
             <img class="main-img" src="https://images.unsplash.com/photo-1508974239320-0a029497e820?q=80&w=1200&auto=format&fit=crop" alt="Aero MTX 29">
@@ -1063,7 +819,7 @@
             </div>
             <div class="actions">
               <a href="#contact" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Acheter</a>
-              <button class="btn btn-outline details-btn">Détails</button>
+              <button type="button" class="btn btn-outline details-btn">Détails</button>
             </div>
           </div>
         </article>
@@ -1093,12 +849,12 @@
             </div>
             <div class="actions">
               <a href="#contact" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Acheter</a>
-              <button class="btn btn-outline details-btn">Détails</button>
+              <button type="button" class="btn btn-outline details-btn">Détails</button>
             </div>
           </div>
         </article>
 
-        <article class="card product-card" data-product='{"name":"City Comfort 7","price":"699 €","type":"Ville","size":"M","speeds":"7 vitesses","brakes":"Mécanique","state":"Neuf","weight":"14.8 kg","tires":"700 x 38C","use":"Ville, trajets quotidiens, loisirs","pros":["Confort très bon","Position droite","Facile à utiliser"],"cons":["Moins rapide qu’un vélo route","Moins léger"],"compare":"Idéal pour la ville, plus confortable qu’un vélo de route.","suggestions":["Urban Ride 7","Town Easy","Daily Commuter"],"rating":"4.7/5","images":["https://images.unsplash.com/photo-1525104885119-87e3f3c4a0a0?q=80&w=1200&auto=format&fit=crop","https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop","https://images.unsplash.com/photo-1511994298241-608e28f14fde?q=80&w=1200&auto=format&fit=crop"]}'>
+        <article class="card product-card" data-product='{"name":"City Comfort 7","price":"699 €","type":"Ville","size":"M","speeds":"7 vitesses","brakes":"Mécanique","state":"Neuf","weight":"14.8 kg","tires":"700 x 38C","use":"Ville, trajets quotidiens, loisirs","pros":["Confort très bon","Position droite","Facile à utiliser"],"cons":["Moins rapide qu’un vélo route","Moins léger"],"compare":"Idéal pour la ville, plus confortable qu’un vélo de route.","suggestions":["Urban Ride 7","Town Easy","Daily Commuter"],"rating":"4.7/5","images":["https://images.unsplash.com/photo-1525104885119-87e3f3c4a0a0?q=80&w=1200&auto=format&fit=crop","https://images.unsplash.com/photo-1511994298241-608e28f14fde?q=80&w=1200&auto=format&fit=crop","https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?q=80&w=1200&auto=format&fit=crop"]}'>
           <div class="badge">Neuf</div>
           <div class="product-media">
             <img class="main-img" src="https://images.unsplash.com/photo-1525104885119-87e3f3c4a0a0?q=80&w=1200&auto=format&fit=crop" alt="City Comfort 7">
@@ -1123,7 +879,7 @@
             </div>
             <div class="actions">
               <a href="#contact" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Acheter</a>
-              <button class="btn btn-outline details-btn">Détails</button>
+              <button type="button" class="btn btn-outline details-btn">Détails</button>
             </div>
           </div>
         </article>
@@ -1170,7 +926,7 @@
             </select>
           </div>
           <div class="field">
-            <button class="btn btn-primary" id="recommendBtn" style="width:100%"><i class="fa-solid fa-wand-magic-sparkles"></i> Recommander</button>
+            <button type="button" class="btn btn-primary" id="recommendBtn" style="width:100%"><i class="fa-solid fa-wand-magic-sparkles"></i> Recommander</button>
           </div>
         </div>
 
@@ -1233,6 +989,7 @@
           </div>
           <p>Très beau site, rapide, et les détails produits sont vraiment complets.</p>
         </div>
+
         <div class="card review">
           <div class="review-head">
             <div class="avatar"><i class="fa-solid fa-user"></i></div>
@@ -1243,6 +1000,7 @@
           </div>
           <p>Le système de recommandation est pratique pour choisir selon la taille et l’usage.</p>
         </div>
+
         <div class="card review">
           <div class="review-head">
             <div class="avatar"><i class="fa-solid fa-user"></i></div>
@@ -1269,37 +1027,31 @@
           <span class="tag">Entretien</span>
           <h3>Comment garder son vélo en bon état</h3>
           <p>Nettoyez régulièrement le cadre, contrôlez les vis et vérifiez l’état général du vélo chaque semaine.</p>
-          <div class="read">Lire l’article</div>
         </article>
         <article class="card article">
           <span class="tag">Chaîne</span>
           <h3>Nettoyage de la chaîne</h3>
           <p>Décrassez la transmission, utilisez un dégraissant adapté et séchez bien avant de lubrifier.</p>
-          <div class="read">Lire l’article</div>
         </article>
         <article class="card article">
           <span class="tag">Lubrification</span>
           <h3>Bien lubrifier son vélo</h3>
           <p>Appliquez une petite quantité de lubrifiant sur la chaîne propre, puis retirez l’excès avec un chiffon.</p>
-          <div class="read">Lire l’article</div>
         </article>
         <article class="card article">
           <span class="tag">Freins</span>
           <h3>Protéger ses freins</h3>
           <p>Surveillez l’usure des plaquettes, gardez les disques propres et évitez les produits gras sur la zone de freinage.</p>
-          <div class="read">Lire l’article</div>
         </article>
         <article class="card article">
           <span class="tag">Taille</span>
           <h3>Choisir la bonne taille</h3>
           <p>La taille dépend surtout de votre taille corporelle et de votre style d’usage. Un cadre adapté améliore le confort.</p>
-          <div class="read">Lire l’article</div>
         </article>
         <article class="card article">
           <span class="tag">Débutants</span>
           <h3>Conseils pour débutants</h3>
           <p>Commencez par un vélo simple, portez un casque et testez la position avant un long trajet.</p>
-          <div class="read">Lire l’article</div>
         </article>
       </div>
     </div>
@@ -1351,7 +1103,7 @@
     </div>
   </footer>
 
-  <a class="floating-wa" href="https://wa.me/33123456789" target="_blank" aria-label="WhatsApp">
+  <a class="floating-wa" href="https://wa.me/33123456789" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
@@ -1359,231 +1111,266 @@
     <div class="modal" role="dialog" aria-modal="true">
       <div class="modal-header">
         <div class="modal-title" id="modalTitle">Détails du vélo</div>
-        <button class="close-btn" id="closeModal" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" class="close-btn" id="closeModal" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
 
   <script>
-    const themeToggle = document.getElementById('themeToggle');
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    const toast = document.getElementById('toast');
-    const modal = document.getElementById('detailsModal');
-    const modalBody = document.getElementById('modalBody');
-    const modalTitle = document.getElementById('modalTitle');
-    const closeModal = document.getElementById('closeModal');
-    const mobileOverlay = document.getElementById('mobileOverlay');
+    (function(){
+      const APP_VERSION = '2026-05-25-v1';
+      const themeToggle = document.getElementById('themeToggle');
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      const toast = document.getElementById('toast');
+      const modal = document.getElementById('detailsModal');
+      const modalBody = document.getElementById('modalBody');
+      const modalTitle = document.getElementById('modalTitle');
+      const closeModal = document.getElementById('closeModal');
 
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      themeToggle.innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-      localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    });
+      async function clearSiteData(){
+        try{
+          if('serviceWorker' in navigator){
+            const regs = await navigator.serviceWorker.getRegistrations();
+            await Promise.all(regs.map(r => r.unregister()));
+          }
+          if('caches' in window){
+            const keys = await caches.keys();
+            await Promise.all(keys.map(k => caches.delete(k)));
+          }
+        }catch(e){}
+      }
 
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme){
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-    }
-
-    function openMenu(){
-      navLinks.classList.add('show');
-      mobileOverlay.classList.add('show');
-      document.body.classList.add('body-no-scroll');
-    }
-
-    function closeMenu(){
-      navLinks.classList.remove('show');
-      mobileOverlay.classList.remove('show');
-      document.body.classList.remove('body-no-scroll');
-    }
-
-    menuToggle.addEventListener('click', () => {
-      if(navLinks.classList.contains('show')) closeMenu();
-      else openMenu();
-    });
-
-    mobileOverlay.addEventListener('click', closeMenu);
-    navLinks.addEventListener('click', e => e.stopPropagation());
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.style.display = 'block';
-      clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => toast.style.display = 'none', 2400);
-    }
-
-    document.querySelectorAll('.product-card').forEach(card => {
-      const mainImg = card.querySelector('.main-img');
-      const thumbs = card.querySelectorAll('.thumb');
-
-      thumbs.forEach(thumb => {
-        thumb.addEventListener('click', () => {
-          thumbs.forEach(t => t.classList.remove('active'));
-          thumb.classList.add('active');
-          mainImg.src = thumb.src.replace('w=400', 'w=1200');
+      if(localStorage.getItem('velosport_version') !== APP_VERSION){
+        localStorage.setItem('velosport_version', APP_VERSION);
+        clearSiteData().then(() => {
+          if(!sessionStorage.getItem('velosport_reload_done')){
+            sessionStorage.setItem('velosport_reload_done', '1');
+            location.reload();
+          }
         });
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      if(savedTheme){
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeToggle.innerHTML = savedTheme === 'dark'
+          ? '<i class="fa-solid fa-sun"></i>'
+          : '<i class="fa-solid fa-moon"></i>';
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        themeToggle.innerHTML = isDark
+          ? '<i class="fa-solid fa-moon"></i>'
+          : '<i class="fa-solid fa-sun"></i>';
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
       });
 
-      card.querySelector('.details-btn').addEventListener('click', () => {
-        const data = JSON.parse(card.dataset.product);
-        modalTitle.textContent = data.name;
+      function openMenu(){
+        navLinks.classList.add('show');
+        mobileOverlay.classList.add('show');
+        document.body.classList.add('mobile-no-scroll');
+      }
 
-        modalBody.innerHTML = `
-          <div class="detail-top">
-            <div class="detail-images">
-              <img class="big" id="detailMainImg" src="${data.images[0]}" alt="${data.name}">
-              <div class="detail-thumbs" id="detailThumbs">
-                ${data.images.map((src, i) => `<img class="${i===0?'active':''}" src="${src}" alt="">`).join('')}
+      function closeMenu(){
+        navLinks.classList.remove('show');
+        mobileOverlay.classList.remove('show');
+        document.body.classList.remove('mobile-no-scroll');
+      }
+
+      menuToggle?.addEventListener('click', () => {
+        navLinks.classList.contains('show') ? closeMenu() : openMenu();
+      });
+
+      mobileOverlay.addEventListener('click', closeMenu);
+
+      navLinks.addEventListener('click', e => {
+        const link = e.target.closest('a');
+        if(link && window.innerWidth <= 780) closeMenu();
+      });
+
+      function showToast(msg){
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        clearTimeout(window.toastTimer);
+        window.toastTimer = setTimeout(() => toast.style.display = 'none', 2400);
+      }
+
+      document.querySelectorAll('.product-card').forEach(card => {
+        const mainImg = card.querySelector('.main-img');
+        const thumbs = card.querySelectorAll('.thumb');
+
+        thumbs.forEach(thumb => {
+          thumb.addEventListener('click', () => {
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            mainImg.src = thumb.src.replace('w=400', 'w=1200');
+          });
+        });
+
+        const detailsBtn = card.querySelector('.details-btn');
+        detailsBtn.addEventListener('click', () => {
+          const data = JSON.parse(card.dataset.product);
+          modalTitle.textContent = data.name;
+
+          modalBody.innerHTML = `
+            <div class="detail-top">
+              <div class="detail-images">
+                <img class="big" id="detailMainImg" src="${data.images[0]}" alt="${data.name}">
+                <div class="detail-thumbs" id="detailThumbs">
+                  ${data.images.map((src, i) => `<img class="${i===0?'active':''}" src="${src}" alt="">`).join('')}
+                </div>
+              </div>
+
+              <div class="detail-card">
+                <h3>${data.name}</h3>
+                <div class="price-row">
+                  <span class="price">${data.price}</span>
+                  <span class="old-price">Prix conseillé</span>
+                </div>
+                <p>${data.compare}</p>
+
+                <div class="info-list">
+                  <div class="info-item"><span>Type</span><strong>${data.type}</strong></div>
+                  <div class="info-item"><span>Taille</span><strong>${data.size}</strong></div>
+                  <div class="info-item"><span>Vitesses</span><strong>${data.speeds}</strong></div>
+                  <div class="info-item"><span>Freins</span><strong>${data.brakes}</strong></div>
+                  <div class="info-item"><span>État</span><strong>${data.state}</strong></div>
+                  <div class="info-item"><span>Poids approximatif</span><strong>${data.weight}</strong></div>
+                  <div class="info-item"><span>Pneus</span><strong>${data.tires}</strong></div>
+                  <div class="info-item"><span>Utilisation idéale</span><strong>${data.use}</strong></div>
+                </div>
               </div>
             </div>
 
-            <div class="detail-card">
-              <h3>${data.name}</h3>
-              <div class="price-row">
-                <span class="price">${data.price}</span>
-                <span class="old-price">${parseInt(data.price.replace(/\D/g,''),10) ? 'Prix conseillé' : ''}</span>
+            <div class="cols-2">
+              <div class="box">
+                <h4>Avantages</h4>
+                <ul>${data.pros.map(x => `<li>${x}</li>`).join('')}</ul>
               </div>
-              <p>${data.compare}</p>
-
-              <div class="info-list">
-                <div class="info-item"><span>Type</span><strong>${data.type}</strong></div>
-                <div class="info-item"><span>Taille</span><strong>${data.size}</strong></div>
-                <div class="info-item"><span>Vitesses</span><strong>${data.speeds}</strong></div>
-                <div class="info-item"><span>Freins</span><strong>${data.brakes}</strong></div>
-                <div class="info-item"><span>État</span><strong>${data.state}</strong></div>
-                <div class="info-item"><span>Poids approximatif</span><strong>${data.weight}</strong></div>
-                <div class="info-item"><span>Pneus</span><strong>${data.tires}</strong></div>
-                <div class="info-item"><span>Utilisation idéale</span><strong>${data.use}</strong></div>
+              <div class="box">
+                <h4>Inconvénients</h4>
+                <ul>${data.cons.map(x => `<li>${x}</li>`).join('')}</ul>
               </div>
             </div>
-          </div>
 
-          <div class="cols-2">
-            <div class="box">
-              <h4>Avantages</h4>
-              <ul>${data.pros.map(x => `<li>${x}</li>`).join('')}</ul>
+            <div class="cols-2">
+              <div class="box">
+                <h4>Comparaison rapide</h4>
+                <p style="color:var(--muted)">${data.compare}</p>
+                <table class="compare-table">
+                  <tr><th>Critère</th><th>Ce modèle</th><th>Proche</th></tr>
+                  <tr><td>Poids</td><td>${data.weight}</td><td>Variable</td></tr>
+                  <tr><td>Confort</td><td>Bon</td><td>Moyen à bon</td></tr>
+                  <tr><td>Usage</td><td>${data.use}</td><td>Similaire</td></tr>
+                  <tr><td>Freins</td><td>${data.brakes}</td><td>Hydraulique / Mécanique</td></tr>
+                </table>
+              </div>
+
+              <div class="box">
+                <h4>Vélos proches</h4>
+                <ul>${data.suggestions.map(x => `<li>${x}</li>`).join('')}</ul>
+                <h4 style="margin-top:14px">Système</h4>
+                <p style="color:var(--muted)">Vitesses: ${data.speeds} — Freinage: ${data.brakes}.</p>
+              </div>
             </div>
-            <div class="box">
-              <h4>Inconvénients</h4>
-              <ul>${data.cons.map(x => `<li>${x}</li>`).join('')}</ul>
-            </div>
-          </div>
+          `;
 
-          <div class="cols-2">
-            <div class="box">
-              <h4>Comparaison rapide</h4>
-              <p style="color:var(--muted)">${data.compare}</p>
-              <table class="compare-table">
-                <tr><th>Critère</th><th>Ce modèle</th><th>Proche</th></tr>
-                <tr><td>Poids</td><td>${data.weight}</td><td>Variable</td></tr>
-                <tr><td>Confort</td><td>Bon</td><td>Moyen à bon</td></tr>
-                <tr><td>Usage</td><td>${data.use}</td><td>Similaire</td></tr>
-                <tr><td>Freins</td><td>${data.brakes}</td><td>Hydraulique / Mécanique</td></tr>
-              </table>
-            </div>
+          modal.classList.add('show');
 
-            <div class="box">
-              <h4>Vélos proches</h4>
-              <ul>${data.suggestions.map(x => `<li>${x}</li>`).join('')}</ul>
-              <h4 style="margin-top:14px">Type de système</h4>
-              <p style="color:var(--muted)">Système de vitesses: ${data.speeds} — Freinage: ${data.brakes === 'Hydraulique' ? 'Hydraulique' : 'Mécanique'}.</p>
-            </div>
-          </div>
-        `;
+          const detailMainImg = document.getElementById('detailMainImg');
+          const detailThumbs = document.getElementById('detailThumbs').querySelectorAll('img');
 
-        modal.classList.add('show');
-
-        const detailMainImg = document.getElementById('detailMainImg');
-        const detailThumbs = document.getElementById('detailThumbs').querySelectorAll('img');
-
-        detailThumbs.forEach((t, i) => {
-          t.addEventListener('click', () => {
-            detailThumbs.forEach(x => x.classList.remove('active'));
-            t.classList.add('active');
-            detailMainImg.src = data.images[i];
+          detailThumbs.forEach((t, i) => {
+            t.addEventListener('click', () => {
+              detailThumbs.forEach(x => x.classList.remove('active'));
+              t.classList.add('active');
+              detailMainImg.src = data.images[i];
+            });
           });
         });
       });
-    });
 
-    function closeDetails(){
-      modal.classList.remove('show');
-    }
-
-    closeModal.addEventListener('click', closeDetails);
-    modal.addEventListener('click', e => { if(e.target === modal) closeDetails(); });
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetails(); });
-
-    function sizeFromHeight(h, type){
-      if(type === 'Route'){
-        if(h < 155) return 'XXS (44-46 cm)';
-        if(h < 165) return 'XS (47-49 cm)';
-        if(h < 170) return 'S (50-52 cm)';
-        if(h < 180) return 'M (53-55 cm)';
-        if(h < 188) return 'L (56-58 cm)';
-        return 'XL (59-61 cm)';
-      }
-      if(type === 'MTB'){
-        if(h < 155) return 'XS (13-14")';
-        if(h < 165) return 'S (15-16")';
-        if(h < 175) return 'M (17-18")';
-        if(h < 185) return 'L (19-20")';
-        return 'XL (21-22")';
-      }
-      return h < 165 ? 'S' : h < 180 ? 'M' : 'L';
-    }
-
-    function wheelFromType(type){
-      if(type === 'Route') return '700C';
-      if(type === 'MTB') return '27.5" ou 29"';
-      if(type === 'Ville') return '28"';
-      if(type === 'BMX') return '20"';
-      return '28"';
-    }
-
-    function speedsFromProfile(age, weight, use){
-      if(use === 'Vitesse' || use === 'Sport') return age < 18 ? '18 à 20 vitesses' : '20 à 24 vitesses';
-      if(use === 'Montagne') return weight > 90 ? '10 à 12 vitesses' : '11 à 12 vitesses';
-      if(use === 'Ville' || use === 'Quotidien') return '7 à 10 vitesses';
-      return '8 à 12 vitesses';
-    }
-
-    function bikeTypeFromUse(use){
-      if(use === 'Montagne') return 'MTB';
-      if(use === 'Ville') return 'Ville';
-      if(use === 'Vitesse') return 'Route';
-      if(use === 'Sport') return 'Route';
-      return 'Ville';
-    }
-
-    document.getElementById('recommendBtn').addEventListener('click', () => {
-      const height = Number(document.getElementById('height').value || 0);
-      const weight = Number(document.getElementById('weight').value || 0);
-      const age = Number(document.getElementById('age').value || 0);
-      const use = document.getElementById('useType').value;
-
-      if(!height || !weight || !age){
-        showToast("Veuillez remplir la taille, le poids et l'âge.");
-        return;
+      function closeDetails(){
+        modal.classList.remove('show');
       }
 
-      const type = bikeTypeFromUse(use);
-      const frame = sizeFromHeight(height, type);
-      const wheel = wheelFromType(type);
-      const speeds = speedsFromProfile(age, weight, use);
+      closeModal.addEventListener('click', closeDetails);
+      modal.addEventListener('click', e => { if(e.target === modal) closeDetails(); });
+      document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetails(); });
 
-      document.getElementById('resultText').textContent = `Recommandation personnalisée : Type conseillé ${type}, taille cadre ${frame}, roues ${wheel}, vitesses ${speeds}, usage ${use}.`;
-      document.getElementById('recFrame').textContent = frame;
-      document.getElementById('recType').textContent = type;
-      document.getElementById('recWheel').textContent = wheel;
-      document.getElementById('recSpeed').textContent = speeds;
-      showToast("Recommandation générée avec succès");
-    });
+      function sizeFromHeight(h, type){
+        if(type === 'Route'){
+          if(h < 155) return 'XXS (44-46 cm)';
+          if(h < 165) return 'XS (47-49 cm)';
+          if(h < 170) return 'S (50-52 cm)';
+          if(h < 180) return 'M (53-55 cm)';
+          if(h < 188) return 'L (56-58 cm)';
+          return 'XL (59-61 cm)';
+        }
+        if(type === 'MTB'){
+          if(h < 155) return 'XS (13-14")';
+          if(h < 165) return 'S (15-16")';
+          if(h < 175) return 'M (17-18")';
+          if(h < 185) return 'L (19-20")';
+          return 'XL (21-22")';
+        }
+        return h < 165 ? 'S' : h < 180 ? 'M' : 'L';
+      }
+
+      function wheelFromType(type){
+        if(type === 'Route') return '700C';
+        if(type === 'MTB') return '27.5" ou 29"';
+        if(type === 'Ville') return '28"';
+        if(type === 'BMX') return '20"';
+        return '28"';
+      }
+
+      function speedsFromProfile(age, weight, use){
+        if(use === 'Vitesse' || use === 'Sport') return age < 18 ? '18 à 20 vitesses' : '20 à 24 vitesses';
+        if(use === 'Montagne') return weight > 90 ? '10 à 12 vitesses' : '11 à 12 vitesses';
+        if(use === 'Ville' || use === 'Quotidien') return '7 à 10 vitesses';
+        return '8 à 12 vitesses';
+      }
+
+      function bikeTypeFromUse(use){
+        if(use === 'Montagne') return 'MTB';
+        if(use === 'Ville') return 'Ville';
+        if(use === 'Vitesse') return 'Route';
+        if(use === 'Sport') return 'Route';
+        return 'Ville';
+      }
+
+      document.getElementById('recommendBtn').addEventListener('click', () => {
+        const height = Number(document.getElementById('height').value || 0);
+        const weight = Number(document.getElementById('weight').value || 0);
+        const age = Number(document.getElementById('age').value || 0);
+        const use = document.getElementById('useType').value;
+
+        if(!height || !weight || !age){
+          showToast("Veuillez remplir la taille, le poids et l'âge.");
+          return;
+        }
+
+        const type = bikeTypeFromUse(use);
+        const frame = sizeFromHeight(height, type);
+        const wheel = wheelFromType(type);
+        const speeds = speedsFromProfile(age, weight, use);
+
+        const message = `Recommandation personnalisée:\nType conseillé: ${type}\nTaille cadre: ${frame}\nTaille roues: ${wheel}\nVitesses conseillées: ${speeds}\nUsage: ${use}\nProfil: ${height} cm, ${weight} kg, ${age} ans`;
+
+        document.getElementById('resultText').textContent = message;
+        document.getElementById('recFrame').textContent = frame;
+        document.getElementById('recType').textContent = type;
+        document.getElementById('recWheel').textContent = wheel;
+        document.getElementById('recSpeed').textContent = speeds;
+        showToast("Recommandation générée avec succès");
+      });
+    })();
   </script>
 </body>
 </html>
