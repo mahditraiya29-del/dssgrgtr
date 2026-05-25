@@ -161,7 +161,6 @@
       transition:width var(--transition);
     }
     .nav-links a:hover::after{width:100%}
-
     .nav-actions{
       display:flex;
       align-items:center;
@@ -184,11 +183,10 @@
     .mobile-overlay{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,.28);
-      backdrop-filter:blur(2px);
+      background:rgba(0,0,0,.22);
       opacity:0;
       pointer-events:none;
-      transition:opacity .22s ease;
+      transition:opacity .25s ease;
       z-index:1400;
     }
     .mobile-overlay.show{
@@ -196,9 +194,65 @@
       pointer-events:auto;
     }
 
-    .body-no-scroll{
-      overflow:hidden;
-      touch-action:none;
+    .nav-links{
+      position:fixed;
+      top:12px;
+      right:12px;
+      width:min(60vw, 280px);
+      max-height:calc(100vh - 24px);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:16px 14px;
+      list-style:none;
+      background:rgba(255, 255, 255, 0.40);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      border:1px solid rgba(255, 255, 255, 0.28);
+      border-radius:22px;
+      box-shadow:0 18px 40px rgba(15, 23, 42, .18);
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+      transform:translateX(120%);
+      opacity:0;
+      pointer-events:none;
+      transition:transform .28s ease, opacity .28s ease, box-shadow .28s ease;
+      z-index:1501;
+    }
+    .nav-links.show{
+      transform:translateX(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+    .nav-links li{width:100%}
+    .nav-links a{
+      display:block;
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      color:var(--text);
+      font-weight:700;
+      text-decoration:none;
+      transition:background .2s ease, transform .2s ease, color .2s ease, box-shadow .2s ease;
+      pointer-events:auto;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus{
+      background:rgba(37,99,235,0.10);
+      transform:translateX(2px);
+      box-shadow:inset 0 0 0 1px rgba(37,99,235,0.10);
+    }
+    .nav-links a:active{
+      transform:scale(.98);
+    }
+
+    [data-theme="dark"] .nav-links{
+      background:rgba(16, 26, 47, 0.48);
+      border:1px solid rgba(255, 255, 255, 0.10);
+    }
+    [data-theme="dark"] .nav-links a:hover,
+    [data-theme="dark"] .nav-links a:focus{
+      background:rgba(255, 255, 255, 0.08);
     }
 
     .hero{
@@ -742,8 +796,6 @@
         top:12px;
         right:12px;
         width:min(60vw, 280px);
-        max-width:280px;
-        height:auto;
         max-height:calc(100vh - 24px);
         display:flex;
         flex-direction:column;
@@ -811,9 +863,12 @@
         display:flex;
         flex-direction:column;
         align-items:center;
+        justify-content:center;
+        text-align:center;
       }
 
       .hero p{
+        max-width:100%;
         margin-left:auto;
         margin-right:auto;
       }
@@ -821,10 +876,11 @@
       .hero-actions,
       .actions{
         display:flex;
-        justify-content:center;
-        align-items:center;
         flex-direction:column;
+        align-items:center;
+        justify-content:center;
         width:100%;
+        gap:12px;
       }
 
       .hero-actions .btn,
@@ -833,12 +889,22 @@
         max-width:320px;
       }
 
-      .hero{
-        text-align:center;
+      .hero-card{
+        width:100%;
+        max-width:420px;
+        margin-inline:auto;
       }
 
-      .hero-card{
-        margin-inline:auto;
+      .hero-stats{
+        grid-template-columns:1fr;
+        gap:10px;
+        width:100%;
+      }
+
+      .stat{
+        width:100%;
+        max-width:100%;
+        padding:12px;
       }
 
       .hero h1,
@@ -1342,9 +1408,7 @@
 
     mobileOverlay.addEventListener('click', closeMenu);
     navLinks.addEventListener('click', e => e.stopPropagation());
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
     function showToast(msg){
       toast.textContent = msg;
@@ -1513,15 +1577,7 @@
       const wheel = wheelFromType(type);
       const speeds = speedsFromProfile(age, weight, use);
 
-      const message = `Recommandation personnalisée:
-Type conseillé: ${type}
-Taille cadre: ${frame}
-Taille roues: ${wheel}
-Vitesses conseillées: ${speeds}
-Usage: ${use}
-Profil: ${height} cm, ${weight} kg, ${age} ans`;
-
-      document.getElementById('resultText').textContent = message;
+      document.getElementById('resultText').textContent = `Recommandation personnalisée : Type conseillé ${type}, taille cadre ${frame}, roues ${wheel}, vitesses ${speeds}, usage ${use}.`;
       document.getElementById('recFrame').textContent = frame;
       document.getElementById('recType').textContent = type;
       document.getElementById('recWheel').textContent = wheel;
