@@ -118,6 +118,7 @@
       background:rgba(11,18,32,.82);
       border-bottom:1px solid var(--border);
     }
+
     .nav{
       min-height:80px;
       display:flex;
@@ -125,6 +126,7 @@
       justify-content:space-between;
       gap:18px;
     }
+
     .logo{
       display:flex;
       align-items:center;
@@ -143,13 +145,26 @@
       align-items:center;
       gap:24px;
       list-style:none;
+      position:static;
+      transform:none;
+      opacity:1;
+      pointer-events:auto;
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      padding:0;
     }
+
     .nav-links a{
       font-weight:700;
       color:var(--text);
       opacity:.92;
       position:relative;
+      display:block;
+      padding:8px 0;
+      pointer-events:auto;
     }
+
     .nav-links a::after{
       content:"";
       position:absolute;
@@ -161,11 +176,13 @@
       transition:width var(--transition);
     }
     .nav-links a:hover::after{width:100%}
+
     .nav-actions{
       display:flex;
       align-items:center;
       gap:10px;
     }
+
     .icon-btn{
       width:44px;
       height:44px;
@@ -178,6 +195,7 @@
       box-shadow:var(--shadow-soft);
       cursor:pointer;
     }
+
     .hamburger{display:none}
 
     .mobile-overlay{
@@ -194,65 +212,8 @@
       pointer-events:auto;
     }
 
-    .nav-links{
-      position:fixed;
-      top:12px;
-      right:12px;
-      width:min(60vw, 280px);
-      max-height:calc(100vh - 24px);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      padding:16px 14px;
-      list-style:none;
-      background:rgba(255, 255, 255, 0.40);
-      backdrop-filter:blur(8px);
-      -webkit-backdrop-filter:blur(8px);
-      border:1px solid rgba(255, 255, 255, 0.28);
-      border-radius:22px;
-      box-shadow:0 18px 40px rgba(15, 23, 42, .18);
-      overflow-y:auto;
-      -webkit-overflow-scrolling:touch;
-      transform:translateX(120%);
-      opacity:0;
-      pointer-events:none;
-      transition:transform .28s ease, opacity .28s ease, box-shadow .28s ease;
-      z-index:1501;
-    }
-    .nav-links.show{
-      transform:translateX(0);
-      opacity:1;
-      pointer-events:auto;
-    }
-    .nav-links li{width:100%}
-    .nav-links a{
-      display:block;
-      width:100%;
-      padding:12px 14px;
-      border-radius:14px;
-      color:var(--text);
-      font-weight:700;
-      text-decoration:none;
-      transition:background .2s ease, transform .2s ease, color .2s ease, box-shadow .2s ease;
-      pointer-events:auto;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus{
-      background:rgba(37,99,235,0.10);
-      transform:translateX(2px);
-      box-shadow:inset 0 0 0 1px rgba(37,99,235,0.10);
-    }
-    .nav-links a:active{
-      transform:scale(.98);
-    }
-
-    [data-theme="dark"] .nav-links{
-      background:rgba(16, 26, 47, 0.48);
-      border:1px solid rgba(255, 255, 255, 0.10);
-    }
-    [data-theme="dark"] .nav-links a:hover,
-    [data-theme="dark"] .nav-links a:focus{
-      background:rgba(255, 255, 255, 0.08);
+    .mobile-no-scroll{
+      overflow:hidden;
     }
 
     .hero{
@@ -392,7 +353,6 @@
       font-weight:800;
       box-shadow:0 10px 20px rgba(0,0,0,.12);
     }
-    .badge.used{background:var(--warning)}
 
     .thumbs{
       display:flex;
@@ -410,12 +370,10 @@
       cursor:pointer;
       border:2px solid transparent;
       opacity:.86;
-      transition:transform var(--transition), border-color var(--transition), opacity var(--transition);
     }
     .thumb.active{
       border-color:var(--primary);
       opacity:1;
-      transform:translateY(-1px);
     }
 
     .product-body{padding:18px}
@@ -509,6 +467,7 @@
       border-color:var(--primary);
       box-shadow:0 0 0 3px rgba(37,99,235,.12);
     }
+
     .result-box{
       margin-top:18px;
       border-radius:22px;
@@ -582,21 +541,15 @@
       gap:20px;
     }
     .footer h4{color:#fff;margin-bottom:14px}
-    .footer p,
-    .footer li{color:#b9c7db;margin-bottom:10px}
+    .footer p,.footer li{color:#b9c7db;margin-bottom:10px}
     .footer ul{list-style:none}
     .footer a:hover{color:#fff}
     .social{
-      display:flex;
-      gap:10px;
-      margin-top:14px;
+      display:flex;gap:10px;margin-top:14px
     }
     .social a{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
+      width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;
       background:rgba(255,255,255,.08);
     }
     .footer-bottom{
@@ -612,11 +565,9 @@
       left:18px;
       bottom:18px;
       z-index:999;
-      width:58px;
-      height:58px;
+      width:58px;height:58px;
       border-radius:50%;
-      display:grid;
-      place-items:center;
+      display:grid;place-items:center;
       background:#25d366;
       color:#fff;
       font-size:1.7rem;
@@ -656,16 +607,12 @@
       font-weight:900;
     }
     .close-btn{
-      width:42px;
-      height:42px;
-      border:none;
-      border-radius:50%;
-      cursor:pointer;
-      background:transparent;
-      color:var(--text);
+      width:42px;height:42px;border:none;border-radius:50%;
+      cursor:pointer;background:transparent;color:var(--text);
       font-size:1.1rem;
     }
     .modal-body{padding:20px}
+
     .detail-top{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -693,11 +640,7 @@
       flex-wrap:wrap;
     }
     .detail-thumbs img{
-      width:68px;
-      height:46px;
-      border-radius:10px;
-      object-fit:cover;
-      cursor:pointer;
+      width:68px;height:46px;border-radius:10px;object-fit:cover;cursor:pointer;
       border:2px solid transparent;
       opacity:.9;
     }
@@ -769,171 +712,56 @@
       display:none;
     }
 
-    @media (min-width: 768px) and (max-width: 1024px){
-      .products-grid{grid-template-columns:repeat(3,1fr)}
-      .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)}
-      .form-grid{grid-template-columns:repeat(2,1fr)}
-      .footer-grid{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 1100px){
+      .features-grid,.products-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
+      .form-grid{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
       .detail-top,.cols-2{grid-template-columns:1fr}
-      .result-grid{grid-template-columns:repeat(2,1fr)}
+      .result-grid{grid-template-columns:1fr 1fr}
     }
 
-    @media (min-width: 1200px){
-      .products-grid{grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))}
-    }
-
-    @media (max-width: 767px){
-      .nav{
-        min-height:60px;
-      }
-
-      .hamburger{
-        display:grid;
-      }
+    @media (max-width: 780px){
+      .hamburger{display:grid}
 
       .nav-links{
         position:fixed;
-        top:12px;
-        right:12px;
-        width:min(60vw, 280px);
-        max-height:calc(100vh - 24px);
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:flex-start;
-        gap:10px;
-        padding:16px 14px;
+        top:80px;
+        right:-100%;
+        width:min(340px, 92vw);
+        height:calc(100vh - 80px);
         background:var(--card);
-        border:1px solid var(--border);
-        border-top-left-radius:22px;
-        border-bottom-left-radius:22px;
-        border-top-right-radius:18px;
-        border-bottom-right-radius:18px;
-        box-shadow:0 18px 40px rgba(15,23,42,.18);
-        overflow-y:auto;
-        -webkit-overflow-scrolling:touch;
-        transform:translateX(120%);
-        opacity:0;
-        pointer-events:none;
-        transition:transform .3s ease, opacity .3s ease;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:22px;
+        gap:18px;
+        border-left:1px solid var(--border);
+        box-shadow:var(--shadow);
+        transition:right var(--transition);
         z-index:1501;
       }
 
-      .nav-links.show{
-        transform:translateX(0);
-        opacity:1;
-        pointer-events:auto;
-      }
-
-      .nav-links li{
-        width:100%;
-      }
+      .nav-links.show{right:0}
 
       .nav-links a{
-        display:block;
         width:100%;
         padding:10px 12px;
         border-radius:12px;
-        font-size:.95rem;
-        line-height:1.2;
       }
 
       .nav-links a::after{
         display:none;
       }
 
-      .nav-actions{
-        gap:8px;
-      }
-
-      .icon-btn{
-        width:40px;
-        height:40px;
-      }
-
-      .hero-content{
-        grid-template-columns:1fr;
-        padding:56px 0;
-        justify-items:center;
-        text-align:center;
-      }
-
-      .hero-content > div{
-        width:100%;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        text-align:center;
-      }
-
-      .hero p{
-        max-width:100%;
-        margin-left:auto;
-        margin-right:auto;
-      }
-
-      .hero-actions,
-      .actions{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        width:100%;
-        gap:12px;
-      }
-
-      .hero-actions .btn,
-      .actions .btn{
-        width:100%;
-        max-width:320px;
-      }
-
-      .hero-card{
-        width:100%;
-        max-width:420px;
-        margin-inline:auto;
-      }
-
-      .hero-stats{
-        grid-template-columns:1fr;
-        gap:10px;
-        width:100%;
-      }
-
-      .stat{
-        width:100%;
-        max-width:100%;
-        padding:12px;
-      }
-
-      .hero h1,
-      .hero p{
-        text-align:center;
-      }
-
-      .hero-actions{
-        margin-inline:auto;
-      }
-
-      .products-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
-      }
-
-      .product-body{padding:12px}
-      .thumb{width:48px;height:34px}
-      .product-media{height:auto;aspect-ratio:1/1}
+      .hero-content{grid-template-columns:1fr;padding:56px 0}
       .section{padding:64px 0}
-      .features-grid,.articles-grid,.reviews-grid,.suggest-grid,.form-grid,.footer-grid,.result-grid,.detail-top,.cols-2{
-        grid-template-columns:1fr;
-      }
+      .features-grid,.products-grid,.articles-grid,.reviews-grid,.suggest-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
       .hero h1{font-size:2.35rem}
     }
 
     @media (max-width: 480px){
       .container{width:min(100% - 18px,1240px)}
       .hero h1{font-size:2rem}
+      .hero-actions,.actions{flex-direction:column}
     }
   </style>
 </head>
@@ -1128,13 +956,6 @@
           </div>
         </article>
       </div>
-
-      <div style="margin-top:18px" class="card">
-        <div style="padding:22px">
-          <h3 style="margin-bottom:6px">Avis des utilisateurs</h3>
-          <p style="color:var(--muted)">Les utilisateurs peuvent voir les notes, les retours et choisir plus facilement le vélo adapté à leur usage.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1188,75 +1009,6 @@
     </div>
   </section>
 
-  <section class="section" id="suggestions">
-    <div class="container">
-      <div class="section-title">
-        <h2>Suggestions de <span class="accent">vélos proches</span></h2>
-        <p>Des modèles similaires pour comparer facilement</p>
-      </div>
-
-      <div class="suggest-grid">
-        <div class="card feature">
-          <div class="ico"><i class="fa-solid fa-mountain"></i></div>
-          <h3>Trail Master 27.5</h3>
-          <p>Bon équilibre entre confort et maniabilité.</p>
-        </div>
-        <div class="card feature">
-          <div class="ico"><i class="fa-solid fa-road"></i></div>
-          <h3>Road Lite 56</h3>
-          <p>Version légère pour la route et la vitesse.</p>
-        </div>
-        <div class="card feature">
-          <div class="ico"><i class="fa-solid fa-city"></i></div>
-          <h3>Urban Ride 7</h3>
-          <p>Idéal pour les déplacements quotidiens.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section reviews">
-    <div class="container">
-      <div class="section-title">
-        <h2>Avis <span class="accent">clients</span></h2>
-        <p>Des retours qui aident à choisir le bon vélo</p>
-      </div>
-
-      <div class="reviews-grid">
-        <div class="card review">
-          <div class="review-head">
-            <div class="avatar"><i class="fa-solid fa-user"></i></div>
-            <div>
-              <strong>Lucas</strong>
-              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            </div>
-          </div>
-          <p>Très beau site, rapide, et les détails produits sont vraiment complets.</p>
-        </div>
-        <div class="card review">
-          <div class="review-head">
-            <div class="avatar"><i class="fa-solid fa-user"></i></div>
-            <div>
-              <strong>Sofia</strong>
-              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
-            </div>
-          </div>
-          <p>Le système de recommandation est pratique pour choisir selon la taille et l’usage.</p>
-        </div>
-        <div class="card review">
-          <div class="review-head">
-            <div class="avatar"><i class="fa-solid fa-user"></i></div>
-            <div>
-              <strong>Mathieu</strong>
-              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            </div>
-          </div>
-          <p>Design moderne et parfait sur téléphone. Le bouton Détails fonctionne très bien.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="articles">
     <div class="container">
       <div class="section-title">
@@ -1269,37 +1021,16 @@
           <span class="tag">Entretien</span>
           <h3>Comment garder son vélo en bon état</h3>
           <p>Nettoyez régulièrement le cadre, contrôlez les vis et vérifiez l’état général du vélo chaque semaine.</p>
-          <div class="read">Lire l’article</div>
         </article>
         <article class="card article">
           <span class="tag">Chaîne</span>
           <h3>Nettoyage de la chaîne</h3>
           <p>Décrassez la transmission, utilisez un dégraissant adapté et séchez bien avant de lubrifier.</p>
-          <div class="read">Lire l’article</div>
         </article>
         <article class="card article">
           <span class="tag">Lubrification</span>
           <h3>Bien lubrifier son vélo</h3>
           <p>Appliquez une petite quantité de lubrifiant sur la chaîne propre, puis retirez l’excès avec un chiffon.</p>
-          <div class="read">Lire l’article</div>
-        </article>
-        <article class="card article">
-          <span class="tag">Freins</span>
-          <h3>Protéger ses freins</h3>
-          <p>Surveillez l’usure des plaquettes, gardez les disques propres et évitez les produits gras sur la zone de freinage.</p>
-          <div class="read">Lire l’article</div>
-        </article>
-        <article class="card article">
-          <span class="tag">Taille</span>
-          <h3>Choisir la bonne taille</h3>
-          <p>La taille dépend surtout de votre taille corporelle et de votre style d’usage. Un cadre adapté améliore le confort.</p>
-          <div class="read">Lire l’article</div>
-        </article>
-        <article class="card article">
-          <span class="tag">Débutants</span>
-          <h3>Conseils pour débutants</h3>
-          <p>Commencez par un vélo simple, portez un casque et testez la position avant un long trajet.</p>
-          <div class="read">Lire l’article</div>
         </article>
       </div>
     </div>
@@ -1311,12 +1042,6 @@
         <div>
           <h4>VéloSport Pro</h4>
           <p>Une boutique moderne pensée pour les passionnés de vélo, avec une interface élégante et intuitive.</p>
-          <div class="social">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-youtube"></i></a>
-          </div>
         </div>
         <div>
           <h4>Navigation</h4>
@@ -1324,7 +1049,7 @@
             <li><a href="#home">Accueil</a></li>
             <li><a href="#catalog">Vélos</a></li>
             <li><a href="#smart">Choix intelligent</a></li>
-            <li><a href="#articles">Articles</a></li>
+            <li><a href="#articles">Conseils</a></li>
           </ul>
         </div>
         <div>
@@ -1392,13 +1117,13 @@
     function openMenu(){
       navLinks.classList.add('show');
       mobileOverlay.classList.add('show');
-      document.body.classList.add('body-no-scroll');
+      document.body.classList.add('mobile-no-scroll');
     }
 
     function closeMenu(){
       navLinks.classList.remove('show');
       mobileOverlay.classList.remove('show');
-      document.body.classList.remove('body-no-scroll');
+      document.body.classList.remove('mobile-no-scroll');
     }
 
     menuToggle.addEventListener('click', () => {
@@ -1407,8 +1132,10 @@
     });
 
     mobileOverlay.addEventListener('click', closeMenu);
-    navLinks.addEventListener('click', e => e.stopPropagation());
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+    navLinks.addEventListener('click', e => {
+      if(window.innerWidth <= 780 && e.target.tagName === 'A') closeMenu();
+    });
 
     function showToast(msg){
       toast.textContent = msg;
@@ -1446,7 +1173,7 @@
               <h3>${data.name}</h3>
               <div class="price-row">
                 <span class="price">${data.price}</span>
-                <span class="old-price">${parseInt(data.price.replace(/\D/g,''),10) ? 'Prix conseillé' : ''}</span>
+                <span class="old-price">Prix conseillé</span>
               </div>
               <p>${data.compare}</p>
 
@@ -1471,27 +1198,6 @@
             <div class="box">
               <h4>Inconvénients</h4>
               <ul>${data.cons.map(x => `<li>${x}</li>`).join('')}</ul>
-            </div>
-          </div>
-
-          <div class="cols-2">
-            <div class="box">
-              <h4>Comparaison rapide</h4>
-              <p style="color:var(--muted)">${data.compare}</p>
-              <table class="compare-table">
-                <tr><th>Critère</th><th>Ce modèle</th><th>Proche</th></tr>
-                <tr><td>Poids</td><td>${data.weight}</td><td>Variable</td></tr>
-                <tr><td>Confort</td><td>Bon</td><td>Moyen à bon</td></tr>
-                <tr><td>Usage</td><td>${data.use}</td><td>Similaire</td></tr>
-                <tr><td>Freins</td><td>${data.brakes}</td><td>Hydraulique / Mécanique</td></tr>
-              </table>
-            </div>
-
-            <div class="box">
-              <h4>Vélos proches</h4>
-              <ul>${data.suggestions.map(x => `<li>${x}</li>`).join('')}</ul>
-              <h4 style="margin-top:14px">Type de système</h4>
-              <p style="color:var(--muted)">Système de vitesses: ${data.speeds} — Freinage: ${data.brakes === 'Hydraulique' ? 'Hydraulique' : 'Mécanique'}.</p>
             </div>
           </div>
         `;
@@ -1542,7 +1248,6 @@
       if(type === 'Route') return '700C';
       if(type === 'MTB') return '27.5" ou 29"';
       if(type === 'Ville') return '28"';
-      if(type === 'BMX') return '20"';
       return '28"';
     }
 
