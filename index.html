@@ -205,15 +205,6 @@
       color: var(--primary);
     }
 
-    .sidebar-footer {
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
     /* خلفية معتمة تظهر عند فتح القائمة */
     .sidebar-overlay {
       position: fixed;
@@ -415,7 +406,7 @@
       flex-wrap:wrap;
       margin:10px 0 12px;
     }
-    .price{font-size:1.3rem;font-weight:900;color:var(--primary)}
+    .price Img{font-size:1.3rem;font-weight:900;color:var(--primary)}
     .old-price{color:var(--muted);text-decoration:line-through}
     .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;color:var(--muted);font-size:.92rem}
     .meta span{display:inline-flex;align-items:center;gap:6px;background:rgba(37,99,235,.07);padding:7px 10px;border-radius:999px}
@@ -743,11 +734,6 @@
       <li><a href="#articles" class="sidebar-link-item">Conseils</a></li>
       <li><a href="#contact" class="sidebar-link-item">Contact</a></li>
     </ul>
-    <div class="sidebar-footer">
-      <button type="button" class="btn btn-outline" id="sidebarThemeToggle" style="width:100%">
-        <i class="fa-solid fa-moon"></i> Changer le thème
-      </button>
-    </div>
   </nav>
 
   <header class="topbar">
@@ -1178,23 +1164,21 @@
 
   <script>
     (function(){
-      const APP_VERSION = '2026-05-25-v1';
+      const APP_VERSION = '2026-05-25-v2';
       const themeToggle = document.getElementById('themeToggle');
-      const sidebarThemeToggle = document.getElementById('sidebarThemeToggle');
       const toast = document.getElementById('toast');
       const modal = document.getElementById('detailsModal');
       const modalBody = document.getElementById('modalBody');
       const modalTitle = document.getElementById('modalTitle');
       const closeModal = document.getElementById('closeModal');
 
-      // عناصر التحكم بالقائمة الجانبية (Sidebar العناصر الجديده)
+      // عناصر التحكم بالقائمة الجانبية (Sidebar)
       const openSidebarBtn = document.getElementById('openSidebarBtn');
       const closeSidebarBtn = document.getElementById('closeSidebarBtn');
       const sidebarMenu = document.getElementById('sidebarMenu');
       const sidebarOverlay = document.getElementById('sidebarOverlay');
       const sidebarLinkItems = document.querySelectorAll('.sidebar-link-item');
 
-      // دالات فتح وإغلاق القائمة الجانبية
       function openSidebar() {
         sidebarMenu.classList.add('open');
         sidebarOverlay.classList.add('show');
@@ -1209,7 +1193,6 @@
       closeSidebarBtn.addEventListener('click', closeSidebar);
       sidebarOverlay.addEventListener('click', closeSidebar);
 
-      // إغلاق القائمة تلقائياً عند الضغط على أي رابط بداخلها لتسهيل التصفح
       sidebarLinkItems.forEach(item => {
         item.addEventListener('click', closeSidebar);
       });
@@ -1237,15 +1220,9 @@
         });
       }
 
-      // دالة لتحديث أيقونات التبديل للوضع الليلي
       function updateThemeIcons(theme) {
         const isDark = theme === 'dark';
-        const iconHtml = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-        
-        themeToggle.innerHTML = iconHtml;
-        sidebarThemeToggle.innerHTML = isDark 
-          ? '<i class="fa-solid fa-sun"></i> Mode Clair' 
-          : '<i class="fa-solid fa-moon"></i> Mode Sombre';
+        themeToggle.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
       }
 
       const savedTheme = localStorage.getItem('theme');
@@ -1254,7 +1231,6 @@
         updateThemeIcons(savedTheme);
       }
 
-      // دالة موحدة لتبديل الوضع
       function toggleTheme() {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         const newTheme = isDark ? 'light' : 'dark';
@@ -1264,10 +1240,6 @@
       }
 
       themeToggle.addEventListener('click', toggleTheme);
-      sidebarThemeToggle.addEventListener('click', () => {
-        toggleTheme();
-        setTimeout(closeSidebar, 150); // إغلاق ذكي وسلس بعد تغيير الثيم من الجوال
-      });
 
       function showToast(msg){
         toast.textContent = msg;
