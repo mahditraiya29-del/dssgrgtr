@@ -313,6 +313,7 @@
       box-shadow:var(--shadow-soft);
       overflow:hidden;
       transition:transform var(--transition), box-shadow var(--transition);
+      position: relative;
     }
 
     .card:hover{
@@ -340,7 +341,6 @@
     .feature h3{margin-bottom:6px; font-size: 1.1rem; font-weight: 800;}
     .feature p{color:var(--muted);font-size:.88rem; line-height: 1.4;}
 
-    /* الحاوية الأساسية للعرض المميز */
     .hero-offer-card {
       overflow: hidden;
     }
@@ -698,12 +698,11 @@
         gap: 10px !important;
       }
       
-      /* تصغير كرت العرض المميز وتقليص المساحة الرأسية الخاصة به */
       .hero-offer-card .product-media {
-        height: 180px !important; /* تقليص ارتفاع الصورة الكبيرة للحفاظ على المساحة */
+        height: 180px !important;
       }
       .hero-offer-card-body {
-        padding: 14px !important; /* تقليل الفراغات الداخلية */
+        padding: 14px !important;
       }
       .hero-offer-card-body h3 {
         font-size: 1.15rem !important;
@@ -718,6 +717,98 @@
         margin: 6px 0 10px !important;
       }
 
+      /* تحسين كروت كتالوج الدراجات لتصبح مدمجة وأفقية (Row Layout) */
+      .products-grid {
+        grid-template-columns: 1fr !important; /* عمود واحد فقط للكروت العريضة المدمجة */
+        gap: 14px !important;
+      }
+
+      .product-card {
+        display: flex !important;
+        flex-direction: row !important; /* تحويل العرض إلى أفقي بدلاً من عمودي */
+        align-items: stretch;
+        height: 170px; /* تحديد ارتفاع موحد وثابت للكرت بالكامل على الجوال */
+      }
+
+      /* التحكم في حجم الصورة الجانبية */
+      .product-card .product-media {
+        width: 40% !important;
+        height: 100% !important;
+        flex-shrink: 0;
+      }
+
+      /* إخفاء مصغرات الصور (Thumbs) على الجوال لتوفير مساحة كبيرة */
+      .product-card .thumbs {
+        display: none !important;
+      }
+
+      /* شارة الحالة (Neuf) يتم ضبطها لتظهر فوق الصورة بشكل متناسق */
+      .product-card .badge {
+        top: 8px;
+        right: auto;
+        left: 8px;
+        font-size: 0.7rem;
+        padding: 4px 8px;
+      }
+
+      /* محتوى الكرت الجانبي (النصوص والأزرار) */
+      .product-card .product-body {
+        width: 60%;
+        padding: 10px 12px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* توزيع العناصر بشكل متناسق عمودياً */
+      }
+
+      .product-card .product-body h3 {
+        font-size: 1rem !important;
+        margin-bottom: 2px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* إخفاء النص الزائد إن وجد */
+      }
+
+      .product-card .price-row {
+        margin: 2px 0 !important;
+        gap: 6px !important;
+      }
+
+      .product-card .price {
+        font-size: 1.1rem !important;
+      }
+
+      .product-card .old-price {
+        font-size: 0.85rem !important;
+      }
+
+      .product-card .meta {
+        margin-bottom: 2px !important;
+        gap: 4px !important;
+      }
+
+      .product-card .meta span {
+        padding: 3px 6px !important;
+        font-size: 0.75rem !important;
+      }
+
+      /* إخفاء مواصفات الجدول من الكرت الرئيسي (ستظهر بالكامل عند الضغط على زر Details) */
+      .product-card .specs {
+        display: none !important;
+      }
+
+      /* أزرار الإجراءات في أسفل الكرت الجانبي */
+      .product-card .actions {
+        margin-top: 4px !important;
+        gap: 6px !important;
+      }
+
+      .product-card .actions .btn {
+        min-height: 36px !important; /* تصغير ارتفاع الأزرار ليناسب الجوال */
+        padding: 6px 10px !important;
+        font-size: 0.8rem !important;
+        border-radius: 10px !important;
+      }
+
       .nav-links {
         display: none;
       }
@@ -726,14 +817,19 @@
       }
       .hero-content{grid-template-columns:1fr;padding:56px 0}
       .section{padding:64px 0}
-      .products-grid,.articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
+      .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
       .hero h1{font-size:2.35rem}
     }
 
     @media (max-width:480px){
       .container{width:min(100% - 18px,1240px)}
       .hero h1{font-size:2rem}
-      .hero-actions,.actions{flex-direction:column}
+      .hero-actions{flex-direction:column}
+      
+      /* عند النزول لشاشات صغيرة جداً (مثل آيفون SE)، نضمن احتواء الأزرار بشكل مريح */
+      .product-card .actions {
+        flex-direction: row !important; /* المحافظة على الأزرار بجانب بعضها */
+      }
     }
 
     @media (hover:none) and (pointer:coarse){
@@ -1189,7 +1285,7 @@
 
   <script>
     (function(){
-      const APP_VERSION = '2026-05-31-v3';
+      const APP_VERSION = '2026-05-31-v4';
       const themeToggle = document.getElementById('themeToggle');
       const toast = document.getElementById('toast');
       const modal = document.getElementById('detailsModal');
