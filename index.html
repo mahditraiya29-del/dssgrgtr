@@ -2,11 +2,9 @@
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="description" content="EliteBike Pro - Boutique moderne de vélos, conseils et choix intelligent selon votre profil." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <meta name="theme-color" content="#2563eb" />
   <title>EliteBike Pro</title>
 
@@ -82,7 +80,6 @@
       transition:transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
       white-space:nowrap;
     }
-    .btn:hover{transform:translateY(-2px)}
     .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 12px 26px rgba(37,99,235,.24)}
     .btn-outline{background:transparent;border-color:var(--border);color:var(--text)}
     .btn-light{background:#fff;color:var(--primary);border-color:#fff}
@@ -101,7 +98,7 @@
       background:rgba(11,18,32,.82);
       border-bottom:1px solid var(--border);
     }
-    .nav{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .nav{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;}
     .logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.3rem;letter-spacing:.2px;min-height:var(--tap)}
     .logo i{font-size:1.6rem;color:var(--primary)}
 
@@ -136,7 +133,6 @@
 
     .nav-links a:hover::after{width:100%}
     .nav-links a:hover{color:var(--primary)}
-    .nav-links a:active{transform:scale(.98)}
 
     .nav-actions{display:flex;align-items:center;gap:10px}
     .icon-btn{
@@ -147,23 +143,24 @@
       color:var(--text);
       box-shadow:var(--shadow-soft);
       cursor:pointer;
-      touch-action:manipulation;
       position:relative;
     }
 
+    /* Search styles - fixed for mobile */
     .search-container {
       position: relative;
     }
     .search-dropdown {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      width: 320px;
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 380px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
       box-shadow: var(--shadow);
-      margin-top: 12px;
       padding: 12px;
       z-index: 1100;
       display: none;
@@ -332,7 +329,6 @@
       display: block;
     }
 
-    /* Products grid */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -340,7 +336,6 @@
       margin-top: 25px;
     }
 
-    /* Pagination styles - placed at top */
     .pagination-wrapper {
       background: var(--card);
       border-radius: 60px;
@@ -350,6 +345,7 @@
       justify-content: center;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
+      flex-wrap: wrap;
     }
     .pagination-container {
       display: flex;
@@ -358,8 +354,8 @@
       flex-wrap: wrap;
     }
     .page-btn {
-      min-width: 44px;
-      height: 44px;
+      min-width: 40px;
+      height: 40px;
       border: 1px solid var(--border);
       background: var(--card);
       border-radius: 12px;
@@ -367,10 +363,6 @@
       font-weight: 600;
       transition: all var(--transition);
       color: var(--text);
-    }
-    .page-btn:hover {
-      border-color: var(--primary);
-      background: rgba(37,99,235,.1);
     }
     .page-btn.active {
       background: linear-gradient(135deg, var(--primary), var(--primary-2));
@@ -389,18 +381,12 @@
       font-size: 0.85rem;
     }
 
-    /* Product card */
     .product-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 24px;
       overflow: hidden;
       transition: transform var(--transition), box-shadow var(--transition);
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
     .product-card:hover {
       transform: translateY(-5px);
@@ -429,9 +415,6 @@
       font-weight: 700;
       z-index: 2;
     }
-    .product-badge.other {
-      background: var(--primary);
-    }
     .product-info {
       padding: 14px;
     }
@@ -439,9 +422,6 @@
       font-size: 0.95rem;
       font-weight: 800;
       margin-bottom: 6px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     .product-type {
       font-size: 0.7rem;
@@ -479,55 +459,31 @@
 
     .hero{
       position:relative;
-      min-height:680px;
+      min-height:600px;
       display:grid;
       align-items:center;
       overflow:hidden;
       color:#fff;
-      background:
-        linear-gradient(135deg, rgba(37,99,235,.92), rgba(249,115,22,.88)),
-        url("https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(120deg, rgba(0,0,0,.12), rgba(0,0,0,.18));
+      background:linear-gradient(135deg, rgba(37,99,235,.92), rgba(249,115,22,.88)), url("https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
     }
     .hero-content{
       position:relative;
       z-index:1;
       display:grid;
-      grid-template-columns:1.08fr .92fr;
+      grid-template-columns:1fr 1fr;
       gap:30px;
       align-items:center;
       padding:70px 0;
     }
-    .hero h1{
-      font-size:clamp(34px,5vw,66px);
-      line-height:1.02;
-      margin-bottom:16px;
-      font-weight:900;
-    }
-    .hero p{
-      font-size:1.08rem;
-      max-width:680px;
-      opacity:.95;
-      margin-bottom:26px;
-    }
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-bottom:20px;
-    }
+    .hero h1{font-size:clamp(34px,5vw,66px);line-height:1.02;margin-bottom:16px;font-weight:900}
+    .hero p{font-size:1.08rem;max-width:680px;margin-bottom:26px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px}
     .hero-card{
       background:rgba(255,255,255,.14);
       border:1px solid rgba(255,255,255,.24);
       border-radius:28px;
       padding:24px;
       backdrop-filter:blur(16px);
-      box-shadow:0 20px 54px rgba(0,0,0,.16);
     }
     .hero-stats{
       margin-top:18px;
@@ -543,7 +499,7 @@
       text-align:center;
     }
     .stat h3{font-size:1.4rem;margin-bottom:4px}
-    .stat p{opacity:.92;font-size:.95rem}
+    .stat p{font-size:.95rem}
 
     .features-grid, .articles-grid, .reviews-grid, .suggest-grid{
       display:grid;
@@ -567,52 +523,27 @@
       box-shadow:var(--shadow);
     }
 
-    .feature{
-      padding:22px 14px;
-      text-align:center;
-    }
+    .feature{padding:22px 14px;text-align:center}
     .feature .ico{
-      width:60px;
-      height:60px;
-      border-radius:50%;
-      margin:0 auto 12px;
-      display:grid;
-      place-items:center;
-      color:#fff;
+      width:60px;height:60px;border-radius:50%;margin:0 auto 12px;
+      display:grid;place-items:center;color:#fff;
       background:linear-gradient(135deg,var(--primary),var(--accent));
       font-size:1.2rem;
     }
-    .feature h3{margin-bottom:6px; font-size: 1.1rem; font-weight: 800;}
-    .feature p{color:var(--muted);font-size:.88rem; line-height: 1.4;}
+    .feature h3{margin-bottom:6px;font-size:1.1rem;font-weight:800}
+    .feature p{color:var(--muted);font-size:.88rem}
 
-    .hero-offer-card { overflow: hidden; }
+    .hero-offer-card{overflow:hidden}
     .article{padding:18px}
-    .article .tag{
-      display:inline-block;
-      margin-bottom:12px;
-      padding:7px 12px;
-      border-radius:999px;
-      background:rgba(37,99,235,.08);
-      color:var(--primary);
-      font-weight:800;
-      font-size:.82rem;
-    }
-    .article h3{margin-bottom:8px}
-    .article p{color:var(--muted)}
+    .article .tag{display:inline-block;margin-bottom:12px;padding:7px 12px;border-radius:999px;background:rgba(37,99,235,.08);color:var(--primary);font-weight:800;font-size:.82rem}
     .reviews{background:linear-gradient(180deg, transparent, rgba(37,99,235,.05))}
     .review{padding:22px}
     .review-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
     .avatar{
-      width:52px;
-      height:52px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      color:#fff;
+      width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;
       background:linear-gradient(135deg,var(--primary),var(--accent));
       font-size:1.15rem;
     }
-    .review p{color:var(--muted)}
     
     .footer{
       background:#09111f;
@@ -629,23 +560,10 @@
     .footer p,.footer li{color:#b9c7db;margin-bottom:10px}
     .footer ul{list-style:none}
     .footer a:hover{color:#fff}
-    .footer a{min-height:44px;display:inline-flex;align-items:center}
     .social{display:flex;gap:10px;margin-top:14px}
-    .social a{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:rgba(255,255,255,.08);
-    }
-    .footer-bottom{
-      margin-top:28px;
-      padding-top:18px;
-      border-top:1px solid rgba(255,255,255,.08);
-      text-align:center;
-      color:#9fb0cf;
-    }
+    .social a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);}
+    .footer-bottom{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);text-align:center;color:#9fb0cf}
+    
     .floating-wa{
       position:fixed;
       left:18px;
@@ -661,6 +579,7 @@
       font-size:1.7rem;
       box-shadow:0 12px 30px rgba(37,211,102,.34);
     }
+    
     .modal-backdrop{
       position:fixed;
       inset:0;
@@ -679,87 +598,29 @@
       background:var(--card);
       border:1px solid var(--border);
       border-radius:28px;
-      box-shadow:0 24px 60px rgba(0,0,0,.28);
     }
     .modal-header{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:14px;
       padding:18px 20px;
       border-bottom:1px solid var(--border);
     }
     .modal-title{font-size:1.25rem;font-weight:900}
     .close-btn{
-      width:42px;
-      height:42px;
-      border:none;
-      border-radius:50%;
-      cursor:pointer;
-      background:transparent;
-      color:var(--text);
-      font-size:1.1rem;
-      min-height:var(--tap);
+      width:42px;height:42px;border:none;border-radius:50%;cursor:pointer;
+      background:transparent;color:var(--text);
     }
     .modal-body{padding:20px}
     .detail-top{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
-    .detail-images{
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:#dbeafe;
-    }
-    .detail-images .big{
-      width:100%;
-      height:320px;
-      object-fit:cover;
-      display:block;
-    }
-    .detail-thumbs{
-      display:flex;
-      gap:8px;
-      padding:12px;
-      border-top:1px solid var(--border);
-      background:rgba(148,163,184,.05);
-      flex-wrap:wrap;
-    }
-    .detail-thumbs img{
-      width:68px;
-      height:46px;
-      border-radius:10px;
-      object-fit:cover;
-      cursor:pointer;
-      border:2px solid transparent;
-      opacity:.9}
-    .detail-thumbs img.active{border-color:var(--primary);opacity:1}
-    .detail-card{
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:18px;
-      background:rgba(148,163,184,.04);
-    }
-    .detail-card h3{margin-bottom:8px}
-    .detail-card p{color:var(--muted)}
+    .detail-images{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:#dbeafe}
+    .detail-images .big{width:100%;height:320px;object-fit:cover}
+    .detail-thumbs{display:flex;gap:8px;padding:12px;flex-wrap:wrap}
+    .detail-thumbs img{width:68px;height:46px;border-radius:10px;object-fit:cover;cursor:pointer;border:2px solid transparent}
+    .detail-thumbs img.active{border-color:var(--primary)}
+    .detail-card{border:1px solid var(--border);border-radius:22px;padding:18px;background:rgba(148,163,184,.04)}
     .info-list{display:grid;gap:10px;margin-top:14px}
-    .info-item{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 0;
-      border-bottom:1px dashed var(--border);
-    }
-    .info-item:last-child{border-bottom:none}
-    .info-item span:first-child{color:var(--muted);font-weight:700}
-    .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
-    .box{
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:18px;
-      background:rgba(148,163,184,.04);
-    }
-    .box h4{margin-bottom:10px}
-    .box ul{padding-inline-start:20px}
-    .box li{margin-bottom:8px;color:var(--muted)}
+    .info-item{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}
     .toast{
       position:fixed;
       top:88px;
@@ -767,7 +628,6 @@
       background:var(--card);
       border:1px solid var(--border);
       color:var(--text);
-      box-shadow:var(--shadow);
       border-radius:14px;
       padding:12px 16px;
       z-index:3000;
@@ -778,7 +638,6 @@
       background:var(--card);
       border:1px solid var(--border);
       border-radius:28px;
-      box-shadow:var(--shadow);
       padding:24px;
     }
     .form-grid{
@@ -787,55 +646,25 @@
       gap:14px;
       align-items:end;
     }
-    .field label{
-      display:block;
-      margin-bottom:8px;
-      font-weight:700;
-      color:var(--muted);
-      font-size:.92rem;
-    }
+    .field label{display:block;margin-bottom:8px;font-weight:700;color:var(--muted);font-size:.92rem}
     .field input, .field select{
-      width:100%;
-      padding:14px 14px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:transparent;
-      color:var(--text);
-      outline:none;
-    }
-    .field input:focus, .field select:focus{
-      border-color:var(--primary);
-      box-shadow:0 0 0 3px rgba(37,99,235,.12);
+      width:100%;padding:14px;border-radius:14px;border:1px solid var(--border);
+      background:transparent;color:var(--text);outline:none;
     }
     .result-box{
-      margin-top:18px;
-      border-radius:22px;
+      margin-top:18px;border-radius:22px;
       background:linear-gradient(135deg, rgba(37,99,235,.10), rgba(249,115,22,.08));
-      border:1px solid var(--border);
-      padding:20px;
-      display:grid;
-      gap:10px;
+      border:1px solid var(--border);padding:20px;
     }
-    .result-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      margin-top:8px;
-    }
-    .mini{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:14px;
-      box-shadow:var(--shadow-soft);
-    }
+    .result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+    .mini{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px}
     .mini strong{display:block;margin-bottom:4px}
 
     @media (max-width:1100px){
       .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
       .form-grid{grid-template-columns:1fr 1fr}
       .footer-grid{grid-template-columns:1fr 1fr}
-      .detail-top,.cols-2{grid-template-columns:1fr}
+      .detail-top{grid-template-columns:1fr}
       .result-grid{grid-template-columns:1fr 1fr}
       .products-grid{grid-template-columns:repeat(3,1fr)}
     }
@@ -843,768 +672,604 @@
       .products-grid{grid-template-columns:repeat(2,1fr)}
     }
     @media (max-width:780px){
-      .features-grid, .suggest-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
-      .nav-links { display: none; }
-      .menu-toggle-btn { display: grid; }
-      .search-dropdown { width: 280px; right: -80px; }
+      .features-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)!important}
+      .nav-links{display:none}
+      .menu-toggle-btn{display:grid}
       .hero-content{grid-template-columns:1fr;padding:56px 0}
-      .hero-offer-card .product-image { height: 180px !important; }
+      .hero-offer-card .product-image{height:180px}
       .section{padding:64px 0}
       .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
       .hero h1{font-size:2.35rem}
       .products-grid{grid-template-columns:1fr}
       .tabs-container{width:100%;justify-content:center}
       .tab-btn{padding:12px 24px;font-size:1rem}
-      .pagination-wrapper { flex-direction: column; align-items: center; gap: 10px; }
+      .search-dropdown{width:calc(100% - 30px);top:75px}
     }
     @media (max-width:480px){
       .container{width:min(100% - 18px,1240px)}
       .hero h1{font-size:2rem}
       .hero-actions{flex-direction:column}
-      .search-dropdown { width: 260px; right: -100px; }
       .tab-btn{padding:10px 20px;font-size:0.9rem}
-      .page-btn { min-width: 36px; height: 36px; font-size: 0.8rem; }
-    }
-    @media (hover:none) and (pointer:coarse){
-      .btn:hover,.card:hover{transform:none}
-      .nav-links a:hover::after{width:0}
+      .page-btn{min-width:36px;height:36px;font-size:0.8rem}
     }
   </style>
 </head>
 <body>
   <div class="toast" id="toast">Message copié</div>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-<nav class="sidebar-menu" id="sidebarMenu">
-  <div class="sidebar-header">
-    <span class="logo"><i class="fa-solid fa-bicycle"></i><span>Menu</span></span>
-    <button type="button" class="close-btn" id="closeSidebarBtn" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <ul class="sidebar-links">
-    <li><a href="#home" class="sidebar-link-item">Accueil</a></li>
-    <li><a href="#catalog" class="sidebar-link-item">Vélos</a></li>
-    <li><a href="#smart" class="sidebar-link-item">Choix intelligent</a></li>
-    <li><a href="#articles" class="sidebar-link-item">Conseils</a></li>
-    <li><a href="#contact" class="sidebar-link-item">Contact</a></li>
-    <li><a href="panier.html" class="sidebar-link-item">Mon panier</a></li>
-  </ul>
-</nav>
-<header class="topbar">
-  <div class="container nav">
-    <a class="logo" href="#home"><i class="fa-solid fa-bicycle"></i><span>EliteBike <span class="accent">Pro</span></span></a>
-    <ul class="nav-links">
-      <li><a href="#home">Accueil</a></li>
-      <li><a href="#catalog">Vélos</a></li>
-      <li><a href="#smart">Choix intelligent</a></li>
-      <li><a href="#articles">Conseils</a></li>
-      <li><a href="#contact">Contact</a></li>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <nav class="sidebar-menu" id="sidebarMenu">
+    <div class="sidebar-header">
+      <span class="logo"><i class="fa-solid fa-bicycle"></i><span>Menu</span></span>
+      <button type="button" class="close-btn" id="closeSidebarBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="#home" class="sidebar-link-item">Accueil</a></li>
+      <li><a href="#catalog" class="sidebar-link-item">Vélos</a></li>
+      <li><a href="#smart" class="sidebar-link-item">Choix intelligent</a></li>
+      <li><a href="#articles" class="sidebar-link-item">Conseils</a></li>
+      <li><a href="#contact" class="sidebar-link-item">Contact</a></li>
+      <li><a href="panier.html" class="sidebar-link-item">Mon panier</a></li>
     </ul>
-    <div class="nav-actions">
-      <button type="button" class="icon-btn" id="themeToggle" aria-label="Changer le thème"><i class="fa-solid fa-moon"></i></button>
-      
-      <div class="search-container">
-        <button type="button" class="icon-btn" id="searchToggleBtn" aria-label="Rechercher"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <div class="search-dropdown" id="searchDropdown">
-          <div class="search-input-wrapper">
-            <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off">
-            <button type="button" id="closeSearchBtn" class="close-btn" style="width:40px;height:40px;"><i class="fa-solid fa-xmark"></i></button>
-          </div>
-          <div class="search-results-list" id="searchResultsList">
-            <div class="no-results">Commencez à taper pour chercher</div>
+  </nav>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="#home"><i class="fa-solid fa-bicycle"></i><span>EliteBike <span class="accent">Pro</span></span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Accueil</a></li>
+        <li><a href="#catalog">Vélos</a></li>
+        <li><a href="#smart">Choix intelligent</a></li>
+        <li><a href="#articles">Conseils</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button type="button" class="icon-btn" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+        <div class="search-container">
+          <button type="button" class="icon-btn" id="searchToggleBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <div class="search-dropdown" id="searchDropdown">
+            <div class="search-input-wrapper">
+              <input type="text" id="searchInput" placeholder="Rechercher un produit..." autocomplete="off">
+              <button type="button" id="closeSearchBtn" class="close-btn" style="width:40px;height:40px;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="search-results-list" id="searchResultsList">
+              <div class="no-results">Tapez pour chercher un produit</div>
+            </div>
           </div>
         </div>
+        <a href="panier.html" class="icon-btn" id="cartIconBtn"><i class="fa-solid fa-cart-shopping"></i></a>
+        <button type="button" class="icon-btn menu-toggle-btn" id="openSidebarBtn"><i class="fa-solid fa-bars"></i></button>
       </div>
-      
-      <a href="panier.html" class="icon-btn" id="cartIconBtn" aria-label="Voir le panier"><i class="fa-solid fa-cart-shopping"></i></a>
-      <button type="button" class="icon-btn menu-toggle-btn" id="openSidebarBtn" aria-label="Ouvrir le menu"><i class="fa-solid fa-bars"></i></button>
     </div>
-  </div>
-</header>
+  </header>
 
-<section class="hero" id="home">
-  <div class="container hero-content">
-    <div>
-      <h1>Le vélo parfait pour chaque trajet</h1>
-      <p>Boutique moderne avec fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
-      <div class="hero-actions">
-        <a href="#catalog" class="btn btn-primary"><i class="fa-solid fa-bicycle"></i> Voir les vélos</a>
-        <a href="#smart" class="btn btn-light"><i class="fa-solid fa-wand-magic-sparkles"></i> Trouver mon vélo</a>
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div>
+        <h1>Le vélo parfait pour chaque trajet</h1>
+        <p>Boutique moderne avec fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
+        <div class="hero-actions">
+          <a href="#catalog" class="btn btn-primary"><i class="fa-solid fa-bicycle"></i> Voir les vélos</a>
+          <a href="#smart" class="btn btn-light"><i class="fa-solid fa-wand-magic-sparkles"></i> Trouver mon vélo</a>
+        </div>
+        <div class="hero-card">
+          <div class="hero-stats">
+            <div class="stat"><h3>150+</h3><p>Vélos sélectionnés</p></div>
+            <div class="stat"><h3>4.9/5</h3><p>Avis clients</p></div>
+            <div class="stat"><h3>24h</h3><p>Support rapide</p></div>
+            <div class="stat"><h3>FR</h3><p>Interface</p></div>
+          </div>
+        </div>
       </div>
-      <div class="hero-card">
-        <div class="hero-stats">
-          <div class="stat"><h3>150+</h3><p>Vélos sélectionnés</p></div>
-          <div class="stat"><h3>4.9/5</h3><p>Avis clients</p></div>
-          <div class="stat"><h3>24h</h3><p>Support rapide</p></div>
-          <div class="stat"><h3>FR</h3><p>Interface française</p></div>
+      <div>
+        <div class="card hero-offer-card">
+          <div class="product-image" style="height:360px"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
+          <div style="padding:22px">
+            <h3 style="margin-bottom:8px;font-size:1.3rem">Offre du moment</h3>
+            <p style="color:var(--muted);margin-bottom:14px">Vélo de route premium, léger et rapide.</p>
+            <div class="price-row"><span class="price">1 290 €</span><span class="old-price">1 590 €</span></div>
+            <a href="#catalog" class="btn btn-primary" style="width:100%">Découvrir</a>
+          </div>
         </div>
       </div>
     </div>
-    <div>
-      <div class="card hero-offer-card">
-        <div class="product-image" style="height:360px"><img class="main-img" src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Pourquoi choisir <span class="accent">EliteBike Pro</span></h2>
+        <p>Expérience rapide et pensée pour tous les écrans</p>
+      </div>
+      <div class="features-grid">
+        <div class="card feature"><div class="ico"><i class="fa-solid fa-gauge-high"></i></div><h3>Rapide</h3><p>Navigation fluide.</p></div>
+        <div class="card feature"><div class="ico"><i class="fa-solid fa-shield-heart"></i></div><h3>Reliable</h3><p>Fiches claires.</p></div>
+        <div class="card feature"><div class="ico"><i class="fa-solid fa-people-group"></i></div><h3>Avis réels</h3><p>Retours certifiés.</p></div>
+        <div class="card feature"><div class="ico"><i class="fa-solid fa-gear"></i></div><h3>Complet</h3><p>Spécifications.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="catalog">
+    <div class="container">
+      <div class="section-title">
+        <h2>Catalogue de <span class="accent">vélos</span></h2>
+        <p>Chaque vélo affiche ses caractéristiques et un bouton Détails complet</p>
+      </div>
+      
+      <div style="display: flex; justify-content: center;">
+        <div class="tabs-container">
+          <button class="tab-btn active" data-tab="velos">🚲 Vélos</button>
+          <button class="tab-btn" data-tab="autres">🪖 Autres</button>
+        </div>
+      </div>
+      
+      <div class="tab-content active" id="velos-tab">
+        <div class="pagination-wrapper" id="velosPaginationTop"></div>
+        <div class="products-grid" id="velosGrid"></div>
+      </div>
+      
+      <div class="tab-content" id="autres-tab">
+        <div class="pagination-wrapper" id="autresPaginationTop"></div>
+        <div class="products-grid" id="autresGrid"></div>
+      </div>
+      
+      <div style="margin-top:32px" class="card">
         <div style="padding:22px">
-          <h3 style="margin-bottom:8px;font-size:1.3rem">Offre du moment</h3>
-          <p style="color:var(--muted);margin-bottom:14px">Vélo de route premium, léger et rapide.</p>
-          <div class="price-row"><span class="price">1 290 €</span><span class="old-price">1 590 €</span></div>
-          <a href="#catalog" class="btn btn-primary" style="width:100%">Découvrir</a>
+          <h3 style="margin-bottom:6px">Avis des utilisateurs</h3>
+          <p style="color:var(--muted)">Les utilisateurs peuvent voir les notes, les retours et choisir plus facilement le vélo adapté à leur usage.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="features">
-  <div class="container">
-    <div class="section-title">
-      <h2>Pourquoi choisir <span class="accent">EliteBike Pro</span></h2>
-      <p>Expérience rapide et pensée pour tous les écrans</p>
-    </div>
-    <div class="features-grid">
-      <div class="card feature"><div class="ico"><i class="fa-solid fa-gauge-high"></i></div><h3>Rapide</h3><p>Navigation fluide.</p></div>
-      <div class="card feature"><div class="ico"><i class="fa-solid fa-shield-heart"></i></div><h3>Reliable</h3><p>Fiches claires.</p></div>
-      <div class="card feature"><div class="ico"><i class="fa-solid fa-people-group"></i></div><h3>Avis réels</h3><p>Retours certifiés.</p></div>
-      <div class="card feature"><div class="ico"><i class="fa-solid fa-gear"></i></div><h3>Complet</h3><p>Spécifications.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- Catalogue section with Tabs and Pagination at TOP -->
-<section class="section" id="catalog">
-  <div class="container">
-    <div class="section-title">
-      <h2>Catalogue de <span class="accent">vélos</span></h2>
-      <p>Chaque vélo affiche ses caractéristiques et un bouton Détails complet</p>
-    </div>
-    
-    <!-- Tabs buttons -->
-    <div style="display: flex; justify-content: center;">
-      <div class="tabs-container">
-        <button class="tab-btn active" data-tab="velos">🚲 Vélos</button>
-        <button class="tab-btn" data-tab="autres">🪖 Autres</button>
+  <section class="section" id="smart">
+    <div class="container">
+      <div class="section-title">
+        <h2>Choix <span class="accent">intelligent</span></h2>
+        <p>Indiquez votre profil et recevez une recommandation automatique</p>
       </div>
-    </div>
-    
-    <!-- Tab content: Vélos -->
-    <div class="tab-content active" id="velos-tab">
-      <!-- Pagination at TOP for Vélos -->
-      <div class="pagination-wrapper" id="velosPaginationTop"></div>
-      <div class="products-grid" id="velosGrid"></div>
-    </div>
-    
-    <!-- Tab content: Autres -->
-    <div class="tab-content" id="autres-tab">
-      <!-- Pagination at TOP for Autres -->
-      <div class="pagination-wrapper" id="autresPaginationTop"></div>
-      <div class="products-grid" id="autresGrid"></div>
-    </div>
-    
-    <div style="margin-top:32px" class="card">
-      <div style="padding:22px">
-        <h3 style="margin-bottom:6px">Avis des utilisateurs</h3>
-        <p style="color:var(--muted)">Les utilisateurs peuvent voir les notes, les retours et choisir plus facilement le vélo adapté à leur usage.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="smart">
-  <div class="container">
-    <div class="section-title">
-      <h2>Choix <span class="accent">intelligent</span></h2>
-      <p>Indiquez votre profil et recevez une recommandation automatique</p>
-    </div>
-    <div class="smart-form">
-      <div class="form-grid">
-        <div class="field"><label for="height">Taille (cm)</label><input id="height" type="number" placeholder="ex: 175"></div>
-        <div class="field"><label for="weight">Poids (kg)</label><input id="weight" type="number" placeholder="ex: 72"></div>
-        <div class="field"><label for="age">Âge</label><input id="age" type="number" placeholder="ex: 29"></div>
-        <div class="field"><label for="useType">Type d'utilisation</label><select id="useType"><option value="Ville">La ville</option><option value="Montagne">Les montagnes</option><option value="Vitesse">La vitesse</option><option value="Quotidien">Utilisation quotidienne</option><option value="Sport">Le sport</option></select></div>
-        <div class="field"><button type="button" class="btn btn-primary" id="recommendBtn" style="width:100%"><i class="fa-solid fa-wand-magic-sparkles"></i> Recommander</button></div>
-      </div>
-      <div class="result-box" id="resultBox">
-        <strong>Résultat de recommandation</strong>
-        <div id="resultText" style="color:var(--muted)">Remplissez les informations pour obtenir un vélo conseillé automatiquement.</div>
-        <div class="result-grid">
-          <div class="mini"><strong>Taille cadre</strong><span id="recFrame">-</span></div>
-          <div class="mini"><strong>Type vélo</strong><span id="recType">-</span></div>
-          <div class="mini"><strong>Taille roues</strong><span id="recWheel">-</span></div>
-          <div class="mini"><strong>Vitesses</strong><span id="recSpeed">-</span></div>
+      <div class="smart-form">
+        <div class="form-grid">
+          <div class="field"><label for="height">Taille (cm)</label><input id="height" type="number" placeholder="ex: 175"></div>
+          <div class="field"><label for="weight">Poids (kg)</label><input id="weight" type="number" placeholder="ex: 72"></div>
+          <div class="field"><label for="age">Âge</label><input id="age" type="number" placeholder="ex: 29"></div>
+          <div class="field"><label for="useType">Type d'utilisation</label><select id="useType"><option value="Ville">La ville</option><option value="Montagne">Les montagnes</option><option value="Vitesse">La vitesse</option><option value="Quotidien">Quotidien</option><option value="Sport">Le sport</option></select></div>
+          <div class="field"><button type="button" class="btn btn-primary" id="recommendBtn" style="width:100%"><i class="fa-solid fa-wand-magic-sparkles"></i> Recommander</button></div>
+        </div>
+        <div class="result-box" id="resultBox">
+          <strong>Résultat de recommandation</strong>
+          <div id="resultText" style="color:var(--muted)">Remplissez les informations pour obtenir un vélo conseillé automatiquement.</div>
+          <div class="result-grid">
+            <div class="mini"><strong>Taille cadre</strong><span id="recFrame">-</span></div>
+            <div class="mini"><strong>Type vélo</strong><span id="recType">-</span></div>
+            <div class="mini"><strong>Taille roues</strong><span id="recWheel">-</span></div>
+            <div class="mini"><strong>Vitesses</strong><span id="recSpeed">-</span></div>
+          </div>
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="section" id="suggestions">
+    <div class="container">
+      <div class="section-title">
+        <h2>Suggestions de <span class="accent">vélos proches</span></h2>
+        <p>Des modèles similaires pour comparer facilement</p>
+      </div>
+      <div class="suggest-grid">
+        <div class="card feature"><div class="ico"><i class="fa-solid fa-mountain"></i></div><h3>Trail Master 27.5</h3><p>Maniabilité max.</p></div>
+        <div class="card feature"><div class="ico"><i class="fa-solid fa-road"></i></div><h3>Road Lite 56</h3><p>Version légère.</p></div>
+        <div class="card feature"><div class="ico"><i class="fa-solid fa-city"></i></div><h3>Urban Ride 7</h3><p>Déplacements urbains.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews">
+    <div class="container">
+      <div class="section-title">
+        <h2>Avis <span class="accent">clients</span></h2>
+        <p>Des retours qui aident à choisir le bon vélo</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="card review"><div class="review-head"><div class="avatar"><i class="fa-solid fa-user"></i></div><div><strong>Lucas</strong><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div></div><p>Très beau site, rapide, et les détails produits sont vraiment complets.</p></div>
+        <div class="card review"><div class="review-head"><div class="avatar"><i class="fa-solid fa-user"></i></div><div><strong>Sofia</strong><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div></div></div><p>Le système de recommandation est pratique pour choisir selon la taille et l'usage.</p></div>
+        <div class="card review"><div class="review-head"><div class="avatar"><i class="fa-solid fa-user"></i></div><div><strong>Mathieu</strong><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div></div><p>Design moderne et parfait sur téléphone. Le bouton Détails fonctionne très bien.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="articles">
+    <div class="container">
+      <div class="section-title">
+        <h2>Articles & <span class="accent">Conseils</span></h2>
+        <p>Des articles en français pour garder votre vélo en bon état</p>
+      </div>
+      <div class="articles-grid">
+        <article class="card article"><span class="tag">Entretien</span><h3>Comment garder son vélo en bon état</h3><p>Nettoyez régulièrement le cadre et vérifiez l'état général chaque semaine.</p></article>
+        <article class="card article"><span class="tag">Chaîne</span><h3>Nettoyage de la chaîne</h3><p>Décrassez la transmission, utilisez un dégraissant adapté et lubrifiez ensuite.</p></article>
+        <article class="card article"><span class="tag">Lubrification</span><h3>Bien lubrifier son vélo</h3><p>Appliquez une petite quantité de lubrifiant sur la chaîne propre, puis retirez l'excès.</p></article>
+        <article class="card article"><span class="tag">Freins</span><h3>Protéger ses freins</h3><p>Surveillez l'usure des plaquettes, gardez les disques propres.</p></article>
+        <article class="card article"><span class="tag">Taille</span><h3>Choisir la bonne taille</h3><p>La taille dépend de votre morphologie et style d'usage.</p></article>
+        <article class="card article"><span class="tag">Débutants</span><h3>Conseils pour débutants</h3><p>Commencez par un vélo simple, portez un casque et testez la position.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>EliteBike Pro</h4><p>Une boutique moderne pensée pour les passionnés de vélo.</p><div class="social"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div></div>
+        <div><h4>Navigation</h4><ul><li><a href="#home">Accueil</a></li><li><a href="#catalog">Vélos</a></li><li><a href="#smart">Choix intelligent</a></li><li><a href="#articles">Articles</a></li></ul></div>
+        <div><h4>Services</h4><ul><li>Vente de vélos</li><li>Conseil personnalisé</li><li>Support rapide</li></ul></div>
+        <div><h4>Contact</h4><ul><li><i class="fa-solid fa-location-dot"></i> Paris, France</li><li><i class="fa-solid fa-phone"></i> +33 6 12 34 56 78</li><li><i class="fa-solid fa-envelope"></i> contact@elitebikepro.fr</li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 EliteBike Pro. Tous droits réservés.</p></div>
+    </div>
+  </footer>
+
+  <a class="floating-wa" href="https://wa.me/33612345678" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+  <div class="modal-backdrop" id="detailsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Détails du produit</div>
+        <button type="button" class="close-btn" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
   </div>
-</section>
 
-<section class="section" id="suggestions">
-  <div class="container">
-    <div class="section-title">
-      <h2>Suggestions de <span class="accent">vélos proches</span></h2>
-      <p>Des modèles similaires pour comparer facilement</p>
-    </div>
-    <div class="suggest-grid">
-      <div class="card feature"><div class="ico"><i class="fa-solid fa-mountain"></i></div><h3>Trail Master 27.5</h3><p>Maniabilité max.</p></div>
-      <div class="card feature"><div class="ico"><i class="fa-solid fa-road"></i></div><h3>Road Lite 56</h3><p>Version légère.</p></div>
-      <div class="card feature"><div class="ico"><i class="fa-solid fa-city"></i></div><h3>Urban Ride 7</h3><p>Déplacements urbains.</p></div>
-    </div>
-  </div>
-</section>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyApB9vYp7M1T7KqwyG-rhevRfd93AfUsow",
+      authDomain: "kefmusclestore-12.firebaseapp.com",
+      databaseURL: "https://kefmusclestore-12-default-rtdb.firebaseio.com",
+      projectId: "kefmusclestore-12",
+      storageBucket: "kefmusclestore-12.firebasestorage.app",
+      messagingSenderId: "605422376575",
+      appId: "1:605422376575:web:b0cf63de00c10d56d1514a"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const productsRef = database.ref('elitebike_products');
 
-<section class="section reviews">
-  <div class="container">
-    <div class="section-title">
-      <h2>Avis <span class="accent">clients</span></h2>
-      <p>Des retours qui aident à choisir le bon vélo</p>
-    </div>
-    <div class="reviews-grid">
-      <div class="card review"><div class="review-head"><div class="avatar"><i class="fa-solid fa-user"></i></div><div><strong>Lucas</strong><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div></div><p>Très beau site, rapide, et les détails produits sont vraiment complets.</p></div>
-      <div class="card review"><div class="review-head"><div class="avatar"><i class="fa-solid fa-user"></i></div><div><strong>Sofia</strong><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div></div></div><p>Le système de recommandation est pratique pour choisir selon la taille et l’usage.</p></div>
-      <div class="card review"><div class="review-head"><div class="avatar"><i class="fa-solid fa-user"></i></div><div><strong>Mathieu</strong><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div></div><p>Design moderne et parfait sur téléphone. Le bouton Détails fonctionne très bien.</p></div>
-    </div>
-  </div>
-</section>
+    let currentProducts = [];
+    let velosList = [];
+    let autresList = [];
+    let velosCurrentPage = 1;
+    let autresCurrentPage = 1;
+    const ITEMS_PER_PAGE = 4;
 
-<section class="section" id="articles">
-  <div class="container">
-    <div class="section-title">
-      <h2>Articles & <span class="accent">Conseils</span></h2>
-      <p>Des articles en français pour garder votre vélo en bon état</p>
-    </div>
-    <div class="articles-grid">
-      <article class="card article"><span class="tag">Entretien</span><h3>Comment garder son vélo en bon état</h3><p>Nettoyez régulièrement le cadre, contrôlez les vis et vérifiez l’état général du vélo chaque semaine.</p></article>
-      <article class="card article"><span class="tag">Chaîne</span><h3>Nettoyage de la chaîne</h3><p>Décrassez la transmission, utilisez un dégraissant adapté et séchez bien avant de lubrifier.</p></article>
-      <article class="card article"><span class="tag">Lubrification</span><h3>Bien lubrifier son vélo</h3><p>Appliquez une petite quantité de lubrifiant sur la chaîne propre, puis retirez l’excès avec un chiffon.</p></article>
-      <article class="card article"><span class="tag">Freins</span><h3>Protéger ses freins</h3><p>Surveillez l’usure des plaquettes, gardez les disques propres et évitez les produits gras sur la zone de freinage.</p></article>
-      <article class="card article"><span class="tag">Taille</span><h3>Choisir la bonne taille</h3><p>La taille dépend surtout de votre taille corporelle et de votre style d’usage. Un cadre adapté améliore le confort.</p></article>
-      <article class="card article"><span class="tag">Débutants</span><h3>Conseils pour débutants</h3><p>Commencez par un vélo simple, portez un casque et testez la position avant un long trajet.</p></article>
-    </div>
-  </div>
-</section>
-
-<footer class="footer" id="contact">
-  <div class="container">
-    <div class="footer-grid">
-      <div><h4>EliteBike Pro</h4><p>Une boutique moderne pensée pour les passionnés de vélo.</p><div class="social"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div></div>
-      <div><h4>Navigation</h4><ul><li><a href="#home">Accueil</a></li><li><a href="#catalog">Vélos</a></li><li><a href="#smart">Choix intelligent</a></li><li><a href="#articles">Articles</a></li></ul></div>
-      <div><h4>Services</h4><ul><li>Vente de vélos</li><li>Conseil personnalisé</li><li>Comparaison de modèles</li><li>Support rapide</li></ul></div>
-      <div><h4>Contact</h4><ul><li><i class="fa-solid fa-location-dot"></i> Sousse, France</li><li><i class="fa-solid fa-phone"></i> +216 25 943 150</li><li><i class="fa-solid fa-envelope"></i> contact@velosportpro.fr</li></ul></div>
-    </div>
-    <div class="footer-bottom"><p>© 2026 EliteBike Pro. Tous droits réservés.</p></div>
-  </div>
-</footer>
-
-<a class="floating-wa" href="https://wa.me/21625943150" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-<div class="modal-backdrop" id="detailsModal">
-  <div class="modal" role="dialog" aria-modal="true">
-    <div class="modal-header">
-      <div class="modal-title" id="modalTitle">Détails du produit</div>
-      <button type="button" class="close-btn" id="closeModal" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyApB9vYp7M1T7KqwyG-rhevRfd93AfUsow",
-    authDomain: "kefmusclestore-12.firebaseapp.com",
-    databaseURL: "https://kefmusclestore-12-default-rtdb.firebaseio.com",
-    projectId: "kefmusclestore-12",
-    storageBucket: "kefmusclestore-12.firebasestorage.app",
-    messagingSenderId: "605422376575",
-    appId: "1:605422376575:web:b0cf63de00c10d56d1514a",
-    measurementId: "G-JDZEDKE58T"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
-  const productsRef = database.ref('elitebike_products');
-
-  let currentProducts = [];
-  let velosList = [];
-  let autresList = [];
-  
-  // Pagination variables
-  let velosCurrentPage = 1;
-  let autresCurrentPage = 1;
-  const ITEMS_PER_PAGE = 4;  // 4 produits par page
-  
-  function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
-    const existingIndex = cart.findIndex(item => item.id === product.key);
-    if (existingIndex !== -1) {
-      cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
-    } else {
-      cart.push({
-        id: product.key,
-        name: product.name,
-        price: product.price,
-        image: (product.images && product.images[0]) || '',
-        quantity: 1
-      });
+    function addToCart(product) {
+      let cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
+      const existingIndex = cart.findIndex(item => item.id === product.key);
+      if (existingIndex !== -1) {
+        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+      } else {
+        cart.push({
+          id: product.key,
+          name: product.name,
+          price: product.price,
+          image: (product.images && product.images[0]) || (product.imageUrl) || '',
+          quantity: 1
+        });
+      }
+      localStorage.setItem('elitebike_cart', JSON.stringify(cart));
+      showToast(`✅ ${product.name} ajouté au panier`);
+      updateCartCount();
     }
-    localStorage.setItem('elitebike_cart', JSON.stringify(cart));
-    showToast(`✅ ${product.name} ajouté au panier`);
-    updateCartCount();
-  }
-  
-  function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
-    const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    const cartIcon = document.getElementById('cartIconBtn');
-    if (cartIcon) {
-      let badge = cartIcon.querySelector('.cart-badge');
-      if (count > 0) {
-        if (!badge) {
-          badge = document.createElement('span');
-          badge.className = 'cart-badge';
-          cartIcon.style.position = 'relative';
-          cartIcon.appendChild(badge);
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
+      const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      const cartIcon = document.getElementById('cartIconBtn');
+      if (cartIcon) {
+        let badge = cartIcon.querySelector('.cart-badge');
+        if (count > 0) {
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'cart-badge';
+            cartIcon.style.position = 'relative';
+            cartIcon.appendChild(badge);
+          }
+          badge.textContent = count > 9 ? '9+' : count;
+          badge.style.display = 'flex';
+        } else if (badge) {
+          badge.style.display = 'none';
         }
-        badge.textContent = count > 9 ? '9+' : count;
-        badge.style.display = 'flex';
-      } else if (badge) {
-        badge.style.display = 'none';
       }
     }
-  }
 
-  function showToast(msg) {
-    const toast = document.getElementById('toast');
-    toast.textContent = msg;
-    toast.style.display = 'block';
-    setTimeout(() => toast.style.display = 'none', 2400);
-  }
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => toast.style.display = 'none', 2400);
+    }
 
-  function isBicycle(product) {
-    const type = (product.type || '').toLowerCase();
-    const name = (product.name || '').toLowerCase();
-    const category = (product.category || '').toLowerCase();
-    
-    if (category === 'accessoire' || category === 'accessories' || category === 'equipement' || category === 'parts' || category === 'other') {
+    function isBicycle(product) {
+      if (product.category === 'velos' || product.type === 'Route' || product.type === 'MTB' || product.type === 'Ville' || product.type === 'Électrique') {
+        return true;
+      }
+      if (product.category === 'autres') return false;
+      const type = (product.type || '').toLowerCase();
+      if (type === 'route' || type === 'vtt' || type === 'ville' || type === 'mtb') return true;
       return false;
     }
-    if (type === 'route' || type === 'vtt' || type === 'ville' || type === 'urbain' || type === 'mtb' || type === 'electrique' || type === 'hybride' || type === 'course') {
-      return true;
-    }
-    if (name.includes('vélo') || name.includes('bike') || name.includes('vtt') || name.includes('route')) {
-      return true;
-    }
-    return !category;
-  }
 
-  function generateProductCard(product, productId, isOther = false) {
-    const images = product.images || [];
-    const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Image';
-    const typeText = product.category || product.type || (isOther ? 'Accessoire' : 'Vélo');
-    
-    const div = document.createElement('div');
-    div.className = 'product-card';
-    div.setAttribute('data-product-id', productId);
-    div.innerHTML = `
-      <div class="product-image">
-        <div class="product-badge ${isOther ? 'other' : ''}">${product.state || 'Neuf'}</div>
-        <img src="${mainImg}" alt="${product.name}">
-      </div>
-      <div class="product-info">
-        <h3>${product.name}</h3>
-        <span class="product-type">${typeText}</span>
-        <div class="product-price">${product.price}</div>
-        <div class="product-actions">
-          <button type="button" class="btn btn-success btn-sm add-to-cart-btn"><i class="fa-solid fa-cart-plus"></i> Ajouter</button>
-          <button type="button" class="btn btn-outline btn-sm details-btn">Détails</button>
+    function generateProductCard(product, productId, isOther = false) {
+      const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
+      const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Image';
+      const typeText = product.subCategory || product.type || (isOther ? 'Accessoire' : 'Vélo');
+      const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
+      
+      const div = document.createElement('div');
+      div.className = 'product-card';
+      div.innerHTML = `
+        <div class="product-image">
+          <div class="product-badge ${isOther ? 'other' : ''}">${product.state === 'Occasion' ? 'Occasion' : 'Neuf'}</div>
+          <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200?text=Image+non+disponible'">
         </div>
-      </div>
-    `;
-    
-    const addBtn = div.querySelector('.add-to-cart-btn');
-    addBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      addToCart(product);
-    });
-    
-    const detailsBtn = div.querySelector('.details-btn');
-    detailsBtn.addEventListener('click', () => openModal(product));
-    
-    return div;
-  }
+        <div class="product-info">
+          <h3>${product.name || 'Produit'}</h3>
+          <span class="product-type">${typeText}</span>
+          <div class="product-price">${priceValue}</div>
+          <div class="product-actions">
+            <button type="button" class="btn btn-success btn-sm add-to-cart-btn"><i class="fa-solid fa-cart-plus"></i> Ajouter</button>
+            <button type="button" class="btn btn-outline btn-sm details-btn">Détails</button>
+          </div>
+        </div>
+      `;
+      
+      div.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        addToCart(product);
+      });
+      div.querySelector('.details-btn').addEventListener('click', () => openModal(product));
+      return div;
+    }
 
-  // Pagination functions for Vélos
-  function renderVelosPage() {
-    const container = document.getElementById('velosGrid');
-    if (!container) return;
-    
-    const startIndex = (velosCurrentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const pageProducts = velosList.slice(startIndex, endIndex);
-    
-    container.innerHTML = '';
-    if (pageProducts.length === 0 && velosList.length === 0) {
-      container.innerHTML = '<div class="no-products"><i class="fa-solid fa-bicycle"></i> Aucun vélo disponible pour le moment</div>';
-    } else {
-      pageProducts.forEach(product => {
-        container.appendChild(generateProductCard(product, product.key, false));
-      });
-    }
-    
-    renderVelosPagination();
-  }
-  
-  function renderVelosPagination() {
-    const container = document.getElementById('velosPaginationTop');
-    if (!container) return;
-    
-    const totalPages = Math.ceil(velosList.length / ITEMS_PER_PAGE);
-    if (totalPages <= 1) {
+    function renderVelosPage() {
+      const container = document.getElementById('velosGrid');
+      if (!container) return;
+      const start = (velosCurrentPage - 1) * ITEMS_PER_PAGE;
+      const pageProducts = velosList.slice(start, start + ITEMS_PER_PAGE);
       container.innerHTML = '';
-      return;
-    }
-    
-    let paginationHtml = `<div class="pagination-container">`;
-    
-    // Previous button
-    paginationHtml += `<button class="page-btn ${velosCurrentPage === 1 ? 'disabled' : ''}" data-page="prev" ${velosCurrentPage === 1 ? 'disabled' : ''}>«</button>`;
-    
-    // Page numbers
-    for (let i = 1; i <= totalPages; i++) {
-      paginationHtml += `<button class="page-btn ${i === velosCurrentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
-    }
-    
-    // Next button
-    paginationHtml += `<button class="page-btn ${velosCurrentPage === totalPages ? 'disabled' : ''}" data-page="next" ${velosCurrentPage === totalPages ? 'disabled' : ''}>»</button>`;
-    
-    // Page info
-    const startItem = (velosCurrentPage - 1) * ITEMS_PER_PAGE + 1;
-    const endItem = Math.min(velosCurrentPage * ITEMS_PER_PAGE, velosList.length);
-    paginationHtml += `<span class="page-info">${startItem}-${endItem} / ${velosList.length}</span>`;
-    
-    paginationHtml += `</div>`;
-    container.innerHTML = paginationHtml;
-    
-    // Add event listeners
-    container.querySelectorAll('.page-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (btn.classList.contains('disabled')) return;
-        const page = btn.getAttribute('data-page');
-        if (page === 'prev') {
-          velosCurrentPage = Math.max(1, velosCurrentPage - 1);
-        } else if (page === 'next') {
-          velosCurrentPage = Math.min(totalPages, velosCurrentPage + 1);
-        } else {
-          velosCurrentPage = parseInt(page);
-        }
-        renderVelosPage();
-        // Scroll to top of catalog section
-        document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  }
-  
-  // Pagination functions for Autres
-  function renderAutresPage() {
-    const container = document.getElementById('autresGrid');
-    if (!container) return;
-    
-    const startIndex = (autresCurrentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const pageProducts = autresList.slice(startIndex, endIndex);
-    
-    container.innerHTML = '';
-    if (pageProducts.length === 0 && autresList.length === 0) {
-      container.innerHTML = '<div class="no-products"><i class="fa-solid fa-helmet-safety"></i> Aucun accessoire disponible pour le moment</div>';
-    } else {
-      pageProducts.forEach(product => {
-        container.appendChild(generateProductCard(product, product.key, true));
-      });
-    }
-    
-    renderAutresPagination();
-  }
-  
-  function renderAutresPagination() {
-    const container = document.getElementById('autresPaginationTop');
-    if (!container) return;
-    
-    const totalPages = Math.ceil(autresList.length / ITEMS_PER_PAGE);
-    if (totalPages <= 1) {
-      container.innerHTML = '';
-      return;
-    }
-    
-    let paginationHtml = `<div class="pagination-container">`;
-    
-    paginationHtml += `<button class="page-btn ${autresCurrentPage === 1 ? 'disabled' : ''}" data-page="prev" ${autresCurrentPage === 1 ? 'disabled' : ''}>«</button>`;
-    
-    for (let i = 1; i <= totalPages; i++) {
-      paginationHtml += `<button class="page-btn ${i === autresCurrentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
-    }
-    
-    paginationHtml += `<button class="page-btn ${autresCurrentPage === totalPages ? 'disabled' : ''}" data-page="next" ${autresCurrentPage === totalPages ? 'disabled' : ''}>»</button>`;
-    
-    const startItem = (autresCurrentPage - 1) * ITEMS_PER_PAGE + 1;
-    const endItem = Math.min(autresCurrentPage * ITEMS_PER_PAGE, autresList.length);
-    paginationHtml += `<span class="page-info">${startItem}-${endItem} / ${autresList.length}</span>`;
-    
-    paginationHtml += `</div>`;
-    container.innerHTML = paginationHtml;
-    
-    container.querySelectorAll('.page-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (btn.classList.contains('disabled')) return;
-        const page = btn.getAttribute('data-page');
-        if (page === 'prev') {
-          autresCurrentPage = Math.max(1, autresCurrentPage - 1);
-        } else if (page === 'next') {
-          autresCurrentPage = Math.min(totalPages, autresCurrentPage + 1);
-        } else {
-          autresCurrentPage = parseInt(page);
-        }
-        renderAutresPage();
-        document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  }
-
-  function loadProductsFromFirebase() {
-    productsRef.on('value', (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        currentProducts = Object.entries(data).map(([key, val]) => ({ key, ...val }));
-        velosList = currentProducts.filter(p => isBicycle(p));
-        autresList = currentProducts.filter(p => !isBicycle(p));
+      if (pageProducts.length === 0 && velosList.length === 0) {
+        container.innerHTML = '<div class="no-products"><i class="fa-solid fa-bicycle"></i> Aucun vélo disponible pour le moment</div>';
       } else {
-        currentProducts = [];
-        velosList = [];
-        autresList = [];
+        pageProducts.forEach(p => container.appendChild(generateProductCard(p, p.key, false)));
       }
-      
-      // Reset to page 1
-      velosCurrentPage = 1;
-      autresCurrentPage = 1;
-      
-      renderVelosPage();
-      renderAutresPage();
-    }, (error) => {
-      console.error("Firebase read error:", error);
-      showToast("Erreur de chargement des produits");
-    });
-  }
-
-  // Tab switching
-  function initTabs() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tabId = btn.getAttribute('data-tab');
-        
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        tabContents.forEach(content => content.classList.remove('active'));
-        document.getElementById(`${tabId}-tab`).classList.add('active');
-      });
-    });
-  }
-
-  // Search functionality
-  function filterProducts(searchTerm) {
-    if (!searchTerm.trim()) return currentProducts;
-    const term = searchTerm.toLowerCase().trim();
-    return currentProducts.filter(product => 
-      product.name.toLowerCase().includes(term) ||
-      (product.type && product.type.toLowerCase().includes(term)) ||
-      (product.category && product.category.toLowerCase().includes(term))
-    );
-  }
-  
-  function renderSearchResults(results) {
-    const container = document.getElementById('searchResultsList');
-    if (!container) return;
-    
-    if (results.length === 0) {
-      container.innerHTML = '<div class="no-results">Aucun produit trouvé</div>';
-      return;
+      renderVelosPagination();
     }
-    
-    container.innerHTML = results.map(product => `
-      <div class="search-result-item" data-product-id="${product.key}">
-        <img class="search-result-img" src="${(product.images && product.images[0]) || 'https://via.placeholder.com/50'}" alt="${product.name}">
-        <div class="search-result-info">
-          <div class="search-result-name">${product.name}</div>
-          <div class="search-result-price">${product.price}</div>
-        </div>
-      </div>
-    `).join('');
-    
-    document.querySelectorAll('.search-result-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const productId = item.getAttribute('data-product-id');
-        const product = currentProducts.find(p => p.key === productId);
-        if (product) {
-          openModal(product);
-          document.getElementById('searchDropdown').classList.remove('show');
-          document.getElementById('searchInput').value = '';
+
+    function renderVelosPagination() {
+      const container = document.getElementById('velosPaginationTop');
+      if (!container) return;
+      const totalPages = Math.ceil(velosList.length / ITEMS_PER_PAGE);
+      if (totalPages <= 1) { container.innerHTML = ''; return; }
+      let html = `<div class="pagination-container">`;
+      html += `<button class="page-btn ${velosCurrentPage === 1 ? 'disabled' : ''}" data-page="prev">«</button>`;
+      for (let i = 1; i <= totalPages; i++) html += `<button class="page-btn ${i === velosCurrentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+      html += `<button class="page-btn ${velosCurrentPage === totalPages ? 'disabled' : ''}" data-page="next">»</button>`;
+      html += `<span class="page-info">${(velosCurrentPage-1)*ITEMS_PER_PAGE+1}-${Math.min(velosCurrentPage*ITEMS_PER_PAGE, velosList.length)} / ${velosList.length}</span>`;
+      html += `</div>`;
+      container.innerHTML = html;
+      container.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          const page = btn.dataset.page;
+          if (page === 'prev') velosCurrentPage = Math.max(1, velosCurrentPage - 1);
+          else if (page === 'next') velosCurrentPage = Math.min(totalPages, velosCurrentPage + 1);
+          else velosCurrentPage = parseInt(page);
+          renderVelosPage();
+          document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+
+    function renderAutresPage() {
+      const container = document.getElementById('autresGrid');
+      if (!container) return;
+      const start = (autresCurrentPage - 1) * ITEMS_PER_PAGE;
+      const pageProducts = autresList.slice(start, start + ITEMS_PER_PAGE);
+      container.innerHTML = '';
+      if (pageProducts.length === 0 && autresList.length === 0) {
+        container.innerHTML = '<div class="no-products"><i class="fa-solid fa-helmet-safety"></i> Aucun accessoire disponible</div>';
+      } else {
+        pageProducts.forEach(p => container.appendChild(generateProductCard(p, p.key, true)));
+      }
+      renderAutresPagination();
+    }
+
+    function renderAutresPagination() {
+      const container = document.getElementById('autresPaginationTop');
+      if (!container) return;
+      const totalPages = Math.ceil(autresList.length / ITEMS_PER_PAGE);
+      if (totalPages <= 1) { container.innerHTML = ''; return; }
+      let html = `<div class="pagination-container">`;
+      html += `<button class="page-btn ${autresCurrentPage === 1 ? 'disabled' : ''}" data-page="prev">«</button>`;
+      for (let i = 1; i <= totalPages; i++) html += `<button class="page-btn ${i === autresCurrentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+      html += `<button class="page-btn ${autresCurrentPage === totalPages ? 'disabled' : ''}" data-page="next">»</button>`;
+      html += `<span class="page-info">${(autresCurrentPage-1)*ITEMS_PER_PAGE+1}-${Math.min(autresCurrentPage*ITEMS_PER_PAGE, autresList.length)} / ${autresList.length}</span>`;
+      html += `</div>`;
+      container.innerHTML = html;
+      container.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          const page = btn.dataset.page;
+          if (page === 'prev') autresCurrentPage = Math.max(1, autresCurrentPage - 1);
+          else if (page === 'next') autresCurrentPage = Math.min(totalPages, autresCurrentPage + 1);
+          else autresCurrentPage = parseInt(page);
+          renderAutresPage();
+          document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+
+    function loadProducts() {
+      productsRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          currentProducts = Object.entries(data).map(([key, val]) => ({ key, ...val }));
+          velosList = currentProducts.filter(p => isBicycle(p));
+          autresList = currentProducts.filter(p => !isBicycle(p));
+        } else {
+          currentProducts = [];
+          velosList = [];
+          autresList = [];
         }
+        velosCurrentPage = 1;
+        autresCurrentPage = 1;
+        renderVelosPage();
+        renderAutresPage();
       });
-    });
-  }
-  
-  function handleSearch() {
-    const searchInput = document.getElementById('searchInput');
-    const term = searchInput.value;
-    const results = filterProducts(term);
-    renderSearchResults(results);
-  }
-
-  function openModal(product) {
-    const modal = document.getElementById('detailsModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    modalTitle.textContent = product.name;
-    const images = product.images || [];
-    const pros = product.pros || [];
-    const cons = product.cons || [];
-    const isBike = isBicycle(product);
-    
-    modalBody.innerHTML = `
-      <div class="detail-top">
-        <div class="detail-images">
-          <img class="big" id="detailMainImg" src="${images[0] || ''}" alt="${product.name}">
-          <div class="detail-thumbs" id="detailThumbs">
-            ${images.map((src, i) => `<img class="${i===0?'active':''}" src="${src}" alt="">`).join('')}
-          </div>
-        </div>
-        <div class="detail-card">
-          <h3>${product.name}</h3>
-          <div class="price-row"><span class="price">${product.price}</span></div>
-          <p>${product.description || (isBike ? 'Vélo de qualité professionnelle' : 'Accessoire de qualité pour vélo')}</p>
-          <div class="info-list">
-            <div class="info-item"><span>Catégorie</span><strong>${product.category || product.type || (isBike ? 'Vélo' : 'Accessoire')}</strong></div>
-            ${product.size ? `<div class="info-item"><span>Taille</span><strong>${product.size}</strong></div>` : ''}
-            <div class="info-item"><span>État</span><strong>${product.state || 'Neuf'}</strong></div>
-          </div>
-          <button type="button" class="btn btn-success modal-add-to-cart" style="width:100%;margin-top:16px;"><i class="fa-solid fa-cart-plus"></i> Ajouter au panier</button>
-        </div>
-      </div>
-      ${pros.length > 0 || cons.length > 0 ? `
-      <div class="cols-2">
-        <div class="box"><h4>Avantages</h4><ul>${pros.map(p => `<li>${p}</li>`).join('')}</ul></div>
-        <div class="box"><h4>Inconvénients</h4><ul>${cons.map(c => `<li>${c}</li>`).join('')}</ul></div>
-      </div>
-      ` : ''}
-    `;
-    modal.classList.add('show');
-    
-    const detailMainImg = document.getElementById('detailMainImg');
-    const detailThumbs = document.getElementById('detailThumbs').querySelectorAll('img');
-    detailThumbs.forEach((t, i) => {
-      t.addEventListener('click', () => {
-        detailThumbs.forEach(x => x.classList.remove('active'));
-        t.classList.add('active');
-        detailMainImg.src = images[i];
-      });
-    });
-    
-    const modalAddToCart = modalBody.querySelector('.modal-add-to-cart');
-    if (modalAddToCart) {
-      modalAddToCart.addEventListener('click', () => addToCart(product));
     }
-  }
 
-  function saveRecommendationToFirebase(data) {
-    const recommendationsRef = database.ref('recommendations');
-    recommendationsRef.push({ ...data, timestamp: firebase.database.ServerValue.TIMESTAMP })
-      .catch(err => console.error(err));
-  }
+    function initTabs() {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.dataset.tab;
+          tabs.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          contents.forEach(c => c.classList.remove('active'));
+          document.getElementById(`${tabId}-tab`).classList.add('active');
+        });
+      });
+    }
 
-  (function() {
-    const themeToggle = document.getElementById('themeToggle');
-    const modal = document.getElementById('detailsModal');
-    const closeModal = document.getElementById('closeModal');
-    const openSidebarBtn = document.getElementById('openSidebarBtn');
-    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-    const sidebarMenu = document.getElementById('sidebarMenu');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-    const sidebarLinkItems = document.querySelectorAll('.sidebar-link-item');
-    
-    const searchToggleBtn = document.getElementById('searchToggleBtn');
-    const searchDropdown = document.getElementById('searchDropdown');
-    const searchInput = document.getElementById('searchInput');
-    const closeSearchBtn = document.getElementById('closeSearchBtn');
+    function filterAndSearch(term) {
+      if (!term.trim()) return currentProducts;
+      const t = term.toLowerCase();
+      return currentProducts.filter(p => p.name?.toLowerCase().includes(t) || p.type?.toLowerCase().includes(t) || p.subCategory?.toLowerCase().includes(t));
+    }
 
-    function openSidebar() { sidebarMenu.classList.add('open'); sidebarOverlay.classList.add('show'); }
-    function closeSidebar() { sidebarMenu.classList.remove('open'); sidebarOverlay.classList.remove('show'); }
-    openSidebarBtn.addEventListener('click', openSidebar);
-    closeSidebarBtn.addEventListener('click', closeSidebar);
-    sidebarOverlay.addEventListener('click', closeSidebar);
-    sidebarLinkItems.forEach(item => item.addEventListener('click', closeSidebar));
-    
-    searchToggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      searchDropdown.classList.toggle('show');
-      if (searchDropdown.classList.contains('show')) searchInput.focus();
-    });
-    
-    closeSearchBtn.addEventListener('click', () => {
-      searchDropdown.classList.remove('show');
-      searchInput.value = '';
-      renderSearchResults([]);
-    });
-    
-    searchInput.addEventListener('input', handleSearch);
-    document.addEventListener('click', (e) => {
-      if (!searchDropdown.contains(e.target) && !searchToggleBtn.contains(e.target)) {
-        searchDropdown.classList.remove('show');
+    function renderSearchResults(results) {
+      const container = document.getElementById('searchResultsList');
+      if (!container) return;
+      if (results.length === 0) {
+        container.innerHTML = '<div class="no-results">Aucun produit trouvé</div>';
+        return;
       }
-    });
+      container.innerHTML = results.map(p => `
+        <div class="search-result-item" data-id="${p.key}">
+          <img class="search-result-img" src="${p.images?.[0] || p.imageUrl || 'https://placehold.co/50'}" onerror="this.src='https://placehold.co/50'">
+          <div class="search-result-info">
+            <div class="search-result-name">${p.name}</div>
+            <div class="search-result-price">${p.price || (p.originalPrice ? p.originalPrice + ' DT' : '0 DT')}</div>
+          </div>
+        </div>
+      `).join('');
+      document.querySelectorAll('.search-result-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const prod = currentProducts.find(p => p.key === item.dataset.id);
+          if (prod) openModal(prod);
+          document.getElementById('searchDropdown').classList.remove('show');
+        });
+      });
+    }
 
-    function updateThemeIcons(theme) { themeToggle.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>'; }
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme) { document.documentElement.setAttribute('data-theme', savedTheme); updateThemeIcons(savedTheme); }
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const newTheme = isDark ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcons(newTheme);
-    });
+    function openModal(product) {
+      const modal = document.getElementById('detailsModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      modalTitle.textContent = product.name;
+      const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
+      const isBike = isBicycle(product);
+      modalBody.innerHTML = `
+        <div class="detail-top">
+          <div class="detail-images">
+            <img class="big" id="detailMainImg" src="${images[0] || ''}" onerror="this.src='https://placehold.co/400x320'">
+            <div class="detail-thumbs" id="detailThumbs">${images.map((src, i) => `<img class="${i===0?'active':''}" src="${src}">`).join('')}</div>
+          </div>
+          <div class="detail-card">
+            <h3>${product.name}</h3>
+            <div class="price-row"><span class="price">${product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT')}</span></div>
+            <p>${product.desc || product.description || (isBike ? 'Vélo de qualité professionnelle' : 'Accessoire de qualité')}</p>
+            <div class="info-list">
+              <div class="info-item"><span>Catégorie</span><strong>${product.subCategory || product.type || (isBike ? 'Vélo' : 'Accessoire')}</strong></div>
+              ${product.size ? `<div class="info-item"><span>Taille</span><strong>${product.size}</strong></div>` : ''}
+              ${product.speeds ? `<div class="info-item"><span>Vitesses</span><strong>${product.speeds}</strong></div>` : ''}
+              <div class="info-item"><span>État</span><strong>${product.state === 'Occasion' ? 'Occasion' : 'Neuf'}</strong></div>
+            </div>
+            <button type="button" class="btn btn-success modal-add-to-cart" style="width:100%;margin-top:16px;"><i class="fa-solid fa-cart-plus"></i> Ajouter au panier</button>
+          </div>
+        </div>
+      `;
+      modal.classList.add('show');
+      const mainImg = document.getElementById('detailMainImg');
+      const thumbs = document.querySelectorAll('#detailThumbs img');
+      thumbs.forEach((t, i) => {
+        t.addEventListener('click', () => {
+          thumbs.forEach(x => x.classList.remove('active'));
+          t.classList.add('active');
+          mainImg.src = images[i];
+        });
+      });
+      modal.querySelector('.modal-add-to-cart').addEventListener('click', () => addToCart(product));
+    }
 
-    function closeDetails() { modal.classList.remove('show'); }
-    closeModal.addEventListener('click', closeDetails);
-    modal.addEventListener('click', e => { if(e.target === modal) closeDetails(); });
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetails(); });
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const modal = document.getElementById('detailsModal');
+      const closeModal = document.getElementById('closeModal');
+      const openSidebar = document.getElementById('openSidebarBtn');
+      const closeSidebar = document.getElementById('closeSidebarBtn');
+      const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('sidebarOverlay');
+      const searchBtn = document.getElementById('searchToggleBtn');
+      const searchDropdown = document.getElementById('searchDropdown');
+      const searchInput = document.getElementById('searchInput');
+      const closeSearch = document.getElementById('closeSearchBtn');
 
-    document.getElementById('recommendBtn').addEventListener('click', () => {
-      const height = Number(document.getElementById('height').value || 0);
-      const weight = Number(document.getElementById('weight').value || 0);
-      const age = Number(document.getElementById('age').value || 0);
-      const use = document.getElementById('useType').value;
-      if(!height || !weight || !age) { showToast("Veuillez remplir la taille, le poids et l'âge."); return; }
-      
-      let type = 'Ville';
-      let frame = 'M';
-      let wheel = '28"';
-      let speeds = '7-10 vitesses';
-      
-      if(use === 'Montagne') { type = 'MTB'; frame = height < 165 ? 'S' : height < 180 ? 'M' : 'L'; wheel = '27.5" ou 29"'; speeds = weight > 90 ? '10-12 vitesses' : '11-12 vitesses'; }
-      else if(use === 'Vitesse' || use === 'Sport') { type = 'Route'; frame = height < 165 ? 'XS' : height < 175 ? 'S' : height < 185 ? 'M' : 'L'; wheel = '700C'; speeds = age < 18 ? '18-20 vitesses' : '20-24 vitesses'; }
-      else { type = 'Ville'; frame = height < 165 ? 'S' : height < 180 ? 'M' : 'L'; wheel = '28"'; speeds = '7-10 vitesses'; }
-      
-      document.getElementById('resultText').innerHTML = `Type conseillé: ${type}<br>Taille cadre: ${frame}<br>Taille roues: ${wheel}<br>Vitesses: ${speeds}`;
-      document.getElementById('recFrame').textContent = frame;
-      document.getElementById('recType').textContent = type;
-      document.getElementById('recWheel').textContent = wheel;
-      document.getElementById('recSpeed').textContent = speeds;
-      saveRecommendationToFirebase({ height, weight, age, usage: use, recommendedType: type });
-      showToast("Recommandation générée !");
-    });
-    
-    initTabs();
-  })();
+      openSidebar?.addEventListener('click', () => { sidebar.classList.add('open'); overlay.classList.add('show'); });
+      closeSidebar?.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); });
+      overlay?.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); });
+      document.querySelectorAll('.sidebar-link-item').forEach(i => i.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); }));
 
-  loadProductsFromFirebase();
-  updateCartCount();
-</script>
+      searchBtn?.addEventListener('click', (e) => { e.stopPropagation(); searchDropdown.classList.toggle('show'); if (searchDropdown.classList.contains('show')) searchInput.focus(); });
+      closeSearch?.addEventListener('click', () => { searchDropdown.classList.remove('show'); searchInput.value = ''; renderSearchResults([]); });
+      searchInput?.addEventListener('input', (e) => { renderSearchResults(filterAndSearch(e.target.value)); });
+      document.addEventListener('click', (e) => { if (!searchDropdown?.contains(e.target) && !searchBtn?.contains(e.target)) searchDropdown?.classList.remove('show'); });
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle?.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+      });
+
+      closeModal?.addEventListener('click', () => modal.classList.remove('show'));
+      modal?.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('show'); });
+
+      document.getElementById('recommendBtn')?.addEventListener('click', () => {
+        const h = Number(document.getElementById('height').value) || 0;
+        const w = Number(document.getElementById('weight').value) || 0;
+        const age = Number(document.getElementById('age').value) || 0;
+        const use = document.getElementById('useType').value;
+        if (!h || !w || !age) { showToast("Veuillez remplir tous les champs"); return; }
+        let type = 'Ville', frame = 'M', wheel = '28"', speeds = '7-10 vitesses';
+        if (use === 'Montagne') { type = 'MTB'; frame = h < 165 ? 'S' : h < 180 ? 'M' : 'L'; wheel = '27.5" ou 29"'; speeds = w > 90 ? '10-12' : '11-12'; }
+        else if (use === 'Vitesse' || use === 'Sport') { type = 'Route'; frame = h < 165 ? 'XS' : h < 175 ? 'S' : h < 185 ? 'M' : 'L'; wheel = '700C'; speeds = age < 18 ? '18-20' : '20-24'; }
+        document.getElementById('resultText').innerHTML = `Type: ${type}<br>Cadre: ${frame}<br>Roues: ${wheel}<br>Vitesses: ${speeds}`;
+        document.getElementById('recFrame').innerHTML = frame;
+        document.getElementById('recType').innerHTML = type;
+        document.getElementById('recWheel').innerHTML = wheel;
+        document.getElementById('recSpeed').innerHTML = speeds;
+        showToast("✅ Recommandation générée !");
+      });
+
+      initTabs();
+    })();
+
+    loadProducts();
+    updateCartCount();
+  </script>
 </body>
 </html>
