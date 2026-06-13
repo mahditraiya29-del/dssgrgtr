@@ -334,22 +334,8 @@
     .products-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+      gap: 20px;
       margin-top: 25px;
-    }
-    
-    /* قائمة الدراجات العادية */
-    .velos-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    
-    /* قائمة الإكسسوارات - تصميم جديد احترافي مثل Decathlon */
-    .accessories-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
     }
 
     .pagination-wrapper {
@@ -394,32 +380,31 @@
       font-size: 0.85rem;
     }
 
-    /* بطاقة الدراجة العادية */
-    .bike-card {
+    .product-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 24px;
       overflow: hidden;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .bike-card:hover {
+    .product-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 25px 40px -12px rgba(0,0,0,0.3);
       border-color: rgba(37,99,235,0.3);
     }
-    .bike-image {
+    .product-image {
       height: 200px;
       overflow: hidden;
       position: relative;
     }
-    .bike-image img {
+    .product-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s ease;
     }
-    .bike-card:hover .bike-image img { transform: scale(1.05); }
-    .bike-badge {
+    .product-card:hover .product-image img { transform: scale(1.05); }
+    .product-badge {
       position: absolute;
       top: 12px;
       right: 12px;
@@ -432,9 +417,9 @@
       z-index: 2;
       backdrop-filter: blur(4px);
     }
-    .bike-info { padding: 14px; }
-    .bike-info h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; }
-    .bike-type {
+    .product-info { padding: 14px; }
+    .product-info h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; }
+    .product-type {
       font-size: 0.7rem;
       color: var(--muted);
       background: rgba(37,99,235,.15);
@@ -443,145 +428,41 @@
       border-radius: 20px;
       margin-bottom: 8px;
     }
-    .bike-price { color: var(--primary); font-weight: 800; font-size: 1.1rem; margin: 6px 0; }
-    .bike-actions { display: flex; gap: 8px; margin-top: 10px; }
-    .bike-actions .btn { flex: 1; padding: 8px 6px; font-size: 0.7rem; }
-
-    /* 🏆 تصميم بطاقة الإكسسوارات الاحترافي (مثل Decathlon) */
-    .accessory-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-    .accessory-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.35);
-      border-color: rgba(37,99,235,0.4);
-    }
-    .accessory-image {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
-      height: 200px;
-    }
-    .accessory-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    .accessory-card:hover .accessory-image img {
-      transform: scale(1.05);
-    }
-    .accessory-brand {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: white;
-      z-index: 2;
-    }
-    .accessory-rating {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: #fbbf24;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .accessory-rating i {
-      color: #fbbf24;
-    }
-    .accessory-rating span {
-      color: white;
-      margin-left: 4px;
-    }
-    .accessory-info {
-      padding: 16px;
-    }
-    .accessory-title {
-      font-size: 0.9rem;
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: var(--text);
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .accessory-subtitle {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .accessory-category {
-      background: rgba(37,99,235,0.15);
-      padding: 2px 8px;
-      border-radius: 12px;
-    }
-    .accessory-price {
-      font-size: 1.3rem;
-      font-weight: 800;
+    .product-price {
       color: var(--primary);
-      margin: 10px 0 8px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin: 6px 0;
       display: flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: center;
+      gap: 10px;
       flex-wrap: wrap;
     }
-    .accessory-old-price {
-      font-size: 0.85rem;
+    .old-price {
+      font-size: 0.8rem;
       color: var(--muted);
       text-decoration: line-through;
       font-weight: 500;
     }
-    .accessory-specs {
+    .product-specs {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       margin: 10px 0;
     }
-    .spec-badge {
-      font-size: 0.6rem;
+    .spec-tag {
+      font-size: 0.65rem;
       background: rgba(37,99,235,0.1);
       padding: 3px 8px;
-      border-radius: 12px;
+      border-radius: 20px;
       color: var(--primary);
+    }
+    .product-actions {
       display: flex;
-      align-items: center;
-      gap: 4px;
+      gap: 8px;
+      margin-top: 10px;
     }
-    .accessory-buttons {
-      display: flex;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .accessory-buttons .btn {
-      flex: 1;
-      padding: 8px 12px;
-      font-size: 0.75rem;
-    }
-    
+    .product-actions .btn { flex: 1; padding: 8px 6px; font-size: 0.7rem; }
     .no-products {
       text-align: center;
       padding: 60px;
@@ -823,10 +704,10 @@
       .footer-grid{grid-template-columns:1fr 1fr}
       .detail-top{grid-template-columns:1fr}
       .result-grid{grid-template-columns:1fr 1fr}
-      .products-grid, .velos-grid, .accessories-grid { grid-template-columns: repeat(3, 1fr); }
+      .products-grid{grid-template-columns:repeat(3,1fr)}
     }
     @media (max-width:900px){
-      .products-grid, .velos-grid, .accessories-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid{grid-template-columns:repeat(2,1fr)}
     }
     @media (max-width:780px){
       .features-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)!important}
@@ -837,10 +718,28 @@
       .section{padding:64px 0}
       .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
       .hero h1{font-size:2.35rem}
-      .products-grid, .velos-grid, .accessories-grid { grid-template-columns: 1fr; }
       .tabs-container{width:100%;justify-content:center}
       .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
+
+      /* التعديلات الجديدة لتحويل البطاقة إلى الشكل الأفقي على الهواتف */
+      .products-grid { grid-template-columns: 1fr; gap: 12px; }
+      .product-card { display: flex; flex-direction: row; align-items: stretch; height: 140px; border-radius: 16px; }
+      .product-image { width: 40%; height: 100%; flex-shrink: 0; }
+      .product-image img { height: 100%; width: 100%; object-fit: cover; }
+      .product-badge { top: 8px; left: 8px; right: auto; font-size: 0.65rem; padding: 4px 8px; }
+      .product-info { width: 60%; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; }
+      .product-info h3 { font-size: 1rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .product-type { display: none; }
+      .product-price { font-size: 1.1rem; margin: 2px 0; gap: 6px; }
+      .old-price { font-size: 0.8rem; }
+      .product-specs { margin: 4px 0; gap: 12px; display: flex; align-items: center; overflow: hidden; }
+      .spec-tag { background: transparent; padding: 0; font-size: 0.75rem; color: var(--muted); }
+      .hide-on-mobile { display: none; }
+      .product-actions { margin-top: auto; gap: 8px; display: flex; }
+      .product-actions .btn { padding: 6px; font-size: 0.8rem; flex: 1; border-radius: 12px; }
+      .product-actions .add-to-cart-btn { background: #2563eb; color: white; border: none; box-shadow: none; }
+      .product-actions .details-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); }
     }
     @media (max-width:480px){
       .container{width:min(100% - 18px,1240px)}
@@ -960,20 +859,18 @@
       <div style="display: flex; justify-content: center;">
         <div class="tabs-container">
           <button class="tab-btn active" data-tab="velos">🚲 Vélos</button>
-          <button class="tab-btn" data-tab="autres">🪖 Accessoires & Équipements</button>
+          <button class="tab-btn" data-tab="autres">🪖 Autres</button>
         </div>
       </div>
       
       <div class="tab-content active" id="velos-tab">
         <div class="pagination-wrapper" id="velosPaginationTop"></div>
-        <div class="velos-grid" id="velosGrid"></div>
-        <div class="pagination-wrapper" id="velosPaginationBottom"></div>
+        <div class="products-grid" id="velosGrid"></div>
       </div>
       
       <div class="tab-content" id="autres-tab">
         <div class="pagination-wrapper" id="autresPaginationTop"></div>
-        <div class="accessories-grid" id="autresGrid"></div>
-        <div class="pagination-wrapper" id="autresPaginationBottom"></div>
+        <div class="products-grid" id="autresGrid"></div>
       </div>
       
       <div style="margin-top:32px" class="card">
@@ -1103,7 +1000,7 @@
     let autresList = [];
     let velosCurrentPage = 1;
     let autresCurrentPage = 1;
-    const ITEMS_PER_PAGE = 8;
+    const ITEMS_PER_PAGE = 4;
 
     function addToCart(product) {
       let cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
@@ -1153,89 +1050,55 @@
     }
 
     function isBicycle(product) {
-      if (product.category === 'velos') return true;
-      if (product.type === 'جبلية' || product.type === 'طريق' || product.type === 'هجينة' || product.type === 'كهربائية') return true;
+      if (product.category === 'velos' || product.type === 'Route' || product.type === 'MTB' || product.type === 'Ville' || product.type === 'Électrique') {
+        return true;
+      }
+      if (product.category === 'autres') return false;
+      const type = (product.type || '').toLowerCase();
+      if (type === 'route' || type === 'vtt' || type === 'ville' || type === 'mtb') return true;
       return false;
     }
 
-    // دالة عرض الدراجات (التصميم القديم)
-    function generateBikeCard(product) {
+    function generateProductCard(product, productId, isOther = false) {
       const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
       const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Image';
-      const typeText = product.type || product.subCategory || 'Vélo';
+      const typeText = product.subCategory || product.type || (isOther ? 'Accessoire' : 'Vélo');
       const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
-      const stateText = product.state === 'مستعمل' ? 'Occasion' : 'Neuf';
+      const oldPriceValue = product.oldPrice ? product.oldPrice + ' DT' : (product.originalPrice ? product.originalPrice + ' DT' : null);
+      const stateText = product.state === 'Occasion' ? 'Occasion' : (product.state === 'مستعمل' ? 'Occasion' : 'Neuf');
       
       const div = document.createElement('div');
-      div.className = 'bike-card';
+      div.className = 'product-card';
+      
+      // دمج العلامات والمواصفات لتتطابق مع الصورة (مع إضافة صنف مخفي للهواتف)
+      let specsHtml = '';
+      specsHtml += `<span class="spec-tag"><i class="fa-solid fa-bicycle"></i> ${typeText}</span>`;
+      specsHtml += `<span class="spec-tag" style="color: #f59e0b;"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'}</span>`;
+      
+      if (product.brand) specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-trademark"></i> ${product.brand}</span>`;
+      if (product.weight) specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-weight-hanging"></i> ${product.weight}</span>`;
+      
       div.innerHTML = `
-        <div class="bike-image">
-          <div class="bike-badge">${stateText}</div>
+        <div class="product-image">
+          <div class="product-badge">${stateText}</div>
           <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200?text=Image+non+disponible'">
         </div>
-        <div class="bike-info">
+        <div class="product-info">
           <h3>${product.name || 'Produit'}</h3>
-          <span class="bike-type">${typeText}</span>
-          <div class="bike-price">${priceValue}</div>
-          <div class="bike-actions">
-            <button type="button" class="btn btn-success btn-sm add-to-cart"><i class="fa-solid fa-cart-plus"></i> Ajouter</button>
+          <span class="product-type">${typeText}</span>
+          <div class="product-price">
+            ${priceValue}
+            ${oldPriceValue && oldPriceValue !== priceValue ? `<span class="old-price">${oldPriceValue}</span>` : ''}
+          </div>
+          ${specsHtml ? `<div class="product-specs">${specsHtml}</div>` : ''}
+          <div class="product-actions">
+            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><i class="fa-brands fa-whatsapp"></i> Acheter</button>
             <button type="button" class="btn btn-outline btn-sm details-btn">Détails</button>
           </div>
         </div>
       `;
-      div.querySelector('.add-to-cart').addEventListener('click', (e) => {
-        e.stopPropagation();
-        addToCart(product);
-      });
-      div.querySelector('.details-btn').addEventListener('click', () => openModal(product));
-      return div;
-    }
-
-    // 🏆 دالة عرض الإكسسوارات (التصميم الاحترافي الجديد مثل Decathlon)
-    function generateAccessoryCard(product) {
-      const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
-      const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Accessoire';
-      const brandName = product.brand || product.subCategory || 'EliteBike';
-      const rating = product.rating || 4.5;
-      const ratingCount = product.ratingCount || Math.floor(Math.random() * 900) + 100;
-      const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
-      const oldPriceValue = product.oldPrice || (product.originalPrice ? product.originalPrice : null);
-      const categoryName = product.subCategory || product.type || 'Accessoire';
       
-      const div = document.createElement('div');
-      div.className = 'accessory-card';
-      div.innerHTML = `
-        <div class="accessory-image">
-          <div class="accessory-brand"><i class="fa-solid fa-trademark"></i> ${brandName}</div>
-          <div class="accessory-rating">
-            <i class="fa-solid fa-star"></i> ${rating} 
-            <span>(${ratingCount})</span>
-          </div>
-          <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200?text=Accessoire'">
-        </div>
-        <div class="accessory-info">
-          <h3 class="accessory-title">${product.name || 'Produit'}</h3>
-          <div class="accessory-subtitle">
-            <span class="accessory-category"><i class="fa-solid fa-tag"></i> ${categoryName}</span>
-            ${product.stock ? `<span><i class="fa-solid fa-box"></i> Stock: ${product.stock}</span>` : ''}
-          </div>
-          <div class="accessory-price">
-            ${priceValue}
-            ${oldPriceValue && oldPriceValue !== priceValue ? `<span class="accessory-old-price">${oldPriceValue}</span>` : ''}
-          </div>
-          <div class="accessory-specs">
-            ${product.speeds ? `<span class="spec-badge"><i class="fa-solid fa-gauge-high"></i> ${product.speeds}</span>` : ''}
-            ${product.weight ? `<span class="spec-badge"><i class="fa-solid fa-weight-hanging"></i> ${product.weight}</span>` : ''}
-            ${product.size ? `<span class="spec-badge"><i class="fa-solid fa-ruler"></i> ${product.size}</span>` : ''}
-            ${product.wheels ? `<span class="spec-badge"><i class="fa-solid fa-circle"></i> ${product.wheels}</span>` : ''}
-          </div>
-          <div class="accessory-buttons">
-            <button type="button" class="btn btn-success btn-sm add-to-cart"><i class="fa-solid fa-cart-plus"></i> Ajouter</button>
-            <button type="button" class="btn btn-outline btn-sm details-btn"><i class="fa-solid fa-eye"></i> Détails</button>
-          </div>
-        </div>
-      `;
-      div.querySelector('.add-to-cart').addEventListener('click', (e) => {
+      div.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
         e.stopPropagation();
         addToCart(product);
       });
@@ -1252,49 +1115,34 @@
       if (pageProducts.length === 0 && velosList.length === 0) {
         container.innerHTML = '<div class="no-products"><i class="fa-solid fa-bicycle"></i> Aucun vélo disponible pour le moment</div>';
       } else {
-        pageProducts.forEach(p => container.appendChild(generateBikeCard(p)));
+        pageProducts.forEach(p => container.appendChild(generateProductCard(p, p.key, false)));
       }
       renderVelosPagination();
     }
 
     function renderVelosPagination() {
-      const containers = [document.getElementById('velosPaginationTop'), document.getElementById('velosPaginationBottom')];
+      const container = document.getElementById('velosPaginationTop');
+      if (!container) return;
       const totalPages = Math.ceil(velosList.length / ITEMS_PER_PAGE);
-      if (totalPages <= 1) {
-        containers.forEach(c => { if(c) c.innerHTML = ''; });
-        return;
-      }
+      if (totalPages <= 1) { container.innerHTML = ''; return; }
       let html = `<div class="pagination-container">`;
       html += `<button class="page-btn ${velosCurrentPage === 1 ? 'disabled' : ''}" data-page="prev">«</button>`;
       for (let i = 1; i <= totalPages; i++) html += `<button class="page-btn ${i === velosCurrentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
       html += `<button class="page-btn ${velosCurrentPage === totalPages ? 'disabled' : ''}" data-page="next">»</button>`;
       html += `<span class="page-info">${(velosCurrentPage-1)*ITEMS_PER_PAGE+1}-${Math.min(velosCurrentPage*ITEMS_PER_PAGE, velosList.length)} / ${velosList.length}</span>`;
       html += `</div>`;
-      containers.forEach(c => { if(c) c.innerHTML = html; });
-      
-      document.querySelectorAll('.page-btn').forEach(btn => {
-        btn.removeEventListener('click', handlePaginationClick);
-        btn.addEventListener('click', handlePaginationClick);
+      container.innerHTML = html;
+      container.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          const page = btn.dataset.page;
+          if (page === 'prev') velosCurrentPage = Math.max(1, velosCurrentPage - 1);
+          else if (page === 'next') velosCurrentPage = Math.min(totalPages, velosCurrentPage + 1);
+          else velosCurrentPage = parseInt(page);
+          renderVelosPage();
+          document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        });
       });
-    }
-    
-    function handlePaginationClick(e) {
-      const btn = e.currentTarget;
-      if (btn.classList.contains('disabled')) return;
-      const page = btn.dataset.page;
-      const activeTab = document.querySelector('.tab-content.active').id;
-      if (activeTab === 'velos-tab') {
-        if (page === 'prev') velosCurrentPage = Math.max(1, velosCurrentPage - 1);
-        else if (page === 'next') velosCurrentPage = Math.min(Math.ceil(velosList.length / ITEMS_PER_PAGE), velosCurrentPage + 1);
-        else velosCurrentPage = parseInt(page);
-        renderVelosPage();
-      } else {
-        if (page === 'prev') autresCurrentPage = Math.max(1, autresCurrentPage - 1);
-        else if (page === 'next') autresCurrentPage = Math.min(Math.ceil(autresList.length / ITEMS_PER_PAGE), autresCurrentPage + 1);
-        else autresCurrentPage = parseInt(page);
-        renderAutresPage();
-      }
-      document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
     }
 
     function renderAutresPage() {
@@ -1304,31 +1152,35 @@
       const pageProducts = autresList.slice(start, start + ITEMS_PER_PAGE);
       container.innerHTML = '';
       if (pageProducts.length === 0 && autresList.length === 0) {
-        container.innerHTML = '<div class="no-products"><i class="fa-solid fa-helmet-safety"></i> Aucun accessoire disponible pour le moment</div>';
+        container.innerHTML = '<div class="no-products"><i class="fa-solid fa-helmet-safety"></i> Aucun accessoire disponible</div>';
       } else {
-        pageProducts.forEach(p => container.appendChild(generateAccessoryCard(p)));
+        pageProducts.forEach(p => container.appendChild(generateProductCard(p, p.key, true)));
       }
       renderAutresPagination();
     }
 
     function renderAutresPagination() {
-      const containers = [document.getElementById('autresPaginationTop'), document.getElementById('autresPaginationBottom')];
+      const container = document.getElementById('autresPaginationTop');
+      if (!container) return;
       const totalPages = Math.ceil(autresList.length / ITEMS_PER_PAGE);
-      if (totalPages <= 1) {
-        containers.forEach(c => { if(c) c.innerHTML = ''; });
-        return;
-      }
+      if (totalPages <= 1) { container.innerHTML = ''; return; }
       let html = `<div class="pagination-container">`;
       html += `<button class="page-btn ${autresCurrentPage === 1 ? 'disabled' : ''}" data-page="prev">«</button>`;
       for (let i = 1; i <= totalPages; i++) html += `<button class="page-btn ${i === autresCurrentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
       html += `<button class="page-btn ${autresCurrentPage === totalPages ? 'disabled' : ''}" data-page="next">»</button>`;
       html += `<span class="page-info">${(autresCurrentPage-1)*ITEMS_PER_PAGE+1}-${Math.min(autresCurrentPage*ITEMS_PER_PAGE, autresList.length)} / ${autresList.length}</span>`;
       html += `</div>`;
-      containers.forEach(c => { if(c) c.innerHTML = html; });
-      
-      document.querySelectorAll('.page-btn').forEach(btn => {
-        btn.removeEventListener('click', handlePaginationClick);
-        btn.addEventListener('click', handlePaginationClick);
+      container.innerHTML = html;
+      container.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          const page = btn.dataset.page;
+          if (page === 'prev') autresCurrentPage = Math.max(1, autresCurrentPage - 1);
+          else if (page === 'next') autresCurrentPage = Math.min(totalPages, autresCurrentPage + 1);
+          else autresCurrentPage = parseInt(page);
+          renderAutresPage();
+          document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        });
       });
     }
 
@@ -1361,8 +1213,6 @@
           btn.classList.add('active');
           contents.forEach(c => c.classList.remove('active'));
           document.getElementById(`${tabId}-tab`).classList.add('active');
-          if (tabId === 'velos') renderVelosPage();
-          else renderAutresPage();
         });
       });
     }
@@ -1407,14 +1257,33 @@
       const isBike = isBicycle(product);
       
       let specsHtml = '';
-      if (product.brand) specsHtml += `<div class="info-item"><span>Marque</span><strong>${product.brand}</strong></div>`;
-      if (product.size) specsHtml += `<div class="info-item"><span>Taille cadre</span><strong>${product.size}</strong></div>`;
-      if (product.speeds) specsHtml += `<div class="info-item"><span>Vitesses</span><strong>${product.speeds}</strong></div>`;
-      if (product.brakes) specsHtml += `<div class="info-item"><span>Freins</span><strong>${product.brakes}</strong></div>`;
-      if (product.wheels) specsHtml += `<div class="info-item"><span>Roues</span><strong>${product.wheels}</strong></div>`;
-      if (product.weight) specsHtml += `<div class="info-item"><span>Poids</span><strong>${product.weight}</strong></div>`;
-      if (product.frameMaterial) specsHtml += `<div class="info-item"><span>Matériau du cadre</span><strong>${product.frameMaterial}</strong></div>`;
-      if (product.color) specsHtml += `<div class="info-item"><span>Couleur</span><strong>${product.color}</strong></div>`;
+      if (product.brand) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-trademark"></i> Marque</span><strong>${product.brand}</strong></div>`;
+      if (product.size) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-ruler"></i> Taille cadre</span><strong>${product.size}</strong></div>`;
+      if (product.speeds) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-gauge-high"></i> Vitesses</span><strong>${product.speeds}</strong></div>`;
+      if (product.brakes) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-hand"></i> Freins</span><strong>${product.brakes}</strong></div>`;
+      if (product.wheels) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-circle"></i> Roues</span><strong>${product.wheels}</strong></div>`;
+      if (product.weight) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-weight-hanging"></i> Poids</span><strong>${product.weight}</strong></div>`;
+      if (product.frameMaterial) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-cubes"></i> Matériau du cadre</span><strong>${product.frameMaterial}</strong></div>`;
+      if (product.gears) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-cog"></i> Transmission</span><strong>${product.gears}</strong></div>`;
+      if (product.color) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-palette"></i> Couleur</span><strong>${product.color}</strong></div>`;
+      
+      let prosHtml = '';
+      if (product.pros && Array.isArray(product.pros) && product.pros.length > 0) {
+        prosHtml = `<div class="info-item" style="flex-direction:column; align-items:flex-start;"><span><i class="fa-solid fa-thumbs-up"></i> Avantages</span><div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">`;
+        product.pros.forEach(pro => {
+          prosHtml += `<span style="background:rgba(16,185,129,0.1); padding:4px 10px; border-radius:20px; font-size:0.75rem;">✓ ${pro}</span>`;
+        });
+        prosHtml += `</div></div>`;
+      }
+      
+      let consHtml = '';
+      if (product.cons && Array.isArray(product.cons) && product.cons.length > 0) {
+        consHtml = `<div class="info-item" style="flex-direction:column; align-items:flex-start;"><span><i class="fa-solid fa-thumbs-down"></i> Inconvénients</span><div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">`;
+        product.cons.forEach(con => {
+          consHtml += `<span style="background:rgba(239,68,68,0.1); padding:4px 10px; border-radius:20px; font-size:0.75rem;">✗ ${con}</span>`;
+        });
+        consHtml += `</div></div>`;
+      }
       
       modalBody.innerHTML = `
         <div class="detail-top">
@@ -1426,13 +1295,15 @@
             <h3>${product.name}</h3>
             <div class="price-row" style="margin: 10px 0;">
               <span class="price" style="color:var(--primary); font-size:1.5rem; font-weight:800;">${product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT')}</span>
-              ${product.oldPrice ? `<span style="text-decoration:line-through; color:var(--muted); margin-right:10px;">${product.oldPrice} DT</span>` : ''}
+              ${product.oldPrice ? `<span style="text-decoration:line-through; color:var(--muted); margin-right:10px;">${product.oldPrice} DT</span>` : (product.originalPrice ? `<span style="text-decoration:line-through; color:var(--muted); margin-right:10px;">${product.originalPrice} DT</span>` : '')}
             </div>
             <p>${product.desc || product.description || (isBike ? 'Vélo de qualité professionnelle' : 'Accessoire de qualité')}</p>
             <div class="info-list">
               <div class="info-item"><span>Catégorie</span><strong>${product.subCategory || product.type || (isBike ? 'Vélo' : 'Accessoire')}</strong></div>
               ${specsHtml}
-              <div class="info-item"><span>État</span><strong>${product.state === 'مستعمل' ? 'Occasion' : 'Neuf'}</strong></div>
+              ${prosHtml}
+              ${consHtml}
+              <div class="info-item"><span>État</span><strong>${product.state === 'Occasion' || product.state === 'مستعمل' ? 'Occasion' : 'Neuf'}</strong></div>
             </div>
             <button type="button" class="btn btn-success modal-add-to-cart" style="width:100%;margin-top:16px;"><i class="fa-solid fa-cart-plus"></i> Ajouter au panier</button>
           </div>
