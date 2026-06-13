@@ -33,6 +33,16 @@
       --transition:.28s ease;
     }
 
+    [data-theme="light"]{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --shadow:0 14px 40px rgba(15,23,42,.10);
+      --shadow-soft:0 8px 20px rgba(15,23,42,.08);
+    }
+
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;overflow-x:hidden}
     body{
@@ -41,6 +51,7 @@
       color:var(--text);
       line-height:1.6;
       overflow-x:hidden;
+      transition:background var(--transition), color var(--transition);
       min-height:100vh;
     }
 
@@ -60,6 +71,12 @@
       background-position: 40px 0, 40px 0, 0 0, 0 0;
       background-size: 80px 80px;
       background-repeat: repeat;
+    }
+    [data-theme="light"] body::before {
+      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
+                        linear-gradient(225deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
+                        linear-gradient(45deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
+                        linear-gradient(315deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%);
     }
 
     a,button{touch-action:manipulation}
@@ -102,6 +119,10 @@
       background:rgba(15, 19, 34, 0.85);
       backdrop-filter:blur(16px);
       border-bottom:1px solid var(--border);
+    }
+    [data-theme="light"] .topbar{
+      background:rgba(255,255,255,0.85);
+      border-bottom:1px solid rgba(226,232,240,0.8);
     }
     
     .nav{
@@ -451,9 +472,6 @@
       color: var(--muted);
     }
 
-    /* إخفاء عناصر التقييم والماركة في العرض العادي (تظهر فقط في الهواتف لقسم Autres) */
-    .product-brand-mobile, .card-rating-mobile { display: none; }
-
     .hero{
       position:relative;
       min-height:600px;
@@ -691,8 +709,6 @@
     @media (max-width:900px){
       .products-grid{grid-template-columns:repeat(2,1fr)}
     }
-    
-    /* === تصميم الهواتف والأجهزة الصغيرة === */
     @media (max-width:780px){
       .features-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)!important}
       .nav-links{display:none}
@@ -706,103 +722,25 @@
       .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
-      /* 1. تصميم قسم الدراجات (Vélos) - أفقي كما طلبت سابقاً */
-      #velosGrid { grid-template-columns: 1fr; gap: 12px; }
-      #velosGrid .product-card { display: flex; flex-direction: row; align-items: stretch; height: 140px; border-radius: 16px; }
-      #velosGrid .product-image { width: 40%; height: 100%; flex-shrink: 0; }
-      #velosGrid .product-image img { height: 100%; width: 100%; object-fit: cover; }
-      #velosGrid .product-badge { top: 8px; left: 8px; right: auto; font-size: 0.65rem; padding: 4px 8px; }
-      #velosGrid .product-info { width: 60%; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; }
-      #velosGrid .product-info h3 { font-size: 1rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      #velosGrid .product-type { display: none; }
-      #velosGrid .product-price { font-size: 1.1rem; margin: 2px 0; gap: 6px; }
-      #velosGrid .old-price { font-size: 0.8rem; }
-      #velosGrid .product-specs { margin: 4px 0; gap: 12px; display: flex; align-items: center; overflow: hidden; }
-      #velosGrid .spec-tag { background: transparent; padding: 0; font-size: 0.75rem; color: var(--muted); }
-      #velosGrid .hide-on-mobile { display: none; }
-      #velosGrid .product-actions { margin-top: auto; gap: 8px; display: flex; }
-      #velosGrid .product-actions .btn { padding: 6px; font-size: 0.8rem; flex: 1; border-radius: 12px; }
-      #velosGrid .product-actions .add-to-cart-btn { background: #2563eb; color: white; border: none; box-shadow: none; }
-      #velosGrid .product-actions .details-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); }
-
-      /* 2. تصميم قسم الإكسسوارات والمعدات (Autres) - مطابق لصورة 1000028438.jpg */
-      #autresGrid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
-      #autresGrid .product-card { 
-        flex-direction: column !important; 
-        height: auto !important; 
-        background: transparent !important; 
-        border: none !important; 
-        box-shadow: none !important; 
-        border-radius: 0;
-        cursor: pointer;
-      }
-      #autresGrid .product-image { 
-        width: 100% !important; 
-        height: 160px !important; 
-        background: #f4f5f7; /* خلفية رمادية فاتحة للصورة */
-        border-radius: 6px; 
-        margin-bottom: 10px; 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #autresGrid .product-image img { 
-        height: 90%; 
-        width: 90%; 
-        object-fit: contain; 
-        mix-blend-mode: multiply; /* دمج الصور ذات الخلفية البيضاء */
-      }
-      #autresGrid .product-badge { display: none !important; }
-      
-      #autresGrid .product-info { width: 100% !important; padding: 0 !important; display: block; }
-      
-      #autresGrid .product-brand-mobile {
-        display: block !important;
-        font-size: 0.8rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        color: var(--text);
-        margin-bottom: 4px;
-      }
-      
-      #autresGrid h3 {
-        font-size: 0.85rem !important;
-        font-weight: 400 !important;
-        color: var(--muted) !important;
-        white-space: normal !important;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        margin-bottom: 6px !important;
-        line-height: 1.3;
-      }
-      
-      #autresGrid .card-rating-mobile {
-        display: block !important;
-        font-size: 0.75rem;
-        margin-bottom: 8px;
-        color: var(--text);
-      }
-      #autresGrid .card-rating-mobile .count { color: var(--muted); }
-      
-      #autresGrid .product-price {
-        background: #ffea28 !important; /* اللون الأصفر المطابق للصورة */
-        color: #000 !important;
-        display: inline-block !important;
-        padding: 3px 8px !important;
-        font-size: 0.95rem !important;
-        font-weight: 900 !important;
-        border-radius: 2px !important;
-        margin: 0 !important;
-      }
-      
-      /* إخفاء العناصر غير المرغوب فيها في هذا القسم ليتطابق مع الصورة */
-      #autresGrid .product-type,
-      #autresGrid .old-price,
-      #autresGrid .product-specs,
-      #autresGrid .product-actions { display: none !important; }
+      /* التعديلات الجديدة لتحويل البطاقة إلى الشكل الأفقي على الهواتف */
+      .products-grid { grid-template-columns: 1fr; gap: 12px; }
+      .product-card { display: flex; flex-direction: row; align-items: stretch; height: 140px; border-radius: 16px; }
+      .product-image { width: 40%; height: 100%; flex-shrink: 0; }
+      .product-image img { height: 100%; width: 100%; object-fit: cover; }
+      .product-badge { top: 8px; left: 8px; right: auto; font-size: 0.65rem; padding: 4px 8px; }
+      .product-info { width: 60%; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; }
+      .product-info h3 { font-size: 1rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .product-type { display: none; }
+      .product-price { font-size: 1.1rem; margin: 2px 0; gap: 6px; }
+      .old-price { font-size: 0.8rem; }
+      .product-specs { margin: 4px 0; gap: 12px; display: flex; align-items: center; overflow: hidden; }
+      .spec-tag { background: transparent; padding: 0; font-size: 0.75rem; color: var(--muted); }
+      .hide-on-mobile { display: none; }
+      .product-actions { margin-top: auto; gap: 8px; display: flex; }
+      .product-actions .btn { padding: 6px; font-size: 0.8rem; flex: 1; border-radius: 12px; }
+      .product-actions .add-to-cart-btn { background: #2563eb; color: white; border: none; box-shadow: none; }
+      .product-actions .details-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); }
     }
-    
     @media (max-width:480px){
       .container{width:min(100% - 18px,1240px)}
       .hero h1{font-size:2rem}
@@ -846,7 +784,7 @@
       </ul>
       
       <div class="nav-actions">
-        <!-- تمت إزالة زر التحكم بالإضاءة (الوضع الليلي) بناءً على طلبك -->
+        <button type="button" class="icon-btn" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
         <div class="search-container">
           <button type="button" class="icon-btn" id="searchToggleBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
           <div class="search-dropdown" id="searchDropdown">
@@ -1121,7 +1059,6 @@
       return false;
     }
 
-    /* === دالة إنشاء البطاقات مع تضمين تعديل قسم Autres === */
     function generateProductCard(product, productId, isOther = false) {
       const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
       const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Image';
@@ -1130,38 +1067,25 @@
       const oldPriceValue = product.oldPrice ? product.oldPrice + ' DT' : (product.originalPrice ? product.originalPrice + ' DT' : null);
       const stateText = product.state === 'Occasion' ? 'Occasion' : (product.state === 'مستعمل' ? 'Occasion' : 'Neuf');
       
-      // تفاصيل إضافية لتطابق صورة Decathlon
-      const brandText = product.brand ? product.brand.toUpperCase() : (isOther ? 'DOMYOS' : '');
-      const ratingValue = product.rating || '4.5';
-      const reviewsCount = product.reviewsCount || Math.floor(Math.random() * 900) + 100;
-
       const div = document.createElement('div');
       div.className = 'product-card';
       
+      // دمج العلامات والمواصفات لتتطابق مع الصورة (مع إضافة صنف مخفي للهواتف)
       let specsHtml = '';
       specsHtml += `<span class="spec-tag"><i class="fa-solid fa-bicycle"></i> ${typeText}</span>`;
-      specsHtml += `<span class="spec-tag" style="color: #f59e0b;"><i class="fa-solid fa-star"></i> ${ratingValue}</span>`;
+      specsHtml += `<span class="spec-tag" style="color: #f59e0b;"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'}</span>`;
       
       if (product.brand) specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-trademark"></i> ${product.brand}</span>`;
       if (product.weight) specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-weight-hanging"></i> ${product.weight}</span>`;
       
-      // عنصر التقييم المخصص للظهور في قسم Autres على الجوال
-      const ratingHtmlMobile = isOther ? `
-        <div class="card-rating-mobile">
-          <span class="stars">★★★★★</span> <strong>${ratingValue}</strong> <span class="count">(${reviewsCount})</span>
-        </div>
-      ` : '';
-
       div.innerHTML = `
         <div class="product-image">
           <div class="product-badge">${stateText}</div>
           <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200?text=Image+non+disponible'">
         </div>
         <div class="product-info">
-          ${isOther ? `<div class="product-brand-mobile">${brandText || 'ÉQUIPEMENT'}</div>` : ''}
           <h3>${product.name || 'Produit'}</h3>
           <span class="product-type">${typeText}</span>
-          ${ratingHtmlMobile}
           <div class="product-price">
             ${priceValue}
             ${oldPriceValue && oldPriceValue !== priceValue ? `<span class="old-price">${oldPriceValue}</span>` : ''}
@@ -1174,24 +1098,11 @@
         </div>
       `;
       
-      // بما أننا أخفينا الأزرار في الهواتف لقسم Autres، سنجعل البطاقة بالكامل قابلة للضغط لفتح التفاصيل
-      if (isOther) {
-        div.addEventListener('click', (e) => {
-          if (window.innerWidth <= 780 && !e.target.closest('.product-actions')) {
-            openModal(product);
-          }
-        });
-      }
-
       div.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
         e.stopPropagation();
         addToCart(product);
       });
-      div.querySelector('.details-btn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(product);
-      });
-      
+      div.querySelector('.details-btn').addEventListener('click', () => openModal(product));
       return div;
     }
 
@@ -1412,6 +1323,7 @@
     }
 
     (function() {
+      const themeToggle = document.getElementById('themeToggle');
       const modal = document.getElementById('detailsModal');
       const closeModal = document.getElementById('closeModal');
       const openSidebar = document.getElementById('openSidebarBtn');
@@ -1432,6 +1344,18 @@
       closeSearch?.addEventListener('click', () => { searchDropdown.classList.remove('show'); searchInput.value = ''; renderSearchResults([]); });
       searchInput?.addEventListener('input', (e) => { renderSearchResults(filterAndSearch(e.target.value)); });
       document.addEventListener('click', (e) => { if (!searchDropdown?.contains(e.target) && !searchBtn?.contains(e.target)) searchDropdown?.classList.remove('show'); });
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      else document.documentElement.setAttribute('data-theme', 'dark');
+      
+      themeToggle?.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+      });
 
       closeModal?.addEventListener('click', () => modal.classList.remove('show'));
       modal?.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
