@@ -698,74 +698,135 @@
     ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 10px; }
     ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
 
-    /* تنسيقات قسم الأجهزة والمنتجات الأخرى */
-    .autre-card {
+    /* --- التنسيقات الجديدة لقسم المنتجات الأخرى (Autres) --- */
+    #autresGrid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .autre-card-v2 {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      background: transparent;
-      transition: transform var(--transition);
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      height: 100%;
     }
-    .autre-card:hover {
+
+    .autre-card-v2:hover {
       transform: translateY(-6px);
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.25);
+      border-color: rgba(37,99,235,0.4);
     }
-    .autre-image-wrapper {
-      background: #f1f5f9;
-      border-radius: 8px;
-      padding: 24px;
+
+    .autre-img-box {
+      width: 100%;
       aspect-ratio: 1;
+      background: #f8fafc;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
+      padding: 18px;
+      position: relative;
     }
-    [data-theme="dark"] .autre-image-wrapper {
-      background: #1e293b;
-    }
-    .autre-image-wrapper img {
+
+    [data-theme="dark"] .autre-img-box { background: #1e293b; }
+
+    .autre-img-box img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       mix-blend-mode: multiply;
+      transition: transform 0.4s ease;
     }
-    [data-theme="dark"] .autre-image-wrapper img {
-      mix-blend-mode: normal;
-    }
-    .autre-info {
-      padding: 0 4px;
-      text-align: left;
-    }
-    .autre-brand {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--text);
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      letter-spacing: 0.5px;
-    }
-    .autre-name {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .autre-actions {
+
+    [data-theme="dark"] .autre-img-box img { mix-blend-mode: normal; }
+    .autre-card-v2:hover .autre-img-box img { transform: scale(1.08); }
+
+    .autre-content {
+      padding: 16px;
       display: flex;
-      gap: 10px;
-    }
-    .autre-actions .btn {
+      flex-direction: column;
       flex: 1;
-      padding: 10px 8px;
-      font-size: 0.85rem;
-      border-radius: 10px;
     }
-    .btn-add-left {
+
+    .autre-brand {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .autre-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.3;
+    }
+
+    .autre-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      margin-bottom: 14px;
+    }
+
+    .autre-rating .fa-star { color: #facc15; }
+    .autre-rating .rate-val { font-weight: 800; color: var(--text); }
+    .autre-rating .rev-count { color: var(--muted); }
+
+    .autre-price-box {
+      margin-top: auto;
+      margin-bottom: 16px;
+    }
+
+    .autre-price {
+      display: inline-block;
+      background-color: #facc15;
+      color: #000;
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(250, 204, 21, 0.2);
+    }
+
+    .autre-actions-bar {
+      display: flex;
+      gap: 8px;
+    }
+
+    .autre-actions-bar .btn {
+      padding: 10px;
+      font-size: 0.85rem;
+      border-radius: 12px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .autre-actions-bar .btn-add {
       background: var(--primary);
-      color: white;
+      color: #fff;
       border: none;
     }
-    .btn-detail-right {
+
+    .autre-actions-bar .btn-detail {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text);
@@ -778,9 +839,11 @@
       .detail-top{grid-template-columns:1fr}
       .result-grid{grid-template-columns:1fr 1fr}
       .products-grid{grid-template-columns:repeat(3,1fr)}
+      #autresGrid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width:900px){
       .products-grid{grid-template-columns:repeat(2,1fr)}
+      #autresGrid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
     }
     @media (max-width:780px){
       .features-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)!important}
@@ -813,10 +876,13 @@
       .product-actions .add-to-cart-btn { background: #2563eb; color: white; border: none; box-shadow: none; }
       .product-actions .details-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); }
 
-      /* تعديل حجم الخطوط في الهواتف للبطاقات الأخرى */
-      .autre-brand { font-size: 1rem; }
-      .autre-name { font-size: 0.9rem; margin-bottom: 12px; }
-      .autre-actions .btn { padding: 8px 6px; font-size: 0.8rem; }
+      #autresGrid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+      .autre-content { padding: 12px; }
+      .autre-title { font-size: 0.9rem; margin-bottom: 6px; }
+      .autre-price { font-size: 0.95rem; padding: 4px 10px; }
+      .autre-actions-bar { gap: 6px; }
+      .autre-actions-bar .btn { padding: 8px 4px; font-size: 0.75rem; }
+      .autre-actions-bar .btn-text-add { display: none; }
     }
     @media (max-width:480px){
       .container{width:min(100% - 18px,1240px)}
@@ -947,7 +1013,7 @@
       
       <div class="tab-content" id="autres-tab">
         <div class="pagination-wrapper" id="autresPaginationTop"></div>
-        <div class="products-grid" id="autresGrid"></div>
+        <div id="autresGrid"></div>
       </div>
       
       <div style="margin-top:32px" class="card">
@@ -1140,24 +1206,39 @@
       const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
       const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Image';
 
-      // --------- تصميم قسم (Autres) للهواتف والأجهزة ---------
+      // --------- تصميم قسم (Autres) الجديد ---------
       if (isOther) {
-        const brand = product.brand || 'AUTRES'; // الماركة أو نص افتراضي
+        const brand = product.brand || 'ÉQUIPEMENT'; 
+        const rating = product.rating || '4.8'; 
+        const reviewsCount = product.reviewsCount || Math.floor(Math.random() * (120 - 15 + 1)) + 15; // تقييمات عشوائية في حال عدم توفرها
+        const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
+
         const div = document.createElement('div');
-        div.className = 'autre-card';
+        div.className = 'autre-card-v2';
         
         div.innerHTML = `
-          <div class="autre-image-wrapper">
+          <div class="autre-img-box">
             <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x300?text=Image'">
           </div>
-          <div class="autre-info">
+          <div class="autre-content">
             <div class="autre-brand">${brand}</div>
-            <div class="autre-name">${product.name || 'Produit'}</div>
-            <div class="autre-actions">
-              <button type="button" class="btn btn-add-left add-to-cart-btn" title="Ajouter au panier">
-                <i class="fa-solid fa-cart-plus"></i>
+            <h3 class="autre-title">${product.name || 'Produit'}</h3>
+            
+            <div class="autre-rating">
+              <i class="fa-solid fa-star"></i>
+              <span class="rate-val">${rating}</span>
+              <span class="rev-count">(${reviewsCount} avis)</span>
+            </div>
+
+            <div class="autre-price-box">
+              <span class="autre-price">${priceValue}</span>
+            </div>
+
+            <div class="autre-actions-bar">
+              <button type="button" class="btn btn-add add-to-cart-btn" title="Ajouter au panier">
+                <i class="fa-solid fa-cart-shopping"></i> <span class="btn-text-add">Ajouter</span>
               </button>
-              <button type="button" class="btn btn-detail-right details-btn">Détails</button>
+              <button type="button" class="btn btn-detail details-btn">Détails</button>
             </div>
           </div>
         `;
