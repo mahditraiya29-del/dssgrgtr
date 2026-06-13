@@ -10,7 +10,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -18,14 +18,14 @@
       --primary:#2563eb;
       --primary-2:#0ea5e9;
       --accent:#f97316;
-      --bg:#f5f7fb;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --border:#e2e8f0;
-      --shadow:0 14px 40px rgba(15,23,42,.10);
-      --shadow-soft:0 8px 20px rgba(15,23,42,.08);
-      --success:#16a34a;
+      --bg:#05070f;
+      --card:#0f1322;
+      --text:#f8fafc;
+      --muted:#b1bed4;
+      --border:#20304a;
+      --shadow:0 16px 44px rgba(0,0,0,.30);
+      --shadow-soft:0 8px 20px rgba(0,0,0,.20);
+      --success:#10b981;
       --warning:#f59e0b;
       --danger:#ef4444;
       --radius:22px;
@@ -33,25 +33,50 @@
       --transition:.28s ease;
     }
 
-    [data-theme="dark"]{
-      --bg:#0b1220;
-      --card:#101a2f;
-      --text:#f8fafc;
-      --muted:#b1bed4;
-      --border:#20304a;
-      --shadow:0 16px 44px rgba(0,0,0,.30);
-      --shadow-soft:0 8px 20px rgba(0,0,0,.20);
+    [data-theme="light"]{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --shadow:0 14px 40px rgba(15,23,42,.10);
+      --shadow-soft:0 8px 20px rgba(15,23,42,.08);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;overflow-x:hidden}
     body{
-      font-family:"Inter",sans-serif;
+      font-family:'Cairo',sans-serif;
       background:var(--bg);
       color:var(--text);
       line-height:1.6;
       overflow-x:hidden;
       transition:background var(--transition), color var(--transition);
+      min-height:100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -1;
+      background-image: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%),
+                        linear-gradient(225deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%),
+                        linear-gradient(45deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%),
+                        linear-gradient(315deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%);
+      background-position: 40px 0, 40px 0, 0 0, 0 0;
+      background-size: 80px 80px;
+      background-repeat: repeat;
+    }
+    [data-theme="light"] body::before {
+      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
+                        linear-gradient(225deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
+                        linear-gradient(45deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
+                        linear-gradient(315deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%);
     }
 
     a,button{touch-action:manipulation}
@@ -80,26 +105,34 @@
       transition:transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
       white-space:nowrap;
     }
-    .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 12px 26px rgba(37,99,235,.24)}
+    .btn-primary{background:linear-gradient(135deg, var(--primary), var(--primary-2));color:#fff;box-shadow:0 4px 15px rgba(37,99,235,0.3);}
     .btn-outline{background:transparent;border-color:var(--border);color:var(--text)}
-    .btn-light{background:#fff;color:var(--primary);border-color:#fff}
+    .btn-light{background:rgba(255,255,255,0.1);color:var(--primary);border-color:rgba(255,255,255,0.2);backdrop-filter:blur(8px);}
     .btn-success{background:var(--success);color:#fff}
     .btn-sm{padding:8px 14px;font-size:0.8rem;min-height:auto}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.05);}
 
     .topbar{
       position:sticky;
       top:0;
       z-index:1000;
-      background:rgba(255,255,255,.78);
+      background:rgba(15, 19, 34, 0.85);
       backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(226,232,240,.8);
-    }
-    [data-theme="dark"] .topbar{
-      background:rgba(11,18,32,.82);
       border-bottom:1px solid var(--border);
     }
-    .nav{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;}
-    .logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.3rem;letter-spacing:.2px;min-height:var(--tap)}
+    [data-theme="light"] .topbar{
+      background:rgba(255,255,255,0.85);
+      border-bottom:1px solid rgba(226,232,240,0.8);
+    }
+    
+    .nav{
+      min-height:80px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px; 
+    }
+    .logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:1.3rem;letter-spacing:.2px;min-height:var(--tap); white-space:nowrap;}
     .logo i{font-size:1.6rem;color:var(--primary)}
 
     .nav-links{
@@ -108,7 +141,6 @@
       gap:24px;
       list-style:none;
     }
-
     .nav-links a{
       font-weight:700;
       color:var(--text);
@@ -119,7 +151,6 @@
       min-height:var(--tap);
       padding:10px 0;
     }
-
     .nav-links a::after{
       content:"";
       position:absolute;
@@ -130,11 +161,10 @@
       background:linear-gradient(90deg,var(--primary),var(--accent));
       transition:width var(--transition);
     }
-
     .nav-links a:hover::after{width:100%}
     .nav-links a:hover{color:var(--primary)}
 
-    .nav-actions{display:flex;align-items:center;gap:10px}
+    .nav-actions{display:flex;align-items:center;gap:8px}
     .icon-btn{
       width:44px;height:44px;
       border:none;border-radius:50%;
@@ -144,7 +174,10 @@
       box-shadow:var(--shadow-soft);
       cursor:pointer;
       position:relative;
+      flex-shrink:0;
+      transition:all 0.3s;
     }
+    .icon-btn:hover{transform:scale(1.05);background:var(--primary);color:white;}
 
     .search-container { position: relative; }
     .search-dropdown {
@@ -179,6 +212,7 @@
       color: var(--text);
       outline: none;
     }
+    .search-input-wrapper input:focus { border-color: var(--primary); }
     .search-results-list { max-height: 400px; overflow-y: auto; }
     .search-result-item {
       display: flex;
@@ -188,13 +222,12 @@
       cursor: pointer;
       transition: background var(--transition);
     }
-    .search-result-item:hover { background: rgba(37,99,235,.08); }
+    .search-result-item:hover { background: rgba(37,99,235,.15); }
     .search-result-img {
       width: 50px;
       height: 50px;
       border-radius: 12px;
       object-fit: cover;
-      background: #dbeafe;
     }
     .search-result-info { flex: 1; }
     .search-result-name { font-weight: 700; font-size: 0.9rem; }
@@ -226,7 +259,7 @@
       height: 100vh;
       background: var(--card);
       z-index: 2500;
-      box-shadow: -4px 0 30px rgba(0,0,0,0.15);
+      box-shadow: -4px 0 30px rgba(0,0,0,0.5);
       padding: 24px;
       display: flex;
       flex-direction: column;
@@ -241,7 +274,12 @@
       border-bottom: 1px solid var(--border);
       padding-bottom: 14px;
     }
-    .sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .sidebar-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
     .sidebar-links a {
       font-weight: 700;
       font-size: 1.1rem;
@@ -251,11 +289,14 @@
       border-radius: 12px;
       transition: background var(--transition), color var(--transition);
     }
-    .sidebar-links a:hover { background: rgba(37,99,235,.08); color: var(--primary); }
+    .sidebar-links a:hover {
+      background: rgba(37,99,235,.15);
+      color: var(--primary);
+    }
     .sidebar-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.6);
       z-index: 2400;
       display: none;
       backdrop-filter: blur(4px);
@@ -308,7 +349,12 @@
       box-shadow: var(--shadow-soft);
       flex-wrap: wrap;
     }
-    .pagination-container { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
     .page-btn {
       min-width: 40px;
       height: 40px;
@@ -326,23 +372,38 @@
       border-color: transparent;
     }
     .page-btn.disabled { opacity: 0.5; cursor: not-allowed; }
-    .page-info { display: flex; align-items: center; padding: 0 12px; color: var(--muted); font-size: 0.85rem; }
+    .page-info {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
 
     .product-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 24px;
       overflow: hidden;
-      transition: transform var(--transition), box-shadow var(--transition);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.3);
+      border-color: rgba(37,99,235,0.3);
+    }
     .product-image {
       height: 200px;
       overflow: hidden;
-      background: #dbeafe;
       position: relative;
     }
-    .product-image img { width: 100%; height: 100%; object-fit: cover; }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-image img { transform: scale(1.05); }
     .product-badge {
       position: absolute;
       top: 12px;
@@ -354,79 +415,114 @@
       font-size: 0.7rem;
       font-weight: 700;
       z-index: 2;
+      backdrop-filter: blur(4px);
     }
-    .product-badge.other { background: var(--primary); }
     .product-info { padding: 14px; }
     .product-info h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; }
     .product-type {
       font-size: 0.7rem;
       color: var(--muted);
-      background: rgba(37,99,235,.08);
+      background: rgba(37,99,235,.15);
       display: inline-block;
       padding: 3px 8px;
       border-radius: 20px;
       margin-bottom: 8px;
     }
-    .product-price { color: var(--primary); font-weight: 800; font-size: 1.1rem; margin: 6px 0; }
-    .product-actions { display: flex; gap: 8px; margin-top: 10px; }
+    .product-price {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .old-price {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      font-weight: 500;
+    }
+    .product-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    .spec-tag {
+      font-size: 0.65rem;
+      background: rgba(37,99,235,0.1);
+      padding: 3px 8px;
+      border-radius: 20px;
+      color: var(--primary);
+    }
+    .product-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
     .product-actions .btn { flex: 1; padding: 8px 6px; font-size: 0.7rem; }
-    .no-products { text-align: center; padding: 60px; background: var(--card); border-radius: 24px; border: 1px solid var(--border); color: var(--muted); }
+    .no-products {
+      text-align: center;
+      padding: 60px;
+      background: var(--card);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
 
-    /* Hero Section - comme dans l'image */
     .hero{
       position:relative;
       min-height:600px;
-      display:flex;
+      display:grid;
       align-items:center;
+      overflow:hidden;
       color:#fff;
       background:linear-gradient(135deg, rgba(37,99,235,.92), rgba(249,115,22,.88)), url("https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
+      border-radius: 0 0 32px 32px;
+      margin-bottom: 20px;
     }
     .hero-content{
       position:relative;
       z-index:1;
-      width:100%;
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:30px;
       align-items:center;
       padding:70px 0;
     }
-    .hero-left h1{font-size:clamp(34px,5vw,66px);line-height:1.02;margin-bottom:16px;font-weight:900}
-    .hero-left p{font-size:1.08rem;max-width:550px;margin-bottom:30px}
-    
-    /* الأزرار فوق الإحصائيات */
-    .hero-buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-bottom:30px;
+    .hero h1{font-size:clamp(34px,5vw,66px);line-height:1.02;margin-bottom:16px;font-weight:900}
+    .hero p{font-size:1.08rem;max-width:680px;margin-bottom:26px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px}
+    .hero-card{
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:28px;
+      padding:24px;
+      backdrop-filter:blur(16px);
     }
-    
-    /* الإحصائيات تحت الأزرار */
     .hero-stats{
-      display:flex;
-      gap:15px;
-      flex-wrap:wrap;
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
     }
-    .stat-card{
+    .stat{
+      border-radius:18px;
       background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.2);
-      border-radius:20px;
-      padding:12px 24px;
+      border:1px solid rgba(255,255,255,.18);
+      padding:16px;
       text-align:center;
-      backdrop-filter:blur(10px);
-      min-width:100px;
     }
-    .stat-card h3{font-size:1.4rem;font-weight:800}
-    .stat-card p{font-size:0.75rem;opacity:0.9}
-    
-    .hero-right .card{
-      background:rgba(255,255,255,.1);
-      backdrop-filter:blur(20px);
-      border:1px solid rgba(255,255,255,.2);
-    }
+    .stat h3{font-size:1.4rem;margin-bottom:4px}
+    .stat p{font-size:.95rem}
+    .hero-offer-card{overflow:hidden}
 
-    .features-grid, .articles-grid, .reviews-grid, .suggest-grid{ display:grid; gap:18px; }
+    .features-grid, .articles-grid, .reviews-grid, .suggest-grid{
+      display:grid;
+      gap:18px;
+    }
     .features-grid{grid-template-columns:repeat(4,1fr)}
     .articles-grid{grid-template-columns:repeat(3,1fr)}
     .reviews-grid{grid-template-columns:repeat(3,1fr)}
@@ -434,13 +530,17 @@
 
     .card{
       background:var(--card);
+      color:var(--text);
       border:1px solid var(--border);
       border-radius:var(--radius);
       box-shadow:var(--shadow-soft);
       overflow:hidden;
-      transition:transform var(--transition), box-shadow var(--transition);
+      transition:all 0.3s;
     }
-    .card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow);
+    }
 
     .feature{padding:22px 14px;text-align:center}
     .feature .ico{
@@ -452,9 +552,12 @@
     .feature h3{margin-bottom:6px;font-size:1.1rem;font-weight:800}
     .feature p{color:var(--muted);font-size:.88rem}
 
-    .hero-offer-card{overflow:hidden}
     .article{padding:18px}
-    .article .tag{display:inline-block;margin-bottom:12px;padding:7px 12px;border-radius:999px;background:rgba(37,99,235,.08);color:var(--primary);font-weight:800;font-size:.82rem}
+    .article .tag{
+      display:inline-block;margin-bottom:12px;padding:7px 12px;
+      border-radius:999px;background:rgba(37,99,235,.15);
+      color:var(--primary);font-weight:800;font-size:.82rem;
+    }
     .reviews{background:linear-gradient(180deg, transparent, rgba(37,99,235,.05))}
     .review{padding:22px}
     .review-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
@@ -465,60 +568,122 @@
     }
     
     .footer{
-      background:#09111f;
-      color:#dbe4f3;
+      background:#020617;
+      color:#cbd5e1;
       padding:52px 0 24px;
       margin-top:24px;
     }
-    .footer-grid{ display:grid; grid-template-columns:1.2fr .8fr .8fr 1fr; gap:20px; }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr 1fr;
+      gap:20px;
+    }
     .footer h4{color:#fff;margin-bottom:14px}
-    .footer p,.footer li{color:#b9c7db;margin-bottom:10px}
+    .footer p,.footer li{color:#94a3b8;margin-bottom:10px}
     .footer ul{list-style:none}
     .footer a:hover{color:#fff}
     .social{display:flex;gap:10px;margin-top:14px}
-    .social a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);}
-    .footer-bottom{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);text-align:center;color:#9fb0cf}
+    .social a{
+      width:42px;height:42px;border-radius:50%;display:grid;
+      place-items:center;background:rgba(255,255,255,.08);
+      transition:all 0.3s;
+    }
+    .social a:hover{background:var(--primary);transform:scale(1.05);}
+    .footer-bottom{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);text-align:center;color:#64748b}
     
     .floating-wa{
-      position:fixed; left:18px; bottom:18px; z-index:999; width:58px; height:58px;
-      border-radius:50%; display:grid; place-items:center; background:#25d366; color:#fff; font-size:1.7rem;
+      position:fixed;
+      left:18px;
+      bottom:18px;
+      z-index:999;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#25d366;
+      color:#fff;
+      font-size:1.7rem;
+      box-shadow:0 12px 30px rgba(37,211,102,.34);
+      transition:all 0.3s;
     }
+    .floating-wa:hover{transform:scale(1.1);}
     
     .modal-backdrop{
-      position:fixed; inset:0; background:rgba(0,0,0,.58); display:none; align-items:center; justify-content:center; z-index:2000; padding:18px;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.8);
+      backdrop-filter:blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
     }
     .modal-backdrop.show{display:flex}
     .modal{
-      width:min(920px,100%); max-height:88vh; overflow:auto; background:var(--card); border:1px solid var(--border); border-radius:28px;
+      width:min(920px,100%);
+      max-height:88vh;
+      overflow:auto;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
     }
     .modal-header{
-      display:flex; justify-content:space-between; align-items:center; padding:18px 20px; border-bottom:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 20px;
+      border-bottom:1px solid var(--border);
     }
     .modal-title{font-size:1.25rem;font-weight:900}
-    .close-btn{ width:42px;height:42px;border:none;border-radius:50%;cursor:pointer; background:transparent; color:var(--text); }
+    .close-btn{
+      width:42px;height:42px;border:none;border-radius:50%;cursor:pointer;
+      background:transparent;color:var(--text);
+    }
     .modal-body{padding:20px}
     .detail-top{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
-    .detail-images{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:#dbeafe}
+    .detail-images{border-radius:22px;overflow:hidden;border:1px solid var(--border)}
     .detail-images .big{width:100%;height:320px;object-fit:cover}
     .detail-thumbs{display:flex;gap:8px;padding:12px;flex-wrap:wrap}
     .detail-thumbs img{width:68px;height:46px;border-radius:10px;object-fit:cover;cursor:pointer;border:2px solid transparent}
     .detail-thumbs img.active{border-color:var(--primary)}
-    .detail-card{border:1px solid var(--border);border-radius:22px;padding:18px;background:rgba(148,163,184,.04)}
+    .detail-card{border:1px solid var(--border);border-radius:22px;padding:18px}
     .info-list{display:grid;gap:10px;margin-top:14px}
     .info-item{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}
     .toast{
-      position:fixed; top:88px; right:18px; background:var(--card); border:1px solid var(--border);
-      color:var(--text); border-radius:14px; padding:12px 16px; z-index:3000; display:none;
+      position:fixed;
+      top:88px;
+      right:18px;
+      background:var(--card);
+      border:1px solid var(--border);
+      color:var(--text);
+      border-radius:14px;
+      padding:12px 16px;
+      z-index:3000;
+      display:none;
     }
     
     .smart-form{
-      background:var(--card); border:1px solid var(--border); border-radius:28px; padding:24px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:24px;
     }
-    .form-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; align-items:end; }
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+      align-items:end;
+    }
     .field label{display:block;margin-bottom:8px;font-weight:700;color:var(--muted);font-size:.92rem}
     .field input, .field select{
       width:100%;padding:14px;border-radius:14px;border:1px solid var(--border);
       background:transparent;color:var(--text);outline:none;
+    }
+    .field input:focus, .field select:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 2px rgba(37,99,235,0.2);
     }
     .result-box{
       margin-top:18px;border-radius:22px;
@@ -528,6 +693,10 @@
     .result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
     .mini{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px}
     .mini strong{display:block;margin-bottom:4px}
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
 
     @media (max-width:1100px){
       .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
@@ -548,23 +717,21 @@
       .hero-offer-card .product-image{height:180px}
       .section{padding:64px 0}
       .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
-      .hero h1{font-size:2rem}
+      .hero h1{font-size:2.35rem}
       .products-grid{grid-template-columns:1fr}
       .tabs-container{width:100%;justify-content:center}
-      .tab-btn{padding:12px 20px;font-size:0.9rem}
+      .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
-      .hero-stats{gap:10px;justify-content:center}
-      .stat-card{padding:8px 16px;min-width:80px}
-      .stat-card h3{font-size:1.1rem}
-      .stat-card p{font-size:0.65rem}
     }
     @media (max-width:480px){
       .container{width:min(100% - 18px,1240px)}
-      .hero h1{font-size:1.8rem}
-      .hero-buttons{flex-direction:column}
-      .hero-stats{flex-wrap:wrap;justify-content:center}
-      .tab-btn{padding:8px 16px;font-size:0.8rem}
+      .hero h1{font-size:2rem}
+      .hero-actions{flex-direction:column}
+      .tab-btn{padding:10px 20px;font-size:0.9rem}
       .page-btn{min-width:36px;height:36px;font-size:0.8rem}
+      .logo { font-size: 1.05rem; gap: 5px; }
+      .icon-btn { width: 38px; height: 38px; font-size: 0.9rem; }
+      .nav-actions { gap: 6px; }
     }
   </style>
 </head>
@@ -585,9 +752,11 @@
       <li><a href="panier.html" class="sidebar-link-item">Mon panier</a></li>
     </ul>
   </nav>
+
   <header class="topbar">
     <div class="container nav">
       <a class="logo" href="#home"><i class="fa-solid fa-bicycle"></i><span>EliteBike <span class="accent">Pro</span></span></a>
+      
       <ul class="nav-links">
         <li><a href="#home">Accueil</a></li>
         <li><a href="#catalog">Vélos</a></li>
@@ -595,6 +764,7 @@
         <li><a href="#articles">Conseils</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      
       <div class="nav-actions">
         <button type="button" class="icon-btn" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
         <div class="search-container">
@@ -615,47 +785,31 @@
     </div>
   </header>
 
-  <!-- Hero Section - الأزرار فوق الإحصائيات كما في الصورة -->
   <section class="hero" id="home">
     <div class="container hero-content">
-      <div class="hero-left">
+      <div>
         <h1>Le vélo parfait pour chaque trajet</h1>
-        <p>Boutique moderne avec fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
-        
-        <!-- الأزرار أولاً (فوق الإحصائيات) -->
-        <div class="hero-buttons">
+        <p>Boutique moderne with fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
+        <div class="hero-actions">
           <a href="#catalog" class="btn btn-primary"><i class="fa-solid fa-bicycle"></i> Voir les vélos</a>
           <a href="#smart" class="btn btn-light"><i class="fa-solid fa-wand-magic-sparkles"></i> Trouver mon vélo</a>
         </div>
-        
-        <!-- الإحصائيات تحت الأزرار -->
-        <div class="hero-stats">
-          <div class="stat-card">
-            <h3>150+</h3>
-            <p>Vélos sélectionnés</p>
-          </div>
-          <div class="stat-card">
-            <h3>4.9/5</h3>
-            <p>Avis clients</p>
-          </div>
-          <div class="stat-card">
-            <h3>24h</h3>
-            <p>Support rapide</p>
-          </div>
-          <div class="stat-card">
-            <h3>FR</h3>
-            <p>Interface</p>
+        <div class="hero-card">
+          <div class="hero-stats">
+            <div class="stat"><h3>150+</h3><p>Vélos sélectionnés</p></div>
+            <div class="stat"><h3>4.9/5</h3><p>Avis clients</p></div>
+            <div class="stat"><h3>24h</h3><p>Support rapide</p></div>
+            <div class="stat"><h3>FR</h3><p>Interface</p></div>
           </div>
         </div>
       </div>
-      <div class="hero-right">
+      <div>
         <div class="card hero-offer-card">
-          <div class="product-image" style="height:300px"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
-          <div style="padding:20px">
-            <h3 style="margin-bottom:8px;font-size:1.2rem">Offre du moment</h3>
-            <p style="color:var(--muted);margin-bottom:14px">Vélo de route premium, léger et rapide.</p>
-            <div class="price-row"><span class="price" style="color:var(--primary);font-weight:800">1 290 €</span> <span style="text-decoration:line-through;color:var(--muted)">1 590 €</span></div>
-            <a href="#catalog" class="btn btn-primary" style="width:100%;margin-top:12px">Découvrir</a>
+          <div class="product-image" style="height:360px"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
+          <div style="padding:22px; text-align: center;">
+            <h3 style="margin-bottom:8px;font-size:1.3rem">Offre du moment</h3>
+            <p style="color:var(--primary); font-weight:800; font-size:1.4rem; margin-bottom:14px;">jusqu'à 20%</p>
+            <a href="#catalog" class="btn btn-primary" style="width:100%">Découvrir</a>
           </div>
         </div>
       </div>
@@ -786,7 +940,7 @@
   <footer class="footer" id="contact">
     <div class="container">
       <div class="footer-grid">
-        <div><h4>EliteBike Pro</h4><p>Une boutique moderne pensée pour les passionnés de vélo.</p><div class="social"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div></div>
+        <div><h4>EliteBike Pro</h4><p>Une boutique moderne pensée pour les passionnés de vélo.</p><div class="social"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div></div>
         <div><h4>Navigation</h4><ul><li><a href="#home">Accueil</a></li><li><a href="#catalog">Vélos</a></li><li><a href="#smart">Choix intelligent</a></li><li><a href="#articles">Articles</a></li></ul></div>
         <div><h4>Services</h4><ul><li>Vente de vélos</li><li>Conseil personnalisé</li><li>Support rapide</li></ul></div>
         <div><h4>Contact</h4><ul><li><i class="fa-solid fa-location-dot"></i> Paris, France</li><li><i class="fa-solid fa-phone"></i> +33 6 12 34 56 78</li><li><i class="fa-solid fa-envelope"></i> contact@elitebikepro.fr</li></ul></div>
@@ -796,6 +950,7 @@
   </footer>
 
   <a class="floating-wa" href="https://wa.me/33612345678" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+  
   <div class="modal-backdrop" id="detailsModal">
     <div class="modal">
       <div class="modal-header">
@@ -877,30 +1032,48 @@
     }
 
     function isBicycle(product) {
-      if (product.category === 'velos') return true;
+      if (product.category === 'velos' || product.type === 'Route' || product.type === 'MTB' || product.type === 'Ville' || product.type === 'Électrique') {
+        return true;
+      }
       if (product.category === 'autres') return false;
       const type = (product.type || '').toLowerCase();
-      if (type === 'route' || type === 'vtt' || type === 'ville' || type === 'mtb' || type === 'électrique') return true;
+      if (type === 'route' || type === 'vtt' || type === 'ville' || type === 'mtb') return true;
       return false;
     }
 
     function generateProductCard(product, productId, isOther = false) {
       const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
-      const mainImg = images[0] || 'https://placehold.co/300x200?text=Image';
+      const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Image';
       const typeText = product.subCategory || product.type || (isOther ? 'Accessoire' : 'Vélo');
       const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
+      const oldPriceValue = product.oldPrice ? product.oldPrice + ' DT' : (product.originalPrice ? product.originalPrice + ' DT' : null);
+      const stateText = product.state === 'Occasion' ? 'Occasion' : (product.state === 'مستعمل' ? 'Occasion' : 'Neuf');
       
       const div = document.createElement('div');
       div.className = 'product-card';
+      
+      // جمع المواصفات لعرضها كعلامات صغيرة
+      let specsHtml = '';
+      if (product.brand) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-trademark"></i> ${product.brand}</span>`;
+      if (product.weight) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-weight-hanging"></i> ${product.weight}</span>`;
+      if (product.frameMaterial) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-cubes"></i> ${product.frameMaterial}</span>`;
+      if (product.speeds) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-gauge-high"></i> ${product.speeds}</span>`;
+      if (product.brakes) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-hand"></i> ${product.brakes}</span>`;
+      if (product.wheels) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-circle"></i> ${product.wheels}</span>`;
+      
       div.innerHTML = `
         <div class="product-image">
-          <div class="product-badge ${isOther ? 'other' : ''}">${product.state === 'Occasion' ? 'Occasion' : 'Neuf'}</div>
+          <div class="product-badge">${stateText}</div>
           <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200?text=Image+non+disponible'">
         </div>
         <div class="product-info">
           <h3>${product.name || 'Produit'}</h3>
           <span class="product-type">${typeText}</span>
-          <div class="product-price">${priceValue}</div>
+          <div class="product-price">
+            ${priceValue}
+            ${oldPriceValue && oldPriceValue !== priceValue ? `<span class="old-price">${oldPriceValue}</span>` : ''}
+          </div>
+          ${specsHtml ? `<div class="product-specs">${specsHtml}</div>` : ''}
           <div class="product-actions">
             <button type="button" class="btn btn-success btn-sm add-to-cart-btn"><i class="fa-solid fa-cart-plus"></i> Ajouter</button>
             <button type="button" class="btn btn-outline btn-sm details-btn">Détails</button>
@@ -1065,6 +1238,36 @@
       modalTitle.textContent = product.name;
       const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
       const isBike = isBicycle(product);
+      
+      let specsHtml = '';
+      if (product.brand) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-trademark"></i> Marque</span><strong>${product.brand}</strong></div>`;
+      if (product.size) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-ruler"></i> Taille cadre</span><strong>${product.size}</strong></div>`;
+      if (product.speeds) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-gauge-high"></i> Vitesses</span><strong>${product.speeds}</strong></div>`;
+      if (product.brakes) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-hand"></i> Freins</span><strong>${product.brakes}</strong></div>`;
+      if (product.wheels) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-circle"></i> Roues</span><strong>${product.wheels}</strong></div>`;
+      if (product.weight) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-weight-hanging"></i> Poids</span><strong>${product.weight}</strong></div>`;
+      if (product.frameMaterial) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-cubes"></i> Matériau du cadre</span><strong>${product.frameMaterial}</strong></div>`;
+      if (product.gears) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-cog"></i> Transmission</span><strong>${product.gears}</strong></div>`;
+      if (product.color) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-palette"></i> Couleur</span><strong>${product.color}</strong></div>`;
+      
+      let prosHtml = '';
+      if (product.pros && Array.isArray(product.pros) && product.pros.length > 0) {
+        prosHtml = `<div class="info-item" style="flex-direction:column; align-items:flex-start;"><span><i class="fa-solid fa-thumbs-up"></i> Avantages</span><div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">`;
+        product.pros.forEach(pro => {
+          prosHtml += `<span style="background:rgba(16,185,129,0.1); padding:4px 10px; border-radius:20px; font-size:0.75rem;">✓ ${pro}</span>`;
+        });
+        prosHtml += `</div></div>`;
+      }
+      
+      let consHtml = '';
+      if (product.cons && Array.isArray(product.cons) && product.cons.length > 0) {
+        consHtml = `<div class="info-item" style="flex-direction:column; align-items:flex-start;"><span><i class="fa-solid fa-thumbs-down"></i> Inconvénients</span><div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">`;
+        product.cons.forEach(con => {
+          consHtml += `<span style="background:rgba(239,68,68,0.1); padding:4px 10px; border-radius:20px; font-size:0.75rem;">✗ ${con}</span>`;
+        });
+        consHtml += `</div></div>`;
+      }
+      
       modalBody.innerHTML = `
         <div class="detail-top">
           <div class="detail-images">
@@ -1073,13 +1276,17 @@
           </div>
           <div class="detail-card">
             <h3>${product.name}</h3>
-            <div class="price-row"><span class="price">${product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT')}</span></div>
+            <div class="price-row" style="margin: 10px 0;">
+              <span class="price" style="color:var(--primary); font-size:1.5rem; font-weight:800;">${product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT')}</span>
+              ${product.oldPrice ? `<span style="text-decoration:line-through; color:var(--muted); margin-right:10px;">${product.oldPrice} DT</span>` : (product.originalPrice ? `<span style="text-decoration:line-through; color:var(--muted); margin-right:10px;">${product.originalPrice} DT</span>` : '')}
+            </div>
             <p>${product.desc || product.description || (isBike ? 'Vélo de qualité professionnelle' : 'Accessoire de qualité')}</p>
             <div class="info-list">
               <div class="info-item"><span>Catégorie</span><strong>${product.subCategory || product.type || (isBike ? 'Vélo' : 'Accessoire')}</strong></div>
-              ${product.size ? `<div class="info-item"><span>Taille</span><strong>${product.size}</strong></div>` : ''}
-              ${product.speeds ? `<div class="info-item"><span>Vitesses</span><strong>${product.speeds}</strong></div>` : ''}
-              <div class="info-item"><span>État</span><strong>${product.state === 'Occasion' ? 'Occasion' : 'Neuf'}</strong></div>
+              ${specsHtml}
+              ${prosHtml}
+              ${consHtml}
+              <div class="info-item"><span>État</span><strong>${product.state === 'Occasion' || product.state === 'مستعمل' ? 'Occasion' : 'Neuf'}</strong></div>
             </div>
             <button type="button" class="btn btn-success modal-add-to-cart" style="width:100%;margin-top:16px;"><i class="fa-solid fa-cart-plus"></i> Ajouter au panier</button>
           </div>
@@ -1122,7 +1329,9 @@
       document.addEventListener('click', (e) => { if (!searchDropdown?.contains(e.target) && !searchBtn?.contains(e.target)) searchDropdown?.classList.remove('show'); });
 
       const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      else document.documentElement.setAttribute('data-theme', 'dark');
+      
       themeToggle?.addEventListener('click', () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         const newTheme = isDark ? 'light' : 'dark';
