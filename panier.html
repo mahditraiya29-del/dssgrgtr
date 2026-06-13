@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Panier & Suivi | EliteBike Pro</title>
-  <!-- Google Fonts : moderne et lisible -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -460,7 +459,7 @@
   const db = getDatabase(app);
   const dbRef = ref(db);
 
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = JSON.parse(localStorage.getItem('elitebike_cart')) || [];
   let activeDiscount = 0;
   let promoData = null;
   let infoStep = false;
@@ -593,7 +592,7 @@
     const newQty = (cart[index].quantity || 1) + delta;
     if (newQty > 0) {
       cart[index].quantity = newQty;
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('elitebike_cart', JSON.stringify(cart));
       updateCartDisplay();
     }
   };
@@ -601,7 +600,7 @@
   window.removeItem = (index) => {
     if (confirm("Supprimer ce produit du panier ?")) {
       cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('elitebike_cart', JSON.stringify(cart));
       if (cart.length === 0) infoStep = false;
       updateCartDisplay();
     }
@@ -721,7 +720,7 @@
         }
       }
 
-      localStorage.removeItem('cart');
+      localStorage.removeItem('elitebike_cart');
       cart = [];
       infoStep = false;
       activeDiscount = 0;
