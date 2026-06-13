@@ -850,7 +850,7 @@
       .nav-links{display:none}
       .menu-toggle-btn{display:grid}
       .hero-content{grid-template-columns:1fr;padding:56px 0}
-      .hero-offer-card .product-image{height:180px}
+      .hero-offer-card .product-image{height:180px; width: 100%;}
       .section{padding:64px 0}
       .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
       .hero h1{font-size:2.35rem}
@@ -860,8 +860,8 @@
 
       .products-grid { grid-template-columns: 1fr; gap: 12px; }
       .product-card { display: flex; flex-direction: row; align-items: stretch; height: 140px; border-radius: 16px; }
-      .product-image { width: 40%; height: 100%; flex-shrink: 0; }
-      .product-image img { height: 100%; width: 100%; object-fit: cover; }
+      .product-card .product-image { width: 40%; height: 100%; flex-shrink: 0; }
+      .product-card .product-image img { height: 100%; width: 100%; object-fit: cover; }
       .product-badge { top: 8px; left: 8px; right: auto; font-size: 0.65rem; padding: 4px 8px; }
       .product-info { width: 60%; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; }
       .product-info h3 { font-size: 1rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -953,7 +953,7 @@
         <p>Boutique moderne with fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
         <div class="hero-actions">
           <a href="#catalog" class="btn btn-primary"><i class="fa-solid fa-bicycle"></i> Voir les vélos</a>
-          <a href="#smart" class="btn btn-light"><i class="fa-solid fa-wand-magic-sparkles"></i> Trouver mon vélo</a>
+          <a href="#smart" class="btn btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Trouver mon vélo</a>
         </div>
         <div class="hero-card">
           <div class="hero-stats">
@@ -1206,11 +1206,10 @@
       const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
       const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Image';
 
-      // --------- تصميم قسم (Autres) الجديد ---------
       if (isOther) {
         const brand = product.brand || 'ÉQUIPEMENT'; 
         const rating = product.rating || '4.8'; 
-        const reviewsCount = product.reviewsCount || Math.floor(Math.random() * (120 - 15 + 1)) + 15; // تقييمات عشوائية في حال عدم توفرها
+        const reviewsCount = product.reviewsCount || Math.floor(Math.random() * (120 - 15 + 1)) + 15;
         const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
 
         const div = document.createElement('div');
@@ -1252,7 +1251,6 @@
         return div;
       }
 
-      // --------- تصميم قسم الدراجات الأصلي (Vélos) ---------
       const typeText = product.subCategory || product.type || 'Vélo';
       const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
       const oldPriceValue = product.oldPrice ? product.oldPrice + ' DT' : (product.originalPrice ? product.originalPrice + ' DT' : null);
