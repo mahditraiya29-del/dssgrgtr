@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="description" content="EliteBike Pro - Boutique moderne de vélos, conseils et choix intelligent selon votre profil." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta name="theme-color" content="#dc2626" />
+  <meta name="theme-color" content="#2563eb" />
   <title>EliteBike Pro</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,8 +19,6 @@
       --primary: #2563eb;
       --primary-2: #0ea5e9;
       --accent: #f97316;
-      --danger: #dc2626;
-      --danger-dark: #b91c1c;
       --bg: #05070f;
       --card: #0f1322;
       --text: #f8fafc;
@@ -30,6 +28,7 @@
       --shadow-soft: 0 8px 20px rgba(0,0,0,.20);
       --success: #10b981;
       --warning: #f59e0b;
+      --danger: #ef4444;
       --radius: 22px;
       --tap: 48px;
       --transition: .28s ease;
@@ -88,13 +87,12 @@
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
       gap: 10px; min-height: var(--tap); padding: 14px 20px;
-      border-radius: 12px; border: 1px solid transparent; cursor: pointer;
+      border-radius: 999px; border: 1px solid transparent; cursor: pointer;
       font-weight: 700; white-space: nowrap;
       transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
     }
     .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-2)); color: #fff; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
     .btn-outline { background: transparent; border-color: var(--border); color: var(--text) }
-    .btn-danger { background: linear-gradient(135deg, var(--danger), var(--danger-dark)); color: #fff; box-shadow: 0 4px 15px rgba(220,38,38,0.3); }
     .btn-light { background: rgba(255,255,255,0.1); color: var(--primary); border-color: rgba(255,255,255,0.2); backdrop-filter: blur(8px); }
     .btn-success { background: var(--success); color: #fff }
     .btn-sm { padding: 8px 14px; font-size: 0.8rem; min-height: auto }
@@ -241,7 +239,7 @@
     .product-specs { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
     .spec-tag { font-size: 0.65rem; background: rgba(37,99,235,0.1); padding: 3px 8px; border-radius: 20px; color: var(--primary); }
     .product-actions { display: flex; gap: 8px; margin-top: 10px; }
-    .product-actions .btn { flex: 1; padding: 8px 6px; font-size: 0.7rem; border-radius: 12px; }
+    .product-actions .btn { flex: 1; padding: 8px 6px; font-size: 0.7rem; }
     .no-products { text-align: center; padding: 60px; background: var(--card); border-radius: 24px; border: 1px solid var(--border); color: var(--muted); }
 
     .product-brand-mobile { display: none; }
@@ -367,8 +365,8 @@
       #velosGrid .hide-on-mobile { display: none; }
       #velosGrid .product-actions { margin-top: auto; gap: 8px; display: flex; }
       #velosGrid .product-actions .btn { padding: 6px; font-size: 0.8rem; flex: 1; border-radius: 12px; }
-      #velosGrid .product-actions .add-to-cart-btn { background: var(--danger); color: white; border: none; box-shadow: none; }
-      #velosGrid .product-actions .details-btn { background: var(--card); border: 1px solid var(--danger); color: var(--danger); }
+      #velosGrid .product-actions .add-to-cart-btn { background: var(--primary); color: white; border: none; box-shadow: none; }
+      #velosGrid .product-actions .details-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); }
 
       /* Autres */
       #autresGrid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
@@ -737,23 +735,23 @@
         if (product.weight) specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-weight-hanging"></i> ${product.weight}</span>`;
       }
 
-      // الأزرار باللون الأحمر ومستطيلة الشكل
-      const actionsHtml = `
+      // تم مسح أزرار Ajouter و Details من قسم Autres (سيتم فتح المودال عند الضغط على الكارت)
+      const actionsHtml = isOther ? '' : `
         <div class="product-actions">
-          <button type="button" class="btn btn-danger btn-sm add-to-cart-btn"><i class="fa-solid fa-cart-shopping"></i> Ajouter</button>
-          <button type="button" class="btn btn-outline btn-sm details-btn" style="border-color: var(--danger); color: var(--danger);">Détails</button>
+          <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><i class="fa-brands fa-whatsapp"></i> Acheter</button>
+          <button type="button" class="btn btn-outline btn-sm details-btn">Détails</button>
         </div>
       `;
 
       div.innerHTML = `
         <div class="product-image">
-          ${!isOther ? `<div class="product-badge">${stateText}</div>` : ''}
+          ${isOther ? '' : `<div class="product-badge">${stateText}</div>`}
           <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200?text=Image+non+disponible'">
         </div>
         <div class="product-info">
           ${isOther ? `<div class="product-brand-mobile">${brandText || 'ÉQUIPEMENT'}</div>` : ''}
           <h3>${product.name || 'Produit'}</h3>
-          ${!isOther ? `<span class="product-type">${typeText}</span>` : ''}
+          ${isOther ? '' : `<span class="product-type">${typeText}</span>`}
           <div class="product-price">
             ${priceValue}
             ${oldPriceValue && oldPriceValue !== priceValue && !isOther ? `<span class="old-price">${oldPriceValue}</span>` : ''}
@@ -763,24 +761,22 @@
         </div>
       `;
       
-      // في قسم autres نضيف إمكانية فتح المودال عند الضغط على البطاقة
+      // لتتمكن من الشراء ومعرفة التفاصيل في قسم Autres تضغط على الكارت ليفتح مباشرة
       if (isOther) {
         div.style.cursor = 'pointer';
-        div.addEventListener('click', (e) => {
-          // منع الفتح إذا تم الضغط على زر
-          if (e.target.closest('.add-to-cart-btn') || e.target.closest('.details-btn')) return;
+        div.addEventListener('click', () => {
+          openModal(product);
+        });
+      } else {
+        div.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          addToCart(product);
+        });
+        div.querySelector('.details-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
           openModal(product);
         });
       }
-      
-      div.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        addToCart(product);
-      });
-      div.querySelector('.details-btn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(product);
-      });
       
       return div;
     }
@@ -984,7 +980,7 @@
               ${consHtml}
               <div class="info-item"><span>État</span><strong>${product.state === 'Occasion' || product.state === 'مستعمل' ? 'Occasion' : 'Neuf'}</strong></div>
             </div>
-            <button type="button" class="btn btn-danger modal-add-to-cart" style="width:100%;margin-top:16px;"><i class="fa-solid fa-cart-shopping"></i> Ajouter au panier</button>
+            <button type="button" class="btn btn-success modal-add-to-cart" style="width:100%;margin-top:16px;"><i class="fa-solid fa-cart-plus"></i> Ajouter au panier</button>
           </div>
         </div>
       `;
