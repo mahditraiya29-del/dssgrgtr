@@ -293,6 +293,7 @@
       background: rgba(37,99,235,.15);
       color: var(--primary);
     }
+
     .sidebar-overlay {
       position: fixed;
       inset: 0;
@@ -302,6 +303,43 @@
       backdrop-filter: blur(4px);
     }
     .sidebar-overlay.show { display: block; }
+
+    /* Bouton flottant du panier (comme WhatsApp) */
+    .floating-cart {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      font-size: 1.7rem;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+      transition: all 0.3s;
+    }
+    .floating-cart:hover {
+      transform: scale(1.1);
+      background: var(--primary);
+    }
+    .floating-cart .cart-badge-floating {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
 
     .tabs-container {
       background: var(--card);
@@ -698,7 +736,7 @@
     ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 10px; }
     ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
 
-    /* --- التنسيقات الجديدة لقسم المنتجات الأخرى (Autres) --- */
+    /* Autres produits */
     #autresGrid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -883,6 +921,16 @@
       .autre-actions-bar { gap: 6px; }
       .autre-actions-bar .btn { padding: 8px 4px; font-size: 0.75rem; }
       .autre-actions-bar .btn-text-add { display: none; }
+      
+      /* Ajuster la position des flottants en mobile */
+      .floating-cart, .floating-wa {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+        bottom: 14px;
+      }
+      .floating-cart { right: 14px; }
+      .floating-wa { left: 14px; }
     }
     @media (max-width:480px){
       .container{width:min(100% - 18px,1240px)}
@@ -899,6 +947,8 @@
 <body>
   <div class="toast" id="toast">Message copié</div>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  
+  <!-- MENU LATÉRAL (sans "Mon panier" dans les liens) -->
   <nav class="sidebar-menu" id="sidebarMenu">
     <div class="sidebar-header">
       <span class="logo"><i class="fa-solid fa-bicycle"></i><span>Menu</span></span>
@@ -910,7 +960,6 @@
       <li><a href="#smart" class="sidebar-link-item">Choix intelligent</a></li>
       <li><a href="#articles" class="sidebar-link-item">Conseils</a></li>
       <li><a href="#contact" class="sidebar-link-item">Contact</a></li>
-      <li><a href="panier.html" class="sidebar-link-item">Mon panier</a></li>
     </ul>
   </nav>
 
@@ -940,12 +989,14 @@
             </div>
           </div>
         </div>
+        <!-- L'icône panier dans la barre de navigation (optionnelle, gardée pour le desktop) -->
         <a href="panier.html" class="icon-btn" id="cartIconBtn"><i class="fa-solid fa-cart-shopping"></i></a>
         <button type="button" class="icon-btn menu-toggle-btn" id="openSidebarBtn"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </header>
 
+  <!-- Le reste du contenu principal -->
   <section class="hero" id="home">
     <div class="container hero-content">
       <div>
@@ -1110,7 +1161,14 @@
     </div>
   </footer>
 
+  <!-- BOUTON WHATSAPP (GAUCHE) -->
   <a class="floating-wa" href="https://wa.me/33612345678" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <!-- BOUTON PANIER FLOTTANT (DROITE) -->
+  <a href="panier.html" class="floating-cart" id="floatingCartBtn">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span class="cart-badge-floating" id="floatingCartBadge" style="display: none;">0</span>
+  </a>
   
   <div class="modal-backdrop" id="detailsModal">
     <div class="modal">
@@ -1167,6 +1225,8 @@
     function updateCartCount() {
       const cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
       const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      
+      // Mise à jour du badge dans la barre de navigation (si présent)
       const cartIcon = document.getElementById('cartIconBtn');
       if (cartIcon) {
         let badge = cartIcon.querySelector('.cart-badge');
@@ -1181,6 +1241,17 @@
           badge.style.display = 'flex';
         } else if (badge) {
           badge.style.display = 'none';
+        }
+      }
+      
+      // Mise à jour du badge flottant
+      const floatingBadge = document.getElementById('floatingCartBadge');
+      if (floatingBadge) {
+        if (count > 0) {
+          floatingBadge.textContent = count > 9 ? '9+' : count;
+          floatingBadge.style.display = 'flex';
+        } else {
+          floatingBadge.style.display = 'none';
         }
       }
     }
