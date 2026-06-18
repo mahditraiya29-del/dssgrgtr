@@ -7,28 +7,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    /* ===== نفس ألوان index.html ===== */
     :root {
-      /* نظام ألوان جديد - New Color System */
       --bg-primary: #0a0a0f;
-      --bg-secondary: #12121a;
+      --bg-secondary: #111827;
       --bg-card: #1a1a2e;
       --bg-panel: rgba(255, 255, 255, 0.04);
       --text-primary: #ffffff;
       --text-secondary: #a0aec0;
       --text-muted: #718096;
       
-      /* الألوان الأساسية - Primary Colors */
+      /* الألوان الأساسية - مطابقة لـ index.html */
       --primary: #6c5ce7;
       --primary-light: #a29bfe;
       --primary-dark: #4a3db8;
       --primary-gradient: linear-gradient(135deg, #6c5ce7, #a29bfe);
       
-      /* الألوان الثانوية - Secondary Colors */
       --secondary: #00cec9;
       --secondary-light: #81ecec;
       --secondary-dark: #00b894;
       
-      /* ألوان مميزة - Accent Colors */
       --accent: #fd79a8;
       --accent-light: #ffb8d0;
       --success: #00b894;
@@ -36,7 +34,6 @@
       --danger: #ff7675;
       --info: #74b9ff;
       
-      /* تأثيرات - Effects */
       --glow-primary: 0 0 30px rgba(108, 92, 231, 0.3);
       --glow-secondary: 0 0 30px rgba(0, 206, 201, 0.2);
       --radius: 20px;
@@ -53,6 +50,7 @@
       margin: 0;
       padding: 20px;
       min-height: 100vh;
+      /* نفس خلفية index.html */
       background-image: 
         radial-gradient(ellipse at 10% 20%, rgba(108, 92, 231, 0.08) 0%, transparent 50%),
         radial-gradient(ellipse at 90% 80%, rgba(0, 206, 201, 0.06) 0%, transparent 50%);
@@ -63,7 +61,7 @@
       margin: 0 auto;
     }
     
-    /* الهيدر - Header */
+    /* الهيدر - مطابق لـ index.html */
     .top-nav {
       display: flex;
       align-items: center;
@@ -111,7 +109,7 @@
       margin-right: 8px;
     }
     
-    /* العنوان الرئيسي - Main Title */
+    /* العنوان الرئيسي */
     .page-title {
       text-align: center;
       font-family: 'Orbitron', monospace;
@@ -143,7 +141,7 @@
       -webkit-text-fill-color: white;
     }
     
-    /* أزرار التبويب - Tab Buttons */
+    /* أزرار التبويب */
     .tab-buttons {
       display: flex;
       gap: 12px;
@@ -201,7 +199,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
-    /* عناصر السلة - Cart Items */
+    /* عناصر السلة */
     .cart-item {
       display: flex;
       gap: 20px;
@@ -326,7 +324,7 @@
       transform: scale(1.02);
     }
     
-    /* الملخص - Summary */
+    /* الملخص */
     .cart-summary {
       margin-top: 30px;
       padding: 30px;
@@ -483,7 +481,7 @@
       box-shadow: 0 0 40px rgba(0, 206, 201, 0.3);
     }
     
-    /* حقل معلومات العميل - Customer Info */
+    /* حقل معلومات العميل */
     .info-inputs {
       display: none;
       flex-direction: column;
@@ -502,7 +500,7 @@
       width: 100%;
     }
     
-    /* حالة فارغة - Empty State */
+    /* حالة فارغة */
     .empty-cart {
       text-align: center;
       padding: 70px 20px;
@@ -548,7 +546,7 @@
       box-shadow: var(--glow-primary);
     }
     
-    /* رسائل التنبيه - Toast */
+    /* رسائل التنبيه */
     .toast-message {
       position: fixed;
       bottom: 30px;
@@ -583,7 +581,7 @@
       100% { opacity: 0; transform: translateX(-50%) translateY(-30px) scale(0.95); }
     }
     
-    /* بطاقات الطلبات - Order Cards */
+    /* بطاقات الطلبات */
     .order-card {
       background: var(--bg-card);
       border-radius: var(--radius);
@@ -740,7 +738,7 @@
       to { transform: rotate(360deg); }
     }
     
-    /* استجابة - Responsive */
+    /* استجابة */
     @media (max-width: 600px) {
       body { padding: 12px; }
       
@@ -891,7 +889,10 @@
   const db = getDatabase(app);
   const dbRef = ref(db);
 
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // ===== مفتاح التخزين الصحيح =====
+  const CART_KEY = 'cart';
+  
+  let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
   let activeDiscount = 0;
   let promoData = null;
   let infoStep = false;
@@ -1004,6 +1005,32 @@
     return { subtotal, fraisLivraison, total, discountAmount };
   };
 
+  // ===== دالة إضافة منتج إلى السلة (مهمة) =====
+  window.addToCart = function(product) {
+    if (!product) return;
+    
+    // البحث عن المنتج في السلة
+    const existingIndex = cart.findIndex(item => item.id === product.id);
+    
+    if (existingIndex !== -1) {
+      // زيادة الكمية إذا كان موجوداً
+      cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+    } else {
+      // إضافة منتج جديد
+      cart.push({
+        id: product.id || Date.now(),
+        name: product.name || 'Produit',
+        price: product.price || 0,
+        img: product.img || product.imageUrl || 'https://cdn-icons-png.flaticon.com/512/2936/2936812.png',
+        quantity: 1
+      });
+    }
+    
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    updateCartDisplay();
+    showToast(`✅ "${product.name}" ajouté au panier`, 'success');
+  };
+
   // === عرض السلة ===
   window.updateCartDisplay = function() {
     const container = document.getElementById('cartContainer');
@@ -1073,7 +1100,7 @@
     const newQuantity = (cart[index].quantity || 1) + delta;
     if (newQuantity > 0) {
       cart[index].quantity = newQuantity;
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
       updateCartDisplay();
       showToast(`🔄 Quantité: ${newQuantity}`, 'success');
     }
@@ -1085,7 +1112,7 @@
     const name = cart[index].name || 'Produit';
     if (confirm(`Supprimer "${name}" du panier ?`)) {
       cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
       if (cart.length === 0) infoStep = false;
       updateCartDisplay();
       showToast(`🗑️ "${name}" retiré`, 'success');
@@ -1222,7 +1249,7 @@
         }
       }
 
-      localStorage.removeItem('cart');
+      localStorage.removeItem(CART_KEY);
       cart = [];
       infoStep = false;
       activeDiscount = 0;
@@ -1342,9 +1369,11 @@
   window.calculatePrices = calculatePrices;
   window.updateCartDisplay = updateCartDisplay;
   window.switchTab = switchTab;
+  window.addToCart = addToCart;
 
   console.log('🛒 KEF Muscle Store - Panier chargé');
   console.log(`📦 ${cart.length} articles dans le panier`);
+  console.log('💡 استخدم addToCart(product) لإضافة منتج');
 </script>
 </body>
 </html>
