@@ -26,7 +26,7 @@
       margin: 0 auto;
     }
 
-    /* En-tête simplifié */
+    /* En-tête */
     .shop-header {
       display: flex;
       align-items: center;
@@ -80,7 +80,7 @@
       transform: translateX(-3px);
     }
 
-    /* onglets */
+    /* Onglets */
     .tab-bar {
       display: flex;
       gap: 16px;
@@ -103,6 +103,7 @@
       align-items: center;
       gap: 10px;
       box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      font-family: 'Inter', sans-serif;
     }
 
     .tab-btn i {
@@ -116,9 +117,13 @@
       box-shadow: 0 4px 12px rgba(15,123,58,0.2);
     }
 
+    .tab-btn:hover:not(.active) {
+      background: #eaf3f8;
+    }
+
     .tab-content {
       display: none;
-      animation: fade 0.2s ease;
+      animation: fade 0.25s ease;
     }
 
     .tab-content.active {
@@ -126,11 +131,22 @@
     }
 
     @keyframes fade {
-      from { opacity: 0; transform: translateY(5px);}
-      to { opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cartes produits et commandes */
+    /* Badge compteur panier */
+    .cart-badge {
+      background: #e63946;
+      color: white;
+      border-radius: 50%;
+      padding: 1px 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-left: 4px;
+    }
+
+    /* Cartes produits */
     .cart-item, .order-card {
       background: white;
       border-radius: 28px;
@@ -142,7 +158,11 @@
       align-items: center;
       box-shadow: 0 5px 14px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0,0,0,0.05);
       border: 1px solid #e9f0f3;
-      transition: 0.15s;
+      transition: 0.2s;
+    }
+
+    .cart-item:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     }
 
     .cart-img {
@@ -197,6 +217,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.15s;
+      font-family: 'Inter', sans-serif;
     }
 
     .qty-btn:hover {
@@ -213,6 +234,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
+      font-family: 'Inter', sans-serif;
     }
 
     .remove-btn:hover {
@@ -246,6 +268,30 @@
       font-size: 0.95rem;
       outline: none;
       font-family: 'Inter', sans-serif;
+      transition: 0.2s;
+      min-width: 150px;
+    }
+
+    .promo-input:focus {
+      border-color: #0f7b3a;
+      box-shadow: 0 0 0 3px rgba(15,123,58,0.1);
+    }
+
+    .apply-btn {
+      background: #0f7b3a;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .apply-btn:hover {
+      background: #0b5e2e;
+      transform: scale(1.02);
     }
 
     .price-row {
@@ -291,6 +337,11 @@
       background: #e67e22;
     }
 
+    .checkout-btn.confirm-mode {
+      background: linear-gradient(95deg, #0f7b3a, #0b5e2e);
+      box-shadow: 0 4px 10px rgba(15,123,58,0.2);
+    }
+
     .info-inputs {
       display: none;
       flex-direction: column;
@@ -306,6 +357,11 @@
       display: flex;
     }
 
+    .info-inputs .promo-input {
+      width: 100%;
+    }
+
+    /* États vides */
     .empty-cart, .empty-state {
       text-align: center;
       padding: 70px 20px;
@@ -320,11 +376,18 @@
       margin-bottom: 18px;
     }
 
-    /* commandes */
+    /* Commandes */
     .order-card {
       flex-direction: column;
       align-items: stretch;
       border-right: 5px solid #0f7b3a;
+      position: relative;
+    }
+
+    .order-card .order-status {
+      position: absolute;
+      top: 20px;
+      right: 20px;
     }
 
     .order-header {
@@ -349,6 +412,7 @@
       border-radius: 40px;
       font-weight: 700;
       font-size: 0.75rem;
+      display: inline-block;
     }
 
     .status-pending { background: #fff0db; color: #b45f06; }
@@ -370,6 +434,10 @@
       font-size: 0.9rem;
     }
 
+    .product-item:last-child {
+      border-bottom: none;
+    }
+
     .total-price {
       font-size: 1.3rem;
       font-weight: 800;
@@ -377,7 +445,12 @@
       text-align: left;
     }
 
-    /* toast */
+    .order-date {
+      font-size: 0.8rem;
+      color: #7a95a5;
+    }
+
+    /* Toast */
     .toast-message {
       position: fixed;
       bottom: 25px;
@@ -393,8 +466,31 @@
       font-size: 0.9rem;
       box-shadow: 0 6px 18px rgba(0,0,0,0.1);
       border-left: 4px solid #0f7b3a;
+      max-width: 90%;
+      text-align: center;
     }
 
+    .toast-message.error {
+      border-left-color: #e63946;
+      background: #3d1e1e;
+    }
+
+    /* Badge de chargement */
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
     @media (max-width: 680px) {
       .cart-item {
         flex-direction: column;
@@ -410,21 +506,44 @@
         padding: 6px 20px;
         font-size: 0.85rem;
       }
+      .shop-header {
+        padding: 12px 16px;
+        border-radius: 28px;
+      }
+      .back-link span {
+        display: none;
+      }
+      .order-card .order-status {
+        position: static;
+        margin-top: 8px;
+        align-self: flex-start;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .promo-group {
+        flex-direction: column;
+      }
+      .apply-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 <div class="container">
-  <div class="shop-header">
+  <header class="shop-header">
     <div class="logo-area">
       <i class="fas fa-bicycle logo-icon"></i>
       <span class="logo-text">EliteBike Pro</span>
     </div>
-    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour à la boutique</a>
-  </div>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> <span>Retour à la boutique</span></a>
+  </header>
 
-  <h1 style="text-align:center; margin-bottom: 25px; font-weight:700;">
+  <h1 style="text-align:center; margin-bottom: 25px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;">
     <i class="fas fa-shopping-cart" style="color:#0f7b3a;"></i> Mon panier
+    <span id="cartCountBadge" class="cart-badge" style="display:none;">0</span>
   </h1>
 
   <div class="tab-bar">
@@ -459,39 +578,34 @@
   const db = getDatabase(app);
   const dbRef = ref(db);
 
+  // === État ===
   let cart = JSON.parse(localStorage.getItem('elitebike_cart')) || [];
   let activeDiscount = 0;
   let promoData = null;
   let infoStep = false;
   let userOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
+  let isProcessingOrder = false;
 
+  // === Fonctions utilitaires ===
   function showToast(msg, isError = false) {
     const toast = document.createElement('div');
-    toast.className = 'toast-message';
-    toast.style.background = isError ? '#bc3f31dd' : '#1e4a3bdd';
+    toast.className = `toast-message${isError ? ' error' : ''}`;
     toast.innerText = msg;
     document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3300);
+    setTimeout(() => toast.remove(), 3500);
   }
 
-  window.switchTab = function(tab) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-    if (tab === 'cart') {
-      document.getElementById('cart-tab').classList.add('active');
-      document.querySelector('.tab-btn:first-child').classList.add('active');
-    } else {
-      document.getElementById('orders-tab').classList.add('active');
-      document.querySelector('.tab-btn:last-child').classList.add('active');
-      loadOrders();
-    }
-  };
+  function escapeHtml(str) {
+    if (!str) return '';
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;' };
+    return String(str).replace(/[&<>]/g, m => map[m] || m);
+  }
 
   function getProductPrice(item) {
     let price = item.price || item.currentPrice;
     if (typeof price === 'number') return price;
     if (typeof price === 'string') {
-      let num = parseFloat(price.replace('€', '').replace('DT', '').replace(',', '.').trim());
+      const num = parseFloat(price.replace('€', '').replace('DT', '').replace(',', '.').trim());
       return isNaN(num) ? 0 : num;
     }
     if (item.finalPrice) return parseFloat(item.finalPrice);
@@ -501,25 +615,50 @@
     return 0;
   }
 
-  function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-      if (m === '&') return '&amp;';
-      if (m === '<') return '&lt;';
-      if (m === '>') return '&gt;';
-      return m;
-    });
+  function getImageUrl(item) {
+    return item.img || item.imageUrl || 'https://cdn-icons-png.flaticon.com/512/2936/2936812.png';
   }
 
-  window.calculatePrices = function() {
+  // === Gestion des onglets ===
+  window.switchTab = function(tab) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    
+    if (tab === 'cart') {
+      document.getElementById('cart-tab').classList.add('active');
+      document.querySelector('.tab-btn:first-child').classList.add('active');
+      updateCartDisplay();
+    } else {
+      document.getElementById('orders-tab').classList.add('active');
+      document.querySelector('.tab-btn:last-child').classList.add('active');
+      loadOrders();
+    }
+  };
+
+  // === Mise à jour du badge ===
+  function updateCartBadge() {
+    const badge = document.getElementById('cartCountBadge');
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    if (totalItems > 0) {
+      badge.style.display = 'inline';
+      badge.textContent = totalItems;
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+
+  // === Calcul des prix ===
+  function calculatePrices() {
     const subtotal = cart.reduce((sum, item) => sum + (getProductPrice(item) * (item.quantity || 1)), 0);
-    const fraisLivraison = 7;
+    const fraisLivraison = subtotal > 0 ? 7 : 0;
     let total = subtotal + fraisLivraison;
     let discountAmount = 0;
-    if (activeDiscount > 0) {
+    
+    if (activeDiscount > 0 && subtotal > 0) {
       discountAmount = total * (activeDiscount / 100);
       total = total - discountAmount;
     }
+
     const priceDiv = document.getElementById('priceDetails');
     if (priceDiv) {
       let discountHtml = '';
@@ -533,17 +672,20 @@
         <div class="price-row total-row"><span>🏁 TOTAL À PAYER</span><span>${total.toFixed(2)} DT</span></div>
       `;
     }
-    return total;
-  };
+    return { subtotal, fraisLivraison, total, discountAmount };
+  }
 
+  // === Affichage du panier ===
   window.updateCartDisplay = function() {
     const container = document.getElementById('cartContainer');
+    updateCartBadge();
+
     if (!cart.length) {
       container.innerHTML = `<div class="empty-cart">
         <i class="fas fa-bicycle"></i>
         <h3>🛒 Votre panier est vide</h3>
         <p>Ajoutez des vélos ou accessoires depuis la boutique 🔥</p>
-        <a href="index.html" style="color:#0f7b3a; text-decoration:underline; margin-top:10px; display:inline-block;">Explorer la boutique →</a>
+        <a href="index.html" style="color:#0f7b3a; text-decoration:underline; margin-top:10px; display:inline-block; font-weight:600;">Explorer la boutique →</a>
       </div>`;
       return;
     }
@@ -551,17 +693,17 @@
     let itemsHtml = cart.map((item, idx) => {
       const priceNum = getProductPrice(item);
       const priceDisplay = priceNum.toFixed(2) + ' DT';
-      const imgSrc = item.img || item.imageUrl || 'https://cdn-icons-png.flaticon.com/512/2936/2936812.png';
+      const imgSrc = getImageUrl(item);
       return `<div class="cart-item" data-index="${idx}">
-        <img src="${imgSrc}" class="cart-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2936/2936812.png'">
+        <img src="${imgSrc}" class="cart-img" loading="lazy" alt="${escapeHtml(item.name)}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2936/2936812.png'">
         <div class="cart-details">
           <div class="cart-name"><i class="fas fa-bicycle"></i> ${escapeHtml(item.name)}</div>
           <div class="cart-price">${priceDisplay}</div>
           <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
             <div class="quantity-controls">
-              <button class="qty-btn" onclick="changeQuantity(${idx}, -1)">-</button>
+              <button class="qty-btn" onclick="changeQuantity(${idx}, -1)" aria-label="Diminuer la quantité">−</button>
               <span style="font-weight:bold; min-width:30px; text-align:center;">${item.quantity || 1}</span>
-              <button class="qty-btn" onclick="changeQuantity(${idx}, 1)">+</button>
+              <button class="qty-btn" onclick="changeQuantity(${idx}, 1)" aria-label="Augmenter la quantité">+</button>
             </div>
             <button class="remove-btn" onclick="removeItem(${idx})"><i class="fas fa-trash-alt"></i> Supprimer</button>
           </div>
@@ -569,25 +711,32 @@
       </div>`;
     }).join('');
 
+    // Réinitialiser l'étape info si le panier change
+    infoStep = false;
+
     container.innerHTML = itemsHtml + `<div class="cart-summary">
       <div class="promo-group">
-        <input type="text" id="pInput" class="promo-input" placeholder="🎟️ Code promo">
-        <button class="qty-btn" style="width:auto; padding:0 30px; background:#0f7b3a; color:white;" onclick="applyPromo()">Appliquer</button>
+        <input type="text" id="pInput" class="promo-input" placeholder="🎟️ Code promo" maxlength="30">
+        <button class="apply-btn" onclick="applyPromo()"><i class="fas fa-tag"></i> Appliquer</button>
       </div>
-      <p id="pMsg" style="font-size:0.85rem; margin:0 0 12px; color:#4b6b7c;"></p>
+      <p id="pMsg" style="font-size:0.85rem; margin:0 0 12px; color:#4b6b7c; min-height:20px;"></p>
       <div id="priceDetails"></div>
       <div id="infoSection" class="info-inputs">
-        <input type="text" id="custNom" class="promo-input" placeholder="Nom complet *">
-        <input type="tel" id="custTel1" class="promo-input" placeholder="Téléphone principal *">
+        <input type="text" id="custNom" class="promo-input" placeholder="Nom complet *" required>
+        <input type="tel" id="custTel1" class="promo-input" placeholder="Téléphone principal *" required>
         <input type="tel" id="custTel2" class="promo-input" placeholder="Téléphone secondaire (optionnel)">
-        <input type="text" id="custVille" class="promo-input" placeholder="Ville *">
+        <input type="text" id="custVille" class="promo-input" placeholder="Ville *" required>
       </div>
-      <button class="checkout-btn" id="confirmBtn" onclick="handleOrder()"><i class="fas fa-credit-card"></i> Passer commande</button>
+      <button class="checkout-btn" id="confirmBtn" onclick="handleOrder()">
+        <i class="fas fa-credit-card"></i> Passer commande
+      </button>
     </div>`;
+    
     calculatePrices();
   };
 
-  window.changeQuantity = (index, delta) => {
+  // === Modification quantité ===
+  window.changeQuantity = function(index, delta) {
     if (!cart[index]) return;
     const newQty = (cart[index].quantity || 1) + delta;
     if (newQty > 0) {
@@ -597,41 +746,62 @@
     }
   };
 
-  window.removeItem = (index) => {
+  // === Suppression d'article ===
+  window.removeItem = function(index) {
     if (confirm("Supprimer ce produit du panier ?")) {
       cart.splice(index, 1);
       localStorage.setItem('elitebike_cart', JSON.stringify(cart));
-      if (cart.length === 0) infoStep = false;
+      if (cart.length === 0) {
+        infoStep = false;
+        // Réinitialiser le bouton
+        const confirmBtn = document.getElementById('confirmBtn');
+        if (confirmBtn) {
+          confirmBtn.innerHTML = '<i class="fas fa-credit-card"></i> Passer commande';
+          confirmBtn.classList.remove('confirm-mode');
+        }
+      }
       updateCartDisplay();
+      showToast("🗑️ Produit retiré du panier");
     }
   };
 
+  // === Application du code promo ===
   window.applyPromo = async function() {
     const msg = document.getElementById('pMsg');
     const input = document.getElementById('pInput');
     const code = input.value.trim().toUpperCase();
-    if (!code) { msg.innerText = "⚠️ Entrez un code promo"; msg.style.color = "#c96f0e"; return; }
+    
+    if (!code) {
+      msg.innerText = "⚠️ Entrez un code promo";
+      msg.style.color = "#c96f0e";
+      return;
+    }
+    
     msg.innerText = "🔄 Vérification...";
     msg.style.color = "#2c6b5e";
+    msg.style.minHeight = '20px';
+    
     try {
       const snapshot = await get(child(dbRef, `promos/${code}`));
       if (snapshot.exists()) {
         const data = snapshot.val();
         const today = new Date().toISOString().split('T')[0];
+        
         if (today <= data.expiry) {
           if ((data.used || 0) < (data.limit || 9999)) {
             activeDiscount = data.discount;
             promoData = { code: code, ...data };
             msg.innerText = `✅ Code activé ! Réduction ${activeDiscount}% sur votre commande`;
             msg.style.color = "#0f7b3a";
+            showToast(`🎉 Code ${code} appliqué ! -${activeDiscount}%`);
           } else {
             activeDiscount = 0; promoData = null;
-            msg.innerText = `⛔ Code ${code} atteint sa limite d'utilisation`;
+            msg.innerText = `⛔ Code ${code} a atteint sa limite d'utilisation`;
             msg.style.color = "#c9422a";
           }
         } else {
           activeDiscount = 0; promoData = null;
-          msg.innerText = `❌ Code ${code} expiré`;
+          msg.innerText = `❌ Code ${code} est expiré`;
           msg.style.color = "#c9422a";
         }
       } else {
@@ -641,78 +811,90 @@
       }
       calculatePrices();
     } catch(e) {
-      console.error(e);
-      msg.innerText = "⚠️ Erreur de connexion";
+      console.error('Erreur promo:', e);
+      msg.innerText = "⚠️ Erreur de connexion, réessayez";
       msg.style.color = "#c9422a";
     }
   };
 
+  // === Gestion de la commande ===
   window.handleOrder = async function() {
+    if (isProcessingOrder) return;
+    
     const infoDiv = document.getElementById('infoSection');
     const confirmBtn = document.getElementById('confirmBtn');
+    
+    // Étape 1: Afficher le formulaire
     if (!infoStep) {
       infoDiv.classList.add('active');
       confirmBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirmer la commande';
-      confirmBtn.style.background = "linear-gradient(95deg, #0f7b3a, #0b5e2e)";
+      confirmBtn.classList.add('confirm-mode');
       infoDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
       infoStep = true;
       return;
     }
 
+    // Étape 2: Validation et envoi
     const nom = document.getElementById('custNom').value.trim();
     const tel1 = document.getElementById('custTel1').value.trim();
     const tel2 = document.getElementById('custTel2').value.trim();
     const ville = document.getElementById('custVille').value.trim();
+
     if (!nom || !tel1 || !ville) {
       showToast("❌ Veuillez remplir tous les champs obligatoires (*)", true);
       return;
     }
+
     if (tel1.length < 8 || !/^\d+$/.test(tel1)) {
       showToast("📞 Le numéro principal doit comporter au moins 8 chiffres", true);
       return;
     }
 
-    const subtotal = cart.reduce((sum, item) => sum + (getProductPrice(item) * (item.quantity || 1)), 0);
-    const fraisLivraison = 7;
-    let total = subtotal + fraisLivraison;
-    let discountAmount = 0;
-    if (activeDiscount > 0) {
-      discountAmount = total * (activeDiscount / 100);
-      total = total - discountAmount;
+    if (cart.length === 0) {
+      showToast("❌ Votre panier est vide", true);
+      return;
     }
 
-    const orderId = push(ref(db, 'orders/')).key;
-    const orderData = {
-      orderId: orderId,
-      clientName: nom,
-      phone1: tel1,
-      phone2: tel2 || "",
-      city: ville,
-      products: cart.map(item => ({
-        name: item.name,
-        price: getProductPrice(item),
-        quantity: item.quantity || 1,
-        imageUrl: item.img || item.imageUrl || ''
-      })),
-      subtotal: subtotal,
-      deliveryFee: fraisLivraison,
-      discountPercent: activeDiscount,
-      discountAmount: discountAmount,
-      promoCode: promoData ? promoData.code : null,
-      total: total,
-      status: "pending",
-      createdAt: Date.now(),
-      dateReadable: new Date().toLocaleString('fr-FR', { hour12: false })
-    };
+    isProcessingOrder = true;
+    confirmBtn.innerHTML = '<span class="loading-spinner"></span> Envoi en cours...';
+    confirmBtn.disabled = true;
 
     try {
+      const { subtotal, fraisLivraison, total, discountAmount } = calculatePrices();
+      const orderId = push(ref(db, 'orders/')).key;
+
+      const orderData = {
+        orderId: orderId,
+        clientName: nom,
+        phone1: tel1,
+        phone2: tel2 || "",
+        city: ville,
+        items: cart.map(item => ({
+          name: item.name,
+          price: getProductPrice(item),
+          quantity: item.quantity || 1,
+          imageUrl: getImageUrl(item)
+        })),
+        subtotal: subtotal,
+        deliveryFee: fraisLivraison,
+        discountPercent: activeDiscount,
+        discountAmount: discountAmount,
+        promoCode: promoData ? promoData.code : null,
+        total: total,
+        status: "pending",
+        createdAt: Date.now(),
+        dateReadable: new Date().toLocaleString('fr-FR', { hour12: false })
+      };
+
       await set(ref(db, `orders/${orderId}`), orderData);
-      
+
+      // Sauvegarder dans localStorage
       const newOrderRef = { orderId: orderId, status: "pending", createdAt: Date.now() };
       userOrders.unshift(newOrderRef);
       if (userOrders.length > 20) userOrders = userOrders.slice(0, 20);
       localStorage.setItem('userOrders', JSON.stringify(userOrders));
 
+      // Mettre à jour l'utilisation du code promo
       if (promoData && promoData.code) {
         const snap = await get(child(dbRef, `promos/${promoData.code}`));
         if (snap.exists()) {
@@ -720,74 +902,113 @@
         }
       }
 
+      // Vider le panier
       localStorage.removeItem('elitebike_cart');
       cart = [];
       infoStep = false;
       activeDiscount = 0;
       promoData = null;
+
       showToast(`✅ Commande #${orderId.slice(-6)} enregistrée ! Suivez son statut dans "Suivi commandes".`);
       updateCartDisplay();
+      
+      // Basculer vers l'onglet commandes
       switchTab('orders');
-      loadOrders();
+      await loadOrders();
+
     } catch (error) {
-      console.error(error);
+      console.error('Erreur commande:', error);
       showToast("❌ Erreur lors de l'envoi, veuillez réessayer", true);
+    } finally {
+      isProcessingOrder = false;
+      confirmBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirmer la commande';
+      confirmBtn.disabled = false;
     }
   };
 
+  // === Chargement des commandes ===
   async function loadOrders() {
     const container = document.getElementById('ordersContainer');
+    container.innerHTML = '<div style="text-align:center;padding:40px;"><span class="loading-spinner" style="border-color:#0f7b3a;border-top-color:transparent;"></span> Chargement...</div>';
+
     if (!userOrders.length) {
-      container.innerHTML = `<div class="empty-state"><i class="fas fa-box-open"></i><p>📭 Aucune commande pour le moment.</p><a href="index.html" style="color:#0f7b3a;">Découvrir les vélos →</a></div>`;
+      container.innerHTML = `<div class="empty-state">
+        <i class="fas fa-box-open"></i>
+        <p>📭 Aucune commande pour le moment.</p>
+        <a href="index.html" style="color:#0f7b3a; font-weight:600;">Découvrir les vélos →</a>
+      </div>`;
       return;
     }
 
     let html = '';
     let needUpdate = false;
-    for (const userOrder of [...userOrders]) {
+    let validOrders = [];
+
+    for (const userOrder of userOrders) {
       try {
         const snap = await get(child(dbRef, `orders/${userOrder.orderId}`));
         if (snap.exists()) {
           const order = snap.val();
+          validOrders.push(userOrder);
+
           let statusClass = 'status-pending';
           let statusText = '⏳ En attente';
           if (order.status === 'shipping') { statusClass = 'status-shipping'; statusText = '🚚 En cours de livraison'; }
           else if (order.status === 'delivered') { statusClass = 'status-delivered'; statusText = '✅ Livrée'; }
+
+          const productsList = order.items || order.products || [];
+          let productsHtml = '';
           
-          const productsHtml = order.products.map(p => `<div class="product-item"><span><i class="fas fa-bicycle"></i> ${escapeHtml(p.name)}</span><span>${p.quantity} × ${p.price.toFixed(2)} DT</span></div>`).join('');
+          if (productsList.length > 0) {
+            productsHtml = productsList.map(p => `
+              <div class="product-item">
+                <span><i class="fas fa-bicycle"></i> ${escapeHtml(p.name || 'Produit')}</span>
+                <span>${p.quantity || 1} × ${(p.price || 0).toFixed(2)} DT</span>
+              </div>
+            `).join('');
+          } else {
+            productsHtml = `<div class="product-item"><span>⚠️ Détails des produits non disponibles</span></div>`;
+          }
+
           html += `
             <div class="order-card">
               <div class="order-header">
-                <div><span class="order-id">#${userOrder.orderId.slice(-8)}</span> <span style="font-size:12px; margin-right:10px;">${order.dateReadable || new Date(order.createdAt).toLocaleString('fr-FR')}</span></div>
+                <div>
+                  <span class="order-id">#${userOrder.orderId.slice(-8)}</span>
+                  <span class="order-date">${order.dateReadable || new Date(order.createdAt).toLocaleString('fr-FR')}</span>
+                </div>
                 <span class="status-badge ${statusClass}">${statusText}</span>
               </div>
               <div class="products-list">${productsHtml}</div>
-              <div class="total-price">💰 Total : ${order.total.toFixed(2)} DT</div>
+              <div class="total-price">💰 Total : ${(order.total || 0).toFixed(2)} DT</div>
             </div>
           `;
         } else {
           needUpdate = true;
         }
-      } catch(e) { console.error(e); }
-    }
-    
-    if (needUpdate) {
-      const updatedOrders = [];
-      for (const userOrder of userOrders) {
-        const snap = await get(child(dbRef, `orders/${userOrder.orderId}`));
-        if (snap.exists()) updatedOrders.push(userOrder);
+      } catch(e) { 
+        console.error('Erreur chargement commande:', e);
+        needUpdate = true;
       }
-      userOrders = updatedOrders;
+    }
+
+    // Mettre à jour le localStorage si des commandes ont été supprimées
+    if (needUpdate && validOrders.length !== userOrders.length) {
+      userOrders = validOrders;
       localStorage.setItem('userOrders', JSON.stringify(userOrders));
     }
 
     if (html === '') {
-      container.innerHTML = `<div class="empty-state"><i class="fas fa-check-circle"></i><p>🎉 Toutes vos commandes sont livrées ! Merci pour votre confiance.</p></div>`;
+      container.innerHTML = `<div class="empty-state">
+        <i class="fas fa-check-circle"></i>
+        <p>🎉 Toutes vos commandes sont livrées ! Merci pour votre confiance.</p>
+      </div>`;
     } else {
       container.innerHTML = html;
     }
   }
 
+  // === Écoute en temps réel des commandes ===
   const ordersRef = ref(db, 'orders');
   onValue(ordersRef, () => {
     if (document.getElementById('orders-tab').classList.contains('active')) {
@@ -795,14 +1016,20 @@
     }
   });
 
+  // === Initialisation ===
   updateCartDisplay();
-  
+
+  // === Exposer les fonctions globalement ===
   window.changeQuantity = changeQuantity;
   window.removeItem = removeItem;
   window.applyPromo = applyPromo;
   window.handleOrder = handleOrder;
   window.calculatePrices = calculatePrices;
   window.updateCartDisplay = updateCartDisplay;
+  window.switchTab = switchTab;
+
+  console.log('🛒 EliteBike Pro - Panier chargé avec succès');
+  console.log(`📦 ${cart.length} articles dans le panier`);
 </script>
 </body>
 </html>
