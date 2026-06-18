@@ -26,12 +26,11 @@
       margin: 0 auto;
     }
 
-    /* En-tête simplifié */
+    /* En-tête (Header) */
     .shop-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 32px;
       background: white;
@@ -153,7 +152,7 @@
       background: #f1f7fa;
       border: 1px solid #cfe3ec;
       padding: 4px;
-      flex-shrink: 0; /* يمنع انضغاط الصورة واختفائها على الهواتف */
+      flex-shrink: 0; /* منع الصورة من الاختفاء */
     }
 
     .cart-details {
@@ -370,16 +369,46 @@
       margin: 12px 0;
     }
 
+    /* تصميم المنتجات داخل قائمة الطلبات ليظهر مع الصورة */
     .product-item {
       display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
       border-bottom: 1px solid #e0eef4;
-      font-size: 0.9rem;
     }
 
     .product-item:last-child {
       border-bottom: none;
+    }
+
+    .product-item-img {
+      width: 55px;
+      height: 55px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: white;
+      border: 1px solid #dce8ee;
+      flex-shrink: 0;
+    }
+
+    .product-item-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .product-item-title {
+      font-weight: 700;
+      color: #1e2a32;
+      font-size: 0.95rem;
+    }
+
+    .product-item-price {
+      color: #c56a00;
+      font-weight: 800;
+      font-size: 0.95rem;
     }
 
     .total-price {
@@ -387,6 +416,7 @@
       font-weight: 800;
       color: #c56a00;
       text-align: left;
+      margin-top: 10px;
     }
 
     /* toast */
@@ -407,23 +437,41 @@
       border-left: 4px solid #0f7b3a;
     }
 
-    /* Media Query المحسنة والمطورة خصيصاً للهواتف */
+    /* تحسينات الموبايل الجذرية 📱 */
     @media (max-width: 680px) {
       body {
         padding: 15px 10px;
       }
 
+      /* تصميم الهيدر ليكون أفقي مثل التطبيقات تماماً */
       .shop-header {
-        padding: 12px 16px;
-        border-radius: 24px;
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
+        flex-direction: row; /* إجبار العناصر لتكون في خط واحد */
+        padding: 10px 15px;
+        border-radius: 40px;
+        justify-content: space-between;
       }
 
+      .logo-area { gap: 8px; }
+      .logo-icon { font-size: 1.3rem; }
+      .logo-text { font-size: 1.15rem; }
+
+      /* تحويل زر الرجوع إلى أيقونة دائرية فقط في الهاتف */
+      .back-text {
+        display: none; 
+      }
       .back-link {
-        width: 100%;
+        padding: 10px;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
         justify-content: center;
+        margin: 0;
+      }
+      .back-link i {
+        margin: 0;
+        font-size: 1rem;
       }
 
       .tab-bar {
@@ -439,7 +487,7 @@
       }
 
       .cart-item {
-        flex-direction: row; /* الحفاظ على المظهر الأفقي المتناسق */
+        flex-direction: row;
         align-items: flex-start;
         gap: 14px;
         padding: 14px;
@@ -497,19 +545,24 @@
       }
 
       .promo-input {
-        font-size: 16px; /* لمنع الزووم التلقائي في الـ iPhone */
+        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
 <div class="container">
+  
+  <!-- الهيدر المطور -->
   <div class="shop-header">
     <div class="logo-area">
       <i class="fas fa-bicycle logo-icon"></i>
       <span class="logo-text">EliteBike Pro</span>
     </div>
-    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour à la boutique</a>
+    <a href="index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i>
+      <span class="back-text">Retour à la boutique</span>
+    </a>
   </div>
 
   <h1 style="text-align:center; margin-bottom: 25px; font-weight:700;">
@@ -640,7 +693,10 @@
     let itemsHtml = cart.map((item, idx) => {
       const priceNum = getProductPrice(item);
       const priceDisplay = priceNum.toFixed(2) + ' DT';
-      const imgSrc = item.img || item.imageUrl || 'https://cdn-icons-png.flaticon.com/512/2936/2936812.png';
+      
+      // هنا قمنا بتضمين جميع الاحتمالات الممكنة لتسمية الصورة (image, img, imageUrl, picture)
+      const imgSrc = item.image || item.img || item.imageUrl || item.picture || 'https://cdn-icons-png.flaticon.com/512/2936/2936812.png';
+      
       return `<div class="cart-item" data-index="${idx}">
         <img src="${imgSrc}" class="cart-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2936/2936812.png'">
         <div class="cart-details">
@@ -719,7 +775,7 @@
             msg.style.color = "#c9422a";
           }
         } else {
-          activeDiscount = 0; promoData = null;
+            activeDiscount = 0; promoData = null;
           msg.innerText = `❌ Code ${code} expiré`;
           msg.style.color = "#c9422a";
         }
@@ -782,7 +838,8 @@
         name: item.name,
         price: getProductPrice(item),
         quantity: item.quantity || 1,
-        imageUrl: item.img || item.imageUrl || ''
+        // حفظ مسار الصورة بشكل دقيق لإرسالها للوحة التحكم
+        imageUrl: item.image || item.img || item.imageUrl || item.picture || ''
       })),
       subtotal: subtotal,
       deliveryFee: fraisLivraison,
@@ -849,16 +906,21 @@
           
           let productsHtml = '';
           if (productsList.length > 0) {
-            productsHtml = productsList.map(p => `
-              <div class="product-item">
-                <span><i class="fas fa-bicycle"></i> ${escapeHtml(p.name || 'Produit')}</span>
-                <span>${p.quantity || 1} × ${(p.price || 0).toFixed(2)} DT</span>
-              </div>
-            `).join('');
+            // هنا تم دمج ظهور الصورة مع تفاصيل المنتج في قسم تتبع الطلبات
+            productsHtml = productsList.map(p => {
+              const pImg = p.image || p.imageUrl || p.img || p.picture || 'https://cdn-icons-png.flaticon.com/512/2936/2936812.png';
+              return `
+                <div class="product-item">
+                  <img src="${pImg}" class="product-item-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2936/2936812.png'">
+                  <div class="product-item-details">
+                    <div class="product-item-title"><i class="fas fa-bicycle" style="color:#0f7b3a; margin-right:4px;"></i> ${escapeHtml(p.name || 'Produit')}</div>
+                    <div class="product-item-price">${p.quantity || 1} <span style="color:#8596a0; font-size:0.8rem;">×</span> ${(p.price || 0).toFixed(2)} DT</div>
+                  </div>
+                </div>
+              `;
+            }).join('');
           } else {
-            productsHtml = `<div class="product-item">
-              <span colspan="2">⚠️ Détails des produits non disponibles</span>
-            </div>`;
+            productsHtml = `<div class="product-item"><span>⚠️ Détails des produits non disponibles</span></div>`;
           }
           
           html += `
