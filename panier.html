@@ -153,6 +153,7 @@
       background: #f1f7fa;
       border: 1px solid #cfe3ec;
       padding: 4px;
+      flex-shrink: 0; /* يمنع انضغاط الصورة واختفائها على الهواتف */
     }
 
     .cart-details {
@@ -174,6 +175,13 @@
       font-weight: 700;
       font-size: 1.2rem;
       margin: 8px 0;
+    }
+
+    .cart-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
     }
 
     .quantity-controls {
@@ -399,20 +407,97 @@
       border-left: 4px solid #0f7b3a;
     }
 
+    /* Media Query المحسنة والمطورة خصيصاً للهواتف */
     @media (max-width: 680px) {
-      .cart-item {
+      body {
+        padding: 15px 10px;
+      }
+
+      .shop-header {
+        padding: 12px 16px;
+        border-radius: 24px;
         flex-direction: column;
+        gap: 12px;
         text-align: center;
       }
-      .quantity-controls {
-        margin: 0 auto;
+
+      .back-link {
+        width: 100%;
+        justify-content: center;
       }
-      .cart-details {
-        text-align: center;
+
+      .tab-bar {
+        width: 100%;
+        gap: 8px;
       }
+
       .tab-btn {
-        padding: 6px 20px;
+        flex: 1;
+        padding: 10px 8px;
         font-size: 0.85rem;
+        justify-content: center;
+      }
+
+      .cart-item {
+        flex-direction: row; /* الحفاظ على المظهر الأفقي المتناسق */
+        align-items: flex-start;
+        gap: 14px;
+        padding: 14px;
+        border-radius: 22px;
+      }
+
+      .cart-img {
+        width: 75px;
+        height: 75px;
+        border-radius: 14px;
+      }
+
+      .cart-details {
+        text-align: left;
+        min-width: 0;
+      }
+
+      .cart-name {
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+
+      .cart-price {
+        font-size: 1.1rem;
+        margin: 4px 0 10px 0;
+      }
+
+      .cart-actions {
+        gap: 10px;
+      }
+
+      .quantity-controls {
+        padding: 4px 10px;
+      }
+
+      .qty-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+      }
+
+      .remove-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+      }
+
+      .promo-group {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .promo-group button {
+        width: 100% !important;
+        height: 48px;
+      }
+
+      .promo-input {
+        font-size: 16px; /* لمنع الزووم التلقائي في الـ iPhone */
       }
     }
   </style>
@@ -561,7 +646,7 @@
         <div class="cart-details">
           <div class="cart-name"><i class="fas fa-bicycle"></i> ${escapeHtml(item.name)}</div>
           <div class="cart-price">${priceDisplay}</div>
-          <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+          <div class="cart-actions">
             <div class="quantity-controls">
               <button class="qty-btn" onclick="changeQuantity(${idx}, -1)">-</button>
               <span style="font-weight:bold; min-width:30px; text-align:center;">${item.quantity || 1}</span>
@@ -687,7 +772,6 @@
 
     const orderId = push(ref(db, 'orders/')).key;
     
-    // Important: Stocker les produits dans 'items' pour être compatible avec admin.html
     const orderData = {
       orderId: orderId,
       clientName: nom,
@@ -761,7 +845,6 @@
           if (order.status === 'shipping') { statusClass = 'status-shipping'; statusText = '🚚 En cours de livraison'; }
           else if (order.status === 'delivered') { statusClass = 'status-delivered'; statusText = '✅ Livrée'; }
           
-          // CORRECTION IMPORTANTE: Utiliser 'items' (comme dans admin.html) ou 'products'
           const productsList = order.items || order.products || [];
           
           let productsHtml = '';
@@ -813,7 +896,6 @@
     }
   }
 
-  // Écouter les changements de commandes en temps réel
   const ordersRef = ref(db, 'orders');
   onValue(ordersRef, () => {
     if (document.getElementById('orders-tab').classList.contains('active')) {
@@ -821,10 +903,8 @@
     }
   });
 
-  // Initialiser l'affichage
   updateCartDisplay();
   
-  // Exposer les fonctions globalement
   window.changeQuantity = changeQuantity;
   window.removeItem = removeItem;
   window.applyPromo = applyPromo;
