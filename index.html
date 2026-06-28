@@ -304,7 +304,6 @@
     }
     .sidebar-overlay.show { display: block; }
 
-    /* Bouton flottant du panier (comme WhatsApp) */
     .floating-cart {
       position: fixed;
       right: 18px;
@@ -455,7 +454,7 @@
       z-index: 2;
       backdrop-filter: blur(4px);
     }
-    .product-info { padding: 14px; }
+    .product-info { padding: 14px; display: flex; flex-direction: column; height: calc(100% - 200px); }
     .product-info h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; }
     .product-type {
       font-size: 0.7rem;
@@ -465,6 +464,17 @@
       padding: 3px 8px;
       border-radius: 20px;
       margin-bottom: 8px;
+    }
+    .product-desc-short {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 6px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+      flex-grow: 1;
     }
     .product-price {
       color: var(--primary);
@@ -478,9 +488,9 @@
     }
     .old-price {
       font-size: 0.8rem;
-      color: var(--muted);
+      color: var(--danger);
       text-decoration: line-through;
-      font-weight: 500;
+      font-weight: 600;
     }
     .product-specs {
       display: flex;
@@ -498,7 +508,8 @@
     .product-actions {
       display: flex;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: auto;
+      padding-top: 10px;
     }
     .product-actions .btn { flex: 1; padding: 8px 6px; font-size: 0.7rem; }
     .no-products {
@@ -736,7 +747,6 @@
     ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 10px; }
     ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
 
-    /* Autres produits */
     #autresGrid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -870,6 +880,24 @@
       color: var(--text);
     }
 
+    .qty-selector {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+      background: rgba(37,99,235,0.05);
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .qty-selector label { font-weight: 700; color: var(--text); }
+    .qty-selector input {
+      width: 70px; padding: 8px; border-radius: 8px;
+      border: 1px solid var(--primary); background: var(--card); color: var(--text);
+      text-align: center; font-weight: bold; outline: none;
+    }
+
     @media (max-width:1100px){
       .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
       .form-grid{grid-template-columns:1fr 1fr}
@@ -897,13 +925,14 @@
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
       .products-grid { grid-template-columns: 1fr; gap: 12px; }
-      .product-card { display: flex; flex-direction: row; align-items: stretch; height: 140px; border-radius: 16px; }
+      .product-card { display: flex; flex-direction: row; align-items: stretch; height: 160px; border-radius: 16px; }
       .product-card .product-image { width: 40%; height: 100%; flex-shrink: 0; }
       .product-card .product-image img { height: 100%; width: 100%; object-fit: cover; }
       .product-badge { top: 8px; left: 8px; right: auto; font-size: 0.65rem; padding: 4px 8px; }
       .product-info { width: 60%; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; }
       .product-info h3 { font-size: 1rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .product-type { display: none; }
+      .product-desc-short { -webkit-line-clamp: 1; margin: 4px 0; }
       .product-price { font-size: 1.1rem; margin: 2px 0; gap: 6px; }
       .old-price { font-size: 0.8rem; }
       .product-specs { margin: 4px 0; gap: 12px; display: flex; align-items: center; overflow: hidden; }
@@ -922,7 +951,6 @@
       .autre-actions-bar .btn { padding: 8px 4px; font-size: 0.75rem; }
       .autre-actions-bar .btn-text-add { display: none; }
       
-      /* Ajuster la position des flottants en mobile */
       .floating-cart, .floating-wa {
         width: 48px;
         height: 48px;
@@ -942,13 +970,78 @@
       .icon-btn { width: 38px; height: 38px; font-size: 0.9rem; }
       .nav-actions { gap: 6px; }
     }
+
+    /* تحسينات خاصة بالإعلان المنبثق */
+    .modal-backdrop .modal {
+      max-width: 95vw;
+      width: 100%;
+      max-height: 90vh;
+    }
+
+    .modal-backdrop .modal .modal-body {
+      padding: 20px 16px;
+    }
+
+    .modal-backdrop .modal .modal-body .ad-box {
+      min-height: 100px !important;
+    }
+
+    .modal-backdrop .modal .modal-body .ad-box img {
+      max-height: 200px;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .modal-backdrop .modal {
+        max-width: 98vw;
+        border-radius: 20px;
+      }
+      .modal-backdrop .modal .modal-header {
+        padding: 12px 14px;
+      }
+      .modal-backdrop .modal .modal-body {
+        padding: 16px 12px;
+      }
+      .modal-backdrop .modal .modal-body h3 {
+        font-size: 1.2rem !important;
+      }
+      .modal-backdrop .modal .modal-body .ad-box {
+        min-height: 80px !important;
+      }
+      .modal-backdrop .modal .modal-body .ad-box img {
+        max-height: 150px;
+      }
+      .modal-backdrop .modal .modal-body .btn {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="toast" id="toast">Message copié</div>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
-  
-  <!-- MENU LATÉRAL (sans "Mon panier" dans les liens) -->
+
+  <div class="modal-backdrop" id="autoAdModal">
+    <div class="modal" style="max-width: 550px;">
+      <div class="modal-header">
+        <div class="modal-title"><i class="fa-solid fa-gift" style="color:var(--primary)"></i> Bienvenue sur EliteBike Pro !</div>
+        <button type="button" class="close-btn" id="closeAutoAdBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="text-align: center; padding: 30px 20px;">
+        <h3 id="adTitle" style="font-size: 1.5rem; margin-bottom: 10px; color: var(--primary);">Offre Spéciale !</h3>
+        <p id="adDescription" style="margin-bottom: 20px; color: var(--muted);">Chargement de l'offre...</p>
+        
+        <div id="adImageContainer" class="ad-box" style="min-height: 150px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden;">
+          </div>
+        
+        <button type="button" class="btn btn-primary" id="continueToSiteBtn" style="width: 100%;">Découvrir les offres</button>
+      </div>
+    </div>
+  </div>
+
   <nav class="sidebar-menu" id="sidebarMenu">
     <div class="sidebar-header">
       <span class="logo"><i class="fa-solid fa-bicycle"></i><span>Menu</span></span>
@@ -989,19 +1082,17 @@
             </div>
           </div>
         </div>
-        <!-- L'icône panier dans la barre de navigation (optionnelle, gardée pour le desktop) -->
         <a href="panier.html" class="icon-btn" id="cartIconBtn"><i class="fa-solid fa-cart-shopping"></i></a>
         <button type="button" class="icon-btn menu-toggle-btn" id="openSidebarBtn"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </header>
 
-  <!-- Le reste du contenu principal -->
   <section class="hero" id="home">
     <div class="container hero-content">
       <div>
         <h1>Le vélo parfait pour chaque trajet</h1>
-        <p>Boutique moderne with fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
+        <p>Boutique moderne avec fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
         <div class="hero-actions">
           <a href="#catalog" class="btn btn-primary"><i class="fa-solid fa-bicycle"></i> Voir les vélos</a>
           <a href="#smart" class="btn btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Trouver mon vélo</a>
@@ -1132,39 +1223,20 @@
     </div>
   </section>
 
-  <section class="section" id="articles">
-    <div class="container">
-      <div class="section-title">
-        <h2>Articles & <span class="accent">Conseils</span></h2>
-        <p>Des articles en français pour garder votre vélo en bon état</p>
-      </div>
-      <div class="articles-grid">
-        <article class="card article"><span class="tag">Entretien</span><h3>Comment garder son vélo en bon état</h3><p>Nettoyez régulièrement le cadre et vérifiez l'état général chaque semaine.</p></article>
-        <article class="card article"><span class="tag">Chaîne</span><h3>Nettoyage de la chaîne</h3><p>Décrassez la transmission, utilisez un dégraissant adapté et lubrifiez ensuite.</p></article>
-        <article class="card article"><span class="tag">Lubrification</span><h3>Bien lubrifier son vélo</h3><p>Appliquez une petite quantité de lubrifiant sur la chaîne propre, puis retirez l'excès.</p></article>
-        <article class="card article"><span class="tag">Freins</span><h3>Protéger ses freins</h3><p>Surveillez l'usure des plaquettes, gardez les disques propres.</p></article>
-        <article class="card article"><span class="tag">Taille</span><h3>Choisir la bonne taille</h3><p>La taille dépend de votre morphologie et style d'usage.</p></article>
-        <article class="card article"><span class="tag">Débutants</span><h3>Conseils pour débutants</h3><p>Commencez par un vélo simple, portez un casque et testez la position.</p></article>
-      </div>
-    </div>
-  </section>
-
   <footer class="footer" id="contact">
     <div class="container">
       <div class="footer-grid">
         <div><h4>EliteBike Pro</h4><p>Une boutique moderne pensée pour les passionnés de vélo.</p><div class="social"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div></div>
         <div><h4>Navigation</h4><ul><li><a href="#home">Accueil</a></li><li><a href="#catalog">Vélos</a></li><li><a href="#smart">Choix intelligent</a></li><li><a href="#articles">Articles</a></li></ul></div>
         <div><h4>Services</h4><ul><li>Vente de vélos</li><li>Conseil personnalisé</li><li>Support rapide</li></ul></div>
-        <div><h4>Contact</h4><ul><li><i class="fa-solid fa-location-dot"></i> Paris, France</li><li><i class="fa-solid fa-phone"></i> +33 6 12 34 56 78</li><li><i class="fa-solid fa-envelope"></i> contact@elitebikepro.fr</li></ul></div>
+        <div><h4>Contact</h4><ul><li><i class="fa-solid fa-location-dot"></i> Sousse, Tunisie</li><li><i class="fa-solid fa-phone"></i> +216 25 943 150</li></ul></div>
       </div>
       <div class="footer-bottom"><p>© 2026 EliteBike Pro. Tous droits réservés.</p></div>
     </div>
   </footer>
 
-  <!-- BOUTON WHATSAPP (GAUCHE) -->
-  <a class="floating-wa" href="https://wa.me/33612345678" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+  <a class="floating-wa" href="https://wa.me/21625943150" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
 
-  <!-- BOUTON PANIER FLOTTANT (DROITE) -->
   <a href="panier.html" class="floating-cart" id="floatingCartBtn">
     <i class="fa-solid fa-cart-shopping"></i>
     <span class="cart-badge-floating" id="floatingCartBadge" style="display: none;">0</span>
@@ -1184,13 +1256,13 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyApB9vYp7M1T7KqwyG-rhevRfd93AfUsow",
-      authDomain: "kefmusclestore-12.firebaseapp.com",
-      databaseURL: "https://kefmusclestore-12-default-rtdb.firebaseio.com",
-      projectId: "kefmusclestore-12",
-      storageBucket: "kefmusclestore-12.firebasestorage.app",
-      messagingSenderId: "605422376575",
-      appId: "1:605422376575:web:b0cf63de00c10d56d1514a"
+      apiKey: "AIzaSyBpZPivgDa9CY9MPmG3OxiPpcrQCfoC3HU",
+      authDomain: "mahdi-sinzo.firebaseapp.com",
+      databaseURL: "https://mahdi-sinzo-default-rtdb.firebaseio.com",
+      projectId: "mahdi-sinzo",
+      storageBucket: "mahdi-sinzo.firebasestorage.app",
+      messagingSenderId: "277409722247",
+      appId: "1:277409722247:web:ebc80e6f79cf2d7aec2d22"
     };
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
@@ -1203,18 +1275,19 @@
     let autresCurrentPage = 1;
     const ITEMS_PER_PAGE = 4;
 
-    function addToCart(product) {
+    function addToCart(product, quantity = 1) {
       let cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
       const existingIndex = cart.findIndex(item => item.id === product.key);
       if (existingIndex !== -1) {
-        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + quantity;
       } else {
+        const imageToSave = product.image || product.imageUrl || (product.images && product.images[0]) || '';
         cart.push({
           id: product.key,
           name: product.name,
-          price: product.price,
-          image: (product.images && product.images[0]) || (product.imageUrl) || '',
-          quantity: 1
+          price: product.price || product.newPrice || product.originalPrice || 0,
+          image: imageToSave,
+          quantity: quantity
         });
       }
       localStorage.setItem('elitebike_cart', JSON.stringify(cart));
@@ -1226,7 +1299,6 @@
       const cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
       const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
       
-      // Mise à jour du badge dans la barre de navigation (si présent)
       const cartIcon = document.getElementById('cartIconBtn');
       if (cartIcon) {
         let badge = cartIcon.querySelector('.cart-badge');
@@ -1244,7 +1316,6 @@
         }
       }
       
-      // Mise à jour du badge flottant
       const floatingBadge = document.getElementById('floatingCartBadge');
       if (floatingBadge) {
         if (count > 0) {
@@ -1273,15 +1344,26 @@
       return false;
     }
 
+    function formatPrice(val) {
+      if (!val) return '';
+      return String(val).includes('DT') ? val : val + ' DT';
+    }
+
     function generateProductCard(product, productId, isOther = false) {
-      const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
-      const mainImg = images[0] || 'https://via.placeholder.com/300x200?text=Image';
+      let mainImg = product.image || product.imageUrl;
+      if (!mainImg && product.images && product.images.length > 0) mainImg = product.images[0];
+      if (!mainImg) mainImg = 'https://placehold.co/300x200?text=Image+non+disponible';
+
+      const currentPrice = formatPrice(product.price || product.newPrice || product.originalPrice || '0');
+      const oldPrice = formatPrice(product.oldPrice || (product.originalPrice && currentPrice !== formatPrice(product.originalPrice) ? product.originalPrice : null));
+
+      const descText = product.description || product.desc || 'Aucune description disponible.';
+      const qtyAvailable = product.quantity !== undefined ? product.quantity : (product.stock !== undefined ? product.stock : 'N/A');
 
       if (isOther) {
         const brand = product.brand || 'ÉQUIPEMENT'; 
         const rating = product.rating || '4.8'; 
         const reviewsCount = product.reviewsCount || Math.floor(Math.random() * (120 - 15 + 1)) + 15;
-        const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
 
         const div = document.createElement('div');
         div.className = 'autre-card-v2';
@@ -1293,6 +1375,7 @@
           <div class="autre-content">
             <div class="autre-brand">${brand}</div>
             <h3 class="autre-title">${product.name || 'Produit'}</h3>
+            <p class="product-desc-short">${descText}</p>
             
             <div class="autre-rating">
               <i class="fa-solid fa-star"></i>
@@ -1301,7 +1384,8 @@
             </div>
 
             <div class="autre-price-box">
-              <span class="autre-price">${priceValue}</span>
+              <span class="autre-price">${currentPrice}</span>
+              ${oldPrice ? `<span class="old-price" style="margin-left: 8px;">${oldPrice}</span>` : ''}
             </div>
 
             <div class="autre-actions-bar">
@@ -1315,7 +1399,7 @@
 
         div.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
           e.stopPropagation();
-          addToCart(product);
+          addToCart(product, 1);
         });
         div.querySelector('.details-btn').addEventListener('click', () => openModal(product));
         
@@ -1323,8 +1407,6 @@
       }
 
       const typeText = product.subCategory || product.type || 'Vélo';
-      const priceValue = product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT');
-      const oldPriceValue = product.oldPrice ? product.oldPrice + ' DT' : (product.originalPrice ? product.originalPrice + ' DT' : null);
       const stateText = product.state === 'Occasion' ? 'Occasion' : (product.state === 'مستعمل' ? 'Occasion' : 'Neuf');
       
       const div = document.createElement('div');
@@ -1332,10 +1414,8 @@
       
       let specsHtml = '';
       specsHtml += `<span class="spec-tag"><i class="fa-solid fa-bicycle"></i> ${typeText}</span>`;
+      specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-boxes-stacked"></i> Qté: ${qtyAvailable}</span>`;
       specsHtml += `<span class="spec-tag" style="color: #f59e0b;"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'}</span>`;
-      
-      if (product.brand) specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-trademark"></i> ${product.brand}</span>`;
-      if (product.weight) specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-weight-hanging"></i> ${product.weight}</span>`;
       
       div.innerHTML = `
         <div class="product-image">
@@ -1345,9 +1425,10 @@
         <div class="product-info">
           <h3>${product.name || 'Produit'}</h3>
           <span class="product-type">${typeText}</span>
+          <p class="product-desc-short">${descText}</p>
           <div class="product-price">
-            ${priceValue}
-            ${oldPriceValue && oldPriceValue !== priceValue ? `<span class="old-price">${oldPriceValue}</span>` : ''}
+            ${currentPrice}
+            ${oldPrice && oldPrice !== currentPrice ? `<span class="old-price">${oldPrice}</span>` : ''}
           </div>
           ${specsHtml ? `<div class="product-specs">${specsHtml}</div>` : ''}
           <div class="product-actions">
@@ -1359,7 +1440,7 @@
       
       div.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
         e.stopPropagation();
-        addToCart(product);
+        addToCart(product, 1);
       });
       div.querySelector('.details-btn').addEventListener('click', () => openModal(product));
       
@@ -1490,15 +1571,18 @@
         container.innerHTML = '<div class="no-results">Aucun produit trouvé</div>';
         return;
       }
-      container.innerHTML = results.map(p => `
+      container.innerHTML = results.map(p => {
+        const mainImg = p.image || p.imageUrl || (p.images && p.images[0]) || 'https://placehold.co/50';
+        const priceText = formatPrice(p.price || p.newPrice || p.originalPrice || '0');
+        return `
         <div class="search-result-item" data-id="${p.key}">
-          <img class="search-result-img" src="${p.images?.[0] || p.imageUrl || 'https://placehold.co/50'}" onerror="this.src='https://placehold.co/50'">
+          <img class="search-result-img" src="${mainImg}" onerror="this.src='https://placehold.co/50'">
           <div class="search-result-info">
             <div class="search-result-name">${p.name}</div>
-            <div class="search-result-price">${p.price || (p.originalPrice ? p.originalPrice + ' DT' : '0 DT')}</div>
+            <div class="search-result-price">${priceText}</div>
           </div>
         </div>
-      `).join('');
+      `}).join('');
       document.querySelectorAll('.search-result-item').forEach(item => {
         item.addEventListener('click', () => {
           const prod = currentProducts.find(p => p.key === item.dataset.id);
@@ -1513,9 +1597,18 @@
       const modalTitle = document.getElementById('modalTitle');
       const modalBody = document.getElementById('modalBody');
       modalTitle.textContent = product.name;
-      const images = product.images || (product.imageUrl ? [product.imageUrl] : []);
-      const isBike = isBicycle(product);
       
+      let imagesArray = [];
+      if (product.images && product.images.length > 0) imagesArray = product.images;
+      else if (product.image) imagesArray = [product.image];
+      else if (product.imageUrl) imagesArray = [product.imageUrl];
+
+      const isBike = isBicycle(product);
+      const currentPrice = formatPrice(product.price || product.newPrice || product.originalPrice || '0');
+      const oldPrice = formatPrice(product.oldPrice || (product.originalPrice && currentPrice !== formatPrice(product.originalPrice) ? product.originalPrice : null));
+      const descText = product.description || product.desc || (isBike ? 'Vélo de qualité professionnelle' : 'Accessoire de qualité');
+      const qtyAvailable = product.quantity !== undefined ? product.quantity : (product.stock !== undefined ? product.stock : 'N/A');
+
       let specsHtml = '';
       if (product.brand) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-trademark"></i> Marque</span><strong>${product.brand}</strong></div>`;
       if (product.size) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-ruler"></i> Taille cadre</span><strong>${product.size}</strong></div>`;
@@ -1524,7 +1617,6 @@
       if (product.wheels) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-circle"></i> Roues</span><strong>${product.wheels}</strong></div>`;
       if (product.weight) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-weight-hanging"></i> Poids</span><strong>${product.weight}</strong></div>`;
       if (product.frameMaterial) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-cubes"></i> Matériau du cadre</span><strong>${product.frameMaterial}</strong></div>`;
-      if (product.gears) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-cog"></i> Transmission</span><strong>${product.gears}</strong></div>`;
       if (product.color) specsHtml += `<div class="info-item"><span><i class="fa-solid fa-palette"></i> Couleur</span><strong>${product.color}</strong></div>`;
       
       let prosHtml = '';
@@ -1548,38 +1640,55 @@
       modalBody.innerHTML = `
         <div class="detail-top">
           <div class="detail-images">
-            <img class="big" id="detailMainImg" src="${images[0] || ''}" onerror="this.src='https://placehold.co/400x320'">
-            <div class="detail-thumbs" id="detailThumbs">${images.map((src, i) => `<img class="${i===0?'active':''}" src="${src}">`).join('')}</div>
+            <img class="big" id="detailMainImg" src="${imagesArray[0] || 'https://placehold.co/400x320?text=Image'}" onerror="this.src='https://placehold.co/400x320?text=Image'">
+            <div class="detail-thumbs" id="detailThumbs">${imagesArray.map((src, i) => `<img class="${i===0?'active':''}" src="${src}">`).join('')}</div>
           </div>
           <div class="detail-card">
             <h3>${product.name}</h3>
-            <div class="price-row" style="margin: 10px 0;">
-              <span class="price" style="color:var(--primary); font-size:1.5rem; font-weight:800;">${product.price || (product.originalPrice ? product.originalPrice + ' DT' : '0 DT')}</span>
-              ${product.oldPrice ? `<span style="text-decoration:line-through; color:var(--muted); margin-right:10px;">${product.oldPrice} DT</span>` : (product.originalPrice ? `<span style="text-decoration:line-through; color:var(--muted); margin-right:10px;">${product.originalPrice} DT</span>` : '')}
+            <div class="price-row" style="margin: 10px 0; display:flex; align-items:center;">
+              <span class="price" style="color:var(--primary); font-size:1.5rem; font-weight:800;">${currentPrice}</span>
+              ${oldPrice && oldPrice !== currentPrice ? `<span style="text-decoration:line-through; color:var(--danger); margin-left:15px; font-weight:600;">${oldPrice}</span>` : ''}
             </div>
-            <p>${product.desc || product.description || (isBike ? 'Vélo de qualité professionnelle' : 'Accessoire de qualité')}</p>
+            
+            <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem;">${descText}</p>
+            
             <div class="info-list">
               <div class="info-item"><span>Catégorie</span><strong>${product.subCategory || product.type || (isBike ? 'Vélo' : 'Accessoire')}</strong></div>
+              <div class="info-item"><span>Quantité dispo</span><strong>${qtyAvailable}</strong></div>
               ${specsHtml}
               ${prosHtml}
               ${consHtml}
               <div class="info-item"><span>État</span><strong>${product.state === 'Occasion' || product.state === 'مستعمل' ? 'Occasion' : 'Neuf'}</strong></div>
             </div>
+
+            <div class="qty-selector">
+              <label for="modalQty">Quantité :</label>
+              <input type="number" id="modalQty" value="1" min="1" max="99">
+            </div>
+
             <button type="button" class="btn btn-success modal-add-to-cart" style="width:100%;margin-top:16px;"><i class="fa-solid fa-cart-plus"></i> Ajouter au panier</button>
           </div>
         </div>
       `;
+      
       modal.classList.add('show');
+      
       const mainImg = document.getElementById('detailMainImg');
       const thumbs = document.querySelectorAll('#detailThumbs img');
       thumbs.forEach((t, i) => {
         t.addEventListener('click', () => {
           thumbs.forEach(x => x.classList.remove('active'));
           t.classList.add('active');
-          mainImg.src = images[i];
+          mainImg.src = imagesArray[i];
         });
       });
-      modal.querySelector('.modal-add-to-cart').addEventListener('click', () => addToCart(product));
+      
+      modal.querySelector('.modal-add-to-cart').addEventListener('click', () => {
+        let q = parseInt(document.getElementById('modalQty').value);
+        if (isNaN(q) || q < 1) q = 1;
+        addToCart(product, q);
+        modal.classList.remove('show');
+      });
     }
 
     (function() {
@@ -1594,6 +1703,64 @@
       const searchDropdown = document.getElementById('searchDropdown');
       const searchInput = document.getElementById('searchInput');
       const closeSearch = document.getElementById('closeSearchBtn');
+
+      // ---- كـود تـشـغـيـل الـنـافـذة الإعـلانـيـة الـتـلـقـائـيـة ----
+      const autoAdModal = document.getElementById('autoAdModal');
+      const closeAutoAdBtn = document.getElementById('closeAutoAdBtn');
+      const continueToSiteBtn = document.getElementById('continueToSiteBtn');
+
+      function closeAutoAd() {
+        if(autoAdModal) autoAdModal.classList.remove('show');
+      }
+
+      const adsRef = database.ref('elitebike_ads');
+
+      window.addEventListener('load', () => {
+        adsRef.once('value').then((snapshot) => {
+          const adsData = snapshot.val();
+
+          if (adsData) {
+            const adsArray = Object.values(adsData).sort((a, b) => b.createdAt - a.createdAt);
+            const currentTime = Date.now();
+            const activeAd = adsArray.find(ad => ad.expireTime > currentTime);
+
+            if (activeAd) {
+              document.getElementById('adTitle').textContent = activeAd.title || 'Offre Spéciale !';
+              
+              let descHtml = activeAd.desc || '';
+              if (activeAd.price) {
+                descHtml += `<br><span style="color:var(--primary); font-weight:800; font-size:1.4rem; display:inline-block; margin-top:10px;">${activeAd.price} DT</span>`;
+                if (activeAd.oldPrice) {
+                  descHtml += ` <span style="text-decoration:line-through; color:var(--danger); font-size:0.9rem; margin-left:8px;">${activeAd.oldPrice} DT</span>`;
+                }
+              }
+              document.getElementById('adDescription').innerHTML = descHtml;
+              
+              const imgContainer = document.getElementById('adImageContainer');
+              if (activeAd.imageUrl) {
+                imgContainer.innerHTML = `<img src="${activeAd.imageUrl}" style="width:100%; height:100%; object-fit:contain; border-radius:12px;" alt="Ad Image">`;
+                imgContainer.style.background = 'transparent';
+                imgContainer.style.border = 'none';
+              } else {
+                imgContainer.style.display = 'none';
+              }
+
+              setTimeout(() => {
+                if (autoAdModal) autoAdModal.classList.add('show');
+              }, 500);
+            }
+          }
+        }).catch((error) => {
+          console.error("Erreur lors de la récupération de l'annonce :", error);
+        });
+      });
+
+      closeAutoAdBtn?.addEventListener('click', closeAutoAd);
+      continueToSiteBtn?.addEventListener('click', closeAutoAd);
+      autoAdModal?.addEventListener('click', (e) => {
+        if (e.target === autoAdModal) closeAutoAd();
+      });
+      // -----------------------------------------------------
 
       openSidebar?.addEventListener('click', () => { sidebar.classList.add('open'); overlay.classList.add('show'); });
       closeSidebar?.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); });

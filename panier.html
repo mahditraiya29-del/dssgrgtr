@@ -587,16 +587,17 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getDatabase, ref, get, child, push, set, update, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyApB9vYp7M1T7KqwyG-rhevRfd93AfUsow",
-    authDomain: "kefmusclestore-12.firebaseapp.com",
-    databaseURL: "https://kefmusclestore-12-default-rtdb.firebaseio.com",
-    projectId: "kefmusclestore-12",
-    storageBucket: "kefmusclestore-12.firebasestorage.app",
-    messagingSenderId: "605422376575",
-    appId: "1:605422376575:web:b0cf63de00c10d56d1514a",
-    measurementId: "G-JDZEDKE58T"
-  };
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBpZPivgDa9CY9MPmG3OxiPpcrQCfoC3HU",
+  authDomain: "mahdi-sinzo.firebaseapp.com",
+  databaseURL: "https://mahdi-sinzo-default-rtdb.firebaseio.com",
+  projectId: "mahdi-sinzo",
+  storageBucket: "mahdi-sinzo.firebasestorage.app",
+  messagingSenderId: "277409722247",
+  appId: "1:277409722247:web:ebc80e6f79cf2d7aec2d22",
+  measurementId: "G-CJJW1DV3NR"
+};
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   const dbRef = ref(db);
