@@ -951,22 +951,91 @@
     }
 
     /* ============================================================
-       MOBILE FIRST : réorganisation des cartes produits
+       MOBILE FIRST : تعديلات دقيقة لواجهة الموبايل والأزرار
        ============================================================ */
     @media (max-width:780px){
       .features-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)!important}
       .nav-links{display:none}
       .menu-toggle-btn{display:grid}
-      .hero-content{grid-template-columns:1fr;padding:56px 0}
-      .hero-offer-card .product-image{height:180px; width: 100%;}
+      
+      /* تحسين حجم وقسم الـ Hero بالكامل ليظهر مرتب مثل الصور */
+      .hero {
+        min-height: auto;
+        border-radius: 0 0 24px 24px;
+      }
+      .hero-content {
+        grid-template-columns: 1fr;
+        padding: 35px 0;
+        gap: 25px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+      .hero p {
+        font-size: 0.95rem;
+        text-align: center;
+        margin-inline: auto;
+        margin-bottom: 20px;
+      }
+      
+      /* جعل الأزرار تظهر بجانب بعضها بشكل منظم بدلاً من تمددها الرأسي الضخم */
+      .hero-actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+      .hero-actions .btn {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        min-height: 42px;
+        border-radius: 30px;
+      }
+      
+      /* تنسيق كارت الإحصائيات الصغير */
+      .hero-card {
+        padding: 16px;
+        border-radius: 20px;
+      }
+      .hero-stats {
+        margin-top: 10px;
+        gap: 10px;
+      }
+      .stat {
+        padding: 10px;
+        border-radius: 14px;
+      }
+      .stat h3 { font-size: 1.2rem; }
+      .stat p { font-size: 0.8rem; }
+
+      /* تنظيم حجم الكارت الترويجي وزره لمنعه من التمدد بشكل قبيح */
+      .hero-offer-card {
+        max-width: 380px;
+        margin: 10px auto 0;
+      }
+      .hero-offer-card .product-image {
+        height: 200px; 
+        width: 100%;
+      }
+      .hero-offer-card .btn {
+        display: inline-flex;
+        width: auto !important;
+        min-width: 150px;
+        padding: 10px 24px;
+        font-size: 0.9rem;
+        margin-inline: auto;
+      }
+
       .section{padding:64px 0}
       .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
-      .hero h1{font-size:2.35rem}
       .tabs-container{width:100%;justify-content:center}
       .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
-      /* === CARTE PRODUIT VERTICALE MAIS COMPACTE SUR MOBILE === */
+      /* كروت المنتجات السفلية */
       .products-grid {
         grid-template-columns: 1fr;
         gap: 14px;
@@ -1085,7 +1154,6 @@
         color: var(--text);
       }
 
-      /* autres (accessoires) */
       #autresGrid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px;
@@ -1107,17 +1175,24 @@
       .floating-wa { left: 14px; }
     }
 
-    @media (max-width:480px){
+    @media (max-width:480px) {
       .container{width:min(100% - 18px,1240px)}
-      .hero h1{font-size:2rem}
-      .hero-actions{flex-direction:column}
+      .hero h1{font-size:1.75rem}
+      .hero-actions{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .hero-actions .btn {
+        font-size: 0.78rem;
+        padding: 8px 10px;
+        min-height: 38px;
+      }
       .tab-btn{padding:10px 20px;font-size:0.9rem}
       .page-btn{min-width:36px;height:36px;font-size:0.8rem}
       .logo { font-size: 1.05rem; gap: 5px; }
       .icon-btn { width: 38px; height: 38px; font-size: 0.9rem; }
       .nav-actions { gap: 6px; }
 
-      /* mobile très petit : image un peu plus grande */
       .product-card .product-image {
         min-height: 120px;
         max-height: 170px;
@@ -1125,7 +1200,7 @@
       .product-info h3 { font-size: 0.9rem; }
     }
 
-    /* amélioration modale sur mobile */
+    /* تحسينات المودال المنبثق */
     .modal-backdrop .modal {
       max-width: 95vw;
       width: 100%;
@@ -1237,10 +1312,10 @@
       <div>
         <div class="card hero-offer-card">
           <div class="product-image" style="height:360px"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
-          <div style="padding:22px; text-align: center;">
+          <div style="padding:22px; text-align: center; display: flex; flex-direction: column;">
             <h3 style="margin-bottom:8px;font-size:1.3rem">Offre du moment</h3>
             <p style="color:var(--primary); font-weight:800; font-size:1.4rem; margin-bottom:14px;">jusqu'à 20%</p>
-            <a href="#catalog" class="btn btn-primary" style="width:100%">Découvrir</a>
+            <a href="#catalog" class="btn btn-primary">Découvrir</a>
           </div>
         </div>
       </div>
