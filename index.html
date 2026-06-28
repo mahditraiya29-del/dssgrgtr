@@ -578,14 +578,16 @@
     .hero h1{font-size:clamp(34px,5vw,66px);line-height:1.02;margin-bottom:16px;font-weight:900}
     .hero p{font-size:1.08rem;max-width:680px;margin-bottom:26px}
     
-    /* حاوية الأزرار لترتيبها عمودياً */
+    /* حاوية الأزرار مع توسيط كامل */
     .hero-buttons {
       display: flex;
-      flex-direction: column; /* هذه الخاصية تجعل الأزرار تحت بعضها */
-      gap: 15px; /* المسافة بين الزرين */
+      flex-direction: column;
+      align-items: center; /* توسيط أفقي */
+      justify-content: center;
+      gap: 15px;
       width: 100%;
-      max-width: 350px; /* العرض الأقصى للأزرار */
-      margin: 20px 0;
+      max-width: 350px;
+      margin: 20px auto; /* توسيط الحاوية نفسها */
     }
 
     /* تصميم الأزرار المخصصة للـ Hero فقط (Cases) */
@@ -593,22 +595,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px; /* المسافة بين الأيقونة والنص */
+      gap: 10px;
       width: 100%;
       padding: 16px 20px;
-      background: linear-gradient(90deg, #1E90FF, #00BFFF); /* تدرج أزرق */
+      background: linear-gradient(90deg, #1E90FF, #00BFFF);
       color: #ffffff;
       font-size: 16px;
       font-weight: bold;
       text-decoration: none;
       border: none;
-      border-radius: 50px; /* الشكل الكبسولي الدائري */
-      box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3); /* ظل خفيف لإبراز الزر */
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
       transition: all 0.3s ease;
       cursor: pointer;
     }
 
-    /* تأثير عند تمرير الماوس */
     .hero-buttons .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0, 191, 255, 0.5);
@@ -1004,12 +1005,6 @@
         padding: 35px 0;
         gap: 25px;
       }
-      .hero-content > div:first-child {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
       .hero h1 {
         font-size: 2rem;
         text-align: center;
@@ -1029,7 +1024,6 @@
       .hero-card {
         padding: 16px;
         border-radius: 20px;
-        width: 100%;
       }
       .hero-stats {
         margin-top: 10px;
