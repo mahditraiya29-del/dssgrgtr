@@ -1442,11 +1442,11 @@
         </div>
         <div class="product-info">
           <h3>${product.name || 'Produit'}</h3>
+          <span class="product-type-tag">${typeText}</span>
           <div class="product-price-row">
             <span class="product-price">${currentPrice}</span>
             ${oldPrice && oldPrice !== currentPrice ? `<span class="old-price">${oldPrice}</span>` : ''}
           </div>
-          <span class="product-type-tag">${typeText}</span>
           <div class="product-rating">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -1456,7 +1456,7 @@
             <span class="rate-text">${rating} ★ (${reviewsCount})</span>
           </div>
           <div class="product-actions">
-            <button type="button" class="btn btn-buy add-to-cart-btn"><i class="fa-brands fa-whatsapp"></i> Acheter</button>
+            <button type="button" class="btn btn-buy add-to-cart-btn"><i class="fa-solid fa-cart-plus"></i> Acheter</button>
             <button type="button" class="btn btn-detail details-btn">Détails</button>
           </div>
         </div>
