@@ -1019,7 +1019,7 @@
     }
 
     /* ============================================================
-       RESPONSIVE - تحسين عرض الصورة على الهواتف
+       RESPONSIVE - صورة أكبر على الهواتف
        ============================================================ */
     @media (max-width:1100px){
       .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
@@ -1054,12 +1054,13 @@
         display: flex; 
         flex-direction: row; 
         align-items: stretch; 
-        min-height: 170px;
+        min-height: 160px;
         border-radius: 16px; 
       }
       
+      /* صورة أكبر - 55% من العرض */
       .product-card .product-image { 
-        width: 45%; 
+        width: 55%; 
         height: auto; 
         min-height: 160px;
         flex-shrink: 0; 
@@ -1080,8 +1081,8 @@
       }
       
       .product-info { 
-        width: 55%; 
-        padding: 10px 12px; 
+        width: 45%; 
+        padding: 8px 10px; 
         display: flex; 
         flex-direction: column; 
         justify-content: flex-start;
@@ -1090,7 +1091,7 @@
       }
       
       .product-info h3 { 
-        font-size: 0.95rem; 
+        font-size: 0.85rem; 
         font-weight: 800;
         margin-bottom: 2px; 
         white-space: normal;
@@ -1101,9 +1102,9 @@
       
       .product-type { 
         display: inline-block;
-        font-size: 0.6rem; 
-        padding: 2px 10px;
-        margin-bottom: 3px;
+        font-size: 0.55rem; 
+        padding: 1px 8px;
+        margin-bottom: 2px;
         align-self: flex-start;
       }
       
@@ -1112,24 +1113,24 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         margin: 2px 0;
-        line-height: 1.3;
+        line-height: 1.2;
       }
       
       .product-price { 
-        font-size: 0.95rem; 
+        font-size: 0.85rem; 
         margin: 2px 0; 
-        gap: 6px; 
+        gap: 4px; 
       }
       
       .old-price { 
-        font-size: 0.7rem; 
+        font-size: 0.65rem; 
       }
       
       .product-specs { 
         margin: 2px 0; 
-        gap: 4px; 
+        gap: 3px; 
         display: flex; 
         flex-wrap: wrap;
         align-items: center; 
@@ -1138,9 +1139,9 @@
       
       .spec-tag { 
         background: rgba(37,99,235,0.1); 
-        padding: 2px 8px; 
-        font-size: 0.55rem; 
-        border-radius: 12px;
+        padding: 1px 6px; 
+        font-size: 0.5rem; 
+        border-radius: 10px;
         color: var(--primary);
         white-space: nowrap;
       }
@@ -1150,17 +1151,17 @@
       }
       
       .product-actions { 
-        margin-top: 4px; 
-        gap: 6px; 
+        margin-top: 3px; 
+        gap: 4px; 
         display: flex; 
       }
       
       .product-actions .btn { 
-        padding: 4px 8px; 
-        font-size: 0.65rem; 
+        padding: 3px 6px; 
+        font-size: 0.6rem; 
         flex: 1; 
-        border-radius: 10px; 
-        min-height: 30px;
+        border-radius: 8px; 
+        min-height: 26px;
       }
       
       .product-actions .add-to-cart-btn { 
@@ -1249,14 +1250,15 @@
       .icon-btn { width: 38px; height: 38px; font-size: 0.9rem; }
       .nav-actions { gap: 6px; }
       
-      .product-card { min-height: 150px; }
-      .product-card .product-image { min-height: 140px; width: 40%; }
-      .product-info { width: 60%; }
-      .product-info h3 { font-size: 0.85rem; }
-      .product-desc-short { -webkit-line-clamp: 1; font-size: 0.65rem; }
-      .product-price { font-size: 0.85rem; }
-      .product-actions .btn { font-size: 0.6rem; padding: 3px 6px; min-height: 26px; }
-      .spec-tag { font-size: 0.5rem; padding: 1px 6px; }
+      .product-card { min-height: 140px; }
+      .product-card .product-image { min-height: 140px; width: 55%; }
+      .product-info { width: 45%; padding: 6px 8px; }
+      .product-info h3 { font-size: 0.75rem; }
+      .product-desc-short { -webkit-line-clamp: 1; font-size: 0.6rem; }
+      .product-price { font-size: 0.75rem; }
+      .product-actions .btn { font-size: 0.55rem; padding: 2px 4px; min-height: 22px; }
+      .spec-tag { font-size: 0.45rem; padding: 1px 4px; }
+      .product-type { font-size: 0.5rem; padding: 1px 6px; }
     }
 
     .modal-backdrop .modal {
