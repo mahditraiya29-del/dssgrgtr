@@ -418,21 +418,22 @@
     }
 
     /* ============================================================
-       PRODUCT CARDS (DESKTOP)
+       PRODUCT CARDS (DESKTOP & MOBILE) — modifié pour ressembler à l'image
        ============================================================ */
     .product-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 20px;
       overflow: hidden;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       height: 100%;
+      box-shadow: var(--shadow-soft);
     }
     .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.3);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
       border-color: rgba(37,99,235,0.3);
     }
     .product-image {
@@ -441,9 +442,12 @@
       overflow: hidden;
       position: relative;
       background: #f0f4ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     [data-theme="dark"] .product-image {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255,255,255,0.03);
     }
     .product-image img {
       width: 100%;
@@ -451,15 +455,16 @@
       object-fit: contain;
       transition: transform 0.5s ease;
       background: transparent;
+      padding: 10px;
     }
-    .product-card:hover .product-image img { transform: scale(1.05); }
+    .product-card:hover .product-image img { transform: scale(1.03); }
     .product-badge {
       position: absolute;
       top: 12px;
-      right: 12px;
+      left: 12px;
       background: var(--success);
-      color: white;
-      padding: 5px 12px;
+      color: #fff;
+      padding: 4px 12px;
       border-radius: 30px;
       font-size: 0.7rem;
       font-weight: 700;
@@ -467,86 +472,78 @@
       backdrop-filter: blur(4px);
     }
     .product-info {
-      padding: 16px 14px 14px;
+      padding: 16px 16px 18px;
       display: flex;
       flex-direction: column;
       flex: 1;
       gap: 6px;
     }
     .product-info h3 {
-      font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
       font-weight: 800;
       line-height: 1.2;
       margin-bottom: 2px;
-      overflow-wrap: break-word;
     }
     .product-type {
       font-size: 0.75rem;
       color: var(--muted);
-      background: rgba(37,99,235,.15);
+      background: rgba(37,99,235,.12);
       display: inline-block;
-      padding: 3px 10px;
+      padding: 2px 12px;
       border-radius: 20px;
-      margin-bottom: 4px;
       align-self: flex-start;
     }
-    .product-desc-short {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin: 4px 0 8px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      line-height: 1.4;
-      flex-grow: 1;
+    .product-price-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 6px 0 4px;
+      flex-wrap: wrap;
     }
     .product-price {
       color: var(--primary);
       font-weight: 800;
-      font-size: 1.1rem;
-      margin: 4px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      font-size: 1.2rem;
     }
     .old-price {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--danger);
       text-decoration: line-through;
       font-weight: 600;
     }
-    .product-specs {
+    .product-rating {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 6px 0 2px;
-    }
-    .spec-tag {
-      font-size: 0.7rem;
-      background: rgba(37,99,235,0.08);
-      padding: 4px 10px;
-      border-radius: 20px;
-      color: var(--primary);
-      display: inline-flex;
       align-items: center;
       gap: 4px;
-      white-space: nowrap;
+      font-size: 0.85rem;
+      color: #facc15;
+    }
+    .product-rating span {
+      color: var(--muted);
+      margin-left: 4px;
     }
     .product-actions {
       display: flex;
       gap: 8px;
-      margin-top: auto;
-      padding-top: 10px;
+      margin-top: 12px;
       flex-wrap: wrap;
     }
     .product-actions .btn {
       flex: 1 1 auto;
-      padding: 8px 10px;
+      padding: 10px 8px;
       font-size: clamp(0.7rem, 0.8vw, 0.85rem);
-      min-height: 38px;
+      min-height: 40px;
       border-radius: 30px;
+    }
+    .product-actions .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+    }
+    .product-actions .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
     }
     .no-products {
       text-align: center;
@@ -936,7 +933,7 @@
     }
 
     /* ============================================================
-       RESPONSIVE : priorité mobile & tablette
+       RESPONSIVE
        ============================================================ */
     @media (max-width:1100px){
       .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
@@ -952,9 +949,6 @@
       #autresGrid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     }
 
-    /* ============================================================
-       MOBILE FIRST : CARTE PRODUIT عمودية ومتجاوبة بشكل كامل
-       ============================================================ */
     @media (max-width:780px){
       .features-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)!important}
       .nav-links{display:none}
@@ -968,52 +962,19 @@
       .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
-      /* === CARTE PRODUIT VERTICALE (MOBILE) === */
       .products-grid { grid-template-columns: 1fr; gap: 16px; }
-      .product-card {
-        display: flex;
-        flex-direction: column; /* التعديل الأهم: أصبح العرض عمودي للصورة والنص */
-        height: auto;
-        border-radius: 16px;
-      }
-      .product-card .product-image {
-        width: 100%; /* تأخذ كامل العرض */
-        height: auto;
-        aspect-ratio: 4 / 3;
-        flex-shrink: 0;
-      }
-      .product-card .product-image img { object-fit: contain; } /* لضمان عدم قص الدراجة */
+      .product-card { height: auto; border-radius: 16px; }
+      .product-card .product-image { width: 100%; height: auto; aspect-ratio: 4 / 3; flex-shrink: 0; }
+      .product-card .product-image img { object-fit: contain; }
       .product-badge { top: 10px; left: 10px; right: auto; font-size: 0.75rem; padding: 4px 10px; }
-      
-      .product-info {
-        width: 100%;
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-      }
+      .product-info { width: 100%; padding: 16px; }
       .product-info h3 { font-size: 1.15rem; margin-bottom: 6px; white-space: normal; overflow: visible; }
       .product-type { display: inline-block; }
-      .product-desc-short { -webkit-line-clamp: unset; margin: 6px 0; display: block; } /* إزالة إخفاء الوصف */
-      .product-price { font-size: 1.25rem; margin: 8px 0; gap: 8px; }
+      .product-price { font-size: 1.2rem; margin: 6px 0; }
       .old-price { font-size: 0.95rem; }
-      
-      .product-specs {
-        margin: 8px 0;
-        gap: 8px;
-        display: flex;
-        flex-wrap: wrap; /* لضمان عدم خروج التفاصيل كالمدينة والنوع من الشاشة */
-        align-items: center;
-        overflow: visible;
-      }
-      .spec-tag { background: rgba(37,99,235,0.1); padding: 4px 10px; font-size: 0.8rem; color: var(--primary); }
-      .hide-on-mobile { display: inline-flex; } /* إظهار التفاصيل التي كانت مخفية */
-      
-      .product-actions { margin-top: 12px; gap: 10px; display: flex; flex-wrap: wrap; }
+      .product-actions { margin-top: 12px; gap: 10px; flex-wrap: wrap; }
       .product-actions .btn { padding: 12px 8px; font-size: 0.95rem; flex: 1; border-radius: 12px; min-width: 100px; }
-      .product-actions .add-to-cart-btn { background: #2563eb; color: white; border: none; box-shadow: none; }
-      .product-actions .details-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); }
 
-      /* autres (accessoires) */
       #autresGrid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
       .autre-content { padding: 12px; }
       .autre-title { font-size: 0.9rem; margin-bottom: 6px; }
@@ -1042,52 +1003,23 @@
       .nav-actions { gap: 6px; }
     }
 
-    /* تحسينات خاصة بالإعلان المنبثق */
     .modal-backdrop .modal {
       max-width: 95vw;
       width: 100%;
       max-height: 90vh;
     }
-
-    .modal-backdrop .modal .modal-body {
-      padding: 20px 16px;
-    }
-
-    .modal-backdrop .modal .modal-body .ad-box {
-      min-height: 100px !important;
-    }
-
-    .modal-backdrop .modal .modal-body .ad-box img {
-      max-height: 200px;
-      width: 100%;
-      object-fit: contain;
-      border-radius: 12px;
-    }
+    .modal-backdrop .modal .modal-body { padding: 20px 16px; }
+    .modal-backdrop .modal .modal-body .ad-box { min-height: 100px !important; }
+    .modal-backdrop .modal .modal-body .ad-box img { max-height: 200px; width: 100%; object-fit: contain; border-radius: 12px; }
 
     @media (max-width: 600px) {
-      .modal-backdrop .modal {
-        max-width: 98vw;
-        border-radius: 20px;
-      }
-      .modal-backdrop .modal .modal-header {
-        padding: 12px 14px;
-      }
-      .modal-backdrop .modal .modal-body {
-        padding: 16px 12px;
-      }
-      .modal-backdrop .modal .modal-body h3 {
-        font-size: 1.2rem !important;
-      }
-      .modal-backdrop .modal .modal-body .ad-box {
-        min-height: 80px !important;
-      }
-      .modal-backdrop .modal .modal-body .ad-box img {
-        max-height: 150px;
-      }
-      .modal-backdrop .modal .modal-body .btn {
-        font-size: 0.9rem;
-        padding: 10px 12px;
-      }
+      .modal-backdrop .modal { max-width: 98vw; border-radius: 20px; }
+      .modal-backdrop .modal .modal-header { padding: 12px 14px; }
+      .modal-backdrop .modal .modal-body { padding: 16px 12px; }
+      .modal-backdrop .modal .modal-body h3 { font-size: 1.2rem !important; }
+      .modal-backdrop .modal .modal-body .ad-box { min-height: 80px !important; }
+      .modal-backdrop .modal .modal-body .ad-box img { max-height: 150px; }
+      .modal-backdrop .modal .modal-body .btn { font-size: 0.9rem; padding: 10px 12px; }
     }
   </style>
 </head>
@@ -1104,10 +1036,7 @@
       <div class="modal-body" style="text-align: center; padding: 30px 20px;">
         <h3 id="adTitle" style="font-size: 1.5rem; margin-bottom: 10px; color: var(--primary);">Offre Spéciale !</h3>
         <p id="adDescription" style="margin-bottom: 20px; color: var(--muted);">Chargement de l'offre...</p>
-        
-        <div id="adImageContainer" class="ad-box" style="min-height: 150px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden;">
-          </div>
-        
+        <div id="adImageContainer" class="ad-box" style="min-height: 150px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden;"></div>
         <button type="button" class="btn btn-primary" id="continueToSiteBtn" style="width: 100%;">Découvrir les offres</button>
       </div>
     </div>
@@ -1501,14 +1430,14 @@
           <h3>${product.name || 'Produit'}</h3>
           <span class="product-type">${typeText}</span>
           <p class="product-desc-short">${descText}</p>
-          <div class="product-price">
-            ${currentPrice}
+          <div class="product-price-row">
+            <span class="product-price">${currentPrice}</span>
             ${oldPrice && oldPrice !== currentPrice ? `<span class="old-price">${oldPrice}</span>` : ''}
+            <span class="product-rating"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'} <span>(${Math.floor(Math.random()*50)+10})</span></span>
           </div>
-          ${specsHtml ? `<div class="product-specs">${specsHtml}</div>` : ''}
           <div class="product-actions">
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><i class="fa-brands fa-whatsapp"></i> Acheter</button>
-            <button type="button" class="btn btn-outline btn-sm details-btn">Détails</button>
+            <button type="button" class="btn btn-primary add-to-cart-btn"><i class="fa-brands fa-whatsapp"></i> Acheter</button>
+            <button type="button" class="btn btn-outline details-btn">Détails</button>
           </div>
         </div>
       `;
@@ -1779,7 +1708,7 @@
       const searchInput = document.getElementById('searchInput');
       const closeSearch = document.getElementById('closeSearchBtn');
 
-      // ---- كـود تـشـغـيـل الـنـافـذة الإعـلانـيـة الـتـلـقـائـيـة ----
+      // auto ad
       const autoAdModal = document.getElementById('autoAdModal');
       const closeAutoAdBtn = document.getElementById('closeAutoAdBtn');
       const continueToSiteBtn = document.getElementById('continueToSiteBtn');
@@ -1835,7 +1764,6 @@
       autoAdModal?.addEventListener('click', (e) => {
         if (e.target === autoAdModal) closeAutoAd();
       });
-      // -----------------------------------------------------
 
       openSidebar?.addEventListener('click', () => { sidebar.classList.add('open'); overlay.classList.add('show'); });
       closeSidebar?.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); });
