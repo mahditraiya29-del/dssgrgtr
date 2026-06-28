@@ -370,8 +370,8 @@
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
       margin-top: 25px;
     }
 
@@ -418,7 +418,7 @@
     }
 
     /* ============================================================
-       PRODUCT CARDS (DESKTOP & MOBILE) — modifié pour ressembler à l'image
+       PRODUCT CARDS - Style exactement comme dans l'image
        ============================================================ */
     .product-card {
       background: var(--card);
@@ -436,6 +436,7 @@
       box-shadow: var(--shadow);
       border-color: rgba(37,99,235,0.3);
     }
+
     .product-image {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -454,51 +455,46 @@
       height: 100%;
       object-fit: contain;
       transition: transform 0.5s ease;
-      background: transparent;
-      padding: 10px;
+      padding: 16px;
     }
     .product-card:hover .product-image img { transform: scale(1.03); }
+
     .product-badge {
       position: absolute;
       top: 12px;
       left: 12px;
       background: var(--success);
       color: #fff;
-      padding: 4px 12px;
+      padding: 4px 14px;
       border-radius: 30px;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
       z-index: 2;
       backdrop-filter: blur(4px);
+      letter-spacing: 0.5px;
     }
+
     .product-info {
-      padding: 16px 16px 18px;
+      padding: 16px 18px 18px;
       display: flex;
       flex-direction: column;
       flex: 1;
-      gap: 6px;
+      gap: 4px;
     }
+
     .product-info h3 {
-      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
       font-weight: 800;
       line-height: 1.2;
       margin-bottom: 2px;
     }
-    .product-type {
-      font-size: 0.75rem;
-      color: var(--muted);
-      background: rgba(37,99,235,.12);
-      display: inline-block;
-      padding: 2px 12px;
-      border-radius: 20px;
-      align-self: flex-start;
-    }
+
     .product-price-row {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 6px 0 4px;
       flex-wrap: wrap;
+      margin: 4px 0 2px;
     }
     .product-price {
       color: var(--primary);
@@ -511,40 +507,66 @@
       text-decoration: line-through;
       font-weight: 600;
     }
+
+    .product-type-tag {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: rgba(37,99,235,.12);
+      display: inline-block;
+      padding: 2px 14px;
+      border-radius: 20px;
+      align-self: flex-start;
+      margin: 2px 0 4px;
+    }
+
     .product-rating {
       display: flex;
       align-items: center;
       gap: 4px;
       font-size: 0.85rem;
       color: #facc15;
+      margin: 2px 0 4px;
     }
-    .product-rating span {
+    .product-rating .rate-text {
       color: var(--muted);
       margin-left: 4px;
+      font-weight: 500;
     }
+
     .product-actions {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       margin-top: 12px;
       flex-wrap: wrap;
     }
     .product-actions .btn {
       flex: 1 1 auto;
-      padding: 10px 8px;
-      font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+      padding: 10px 12px;
+      font-size: clamp(0.75rem, 0.8vw, 0.85rem);
       min-height: 40px;
       border-radius: 30px;
+      font-weight: 700;
     }
-    .product-actions .btn-primary {
+    .product-actions .btn-buy {
       background: var(--primary);
       color: #fff;
       border: none;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
     }
-    .product-actions .btn-outline {
+    .product-actions .btn-buy:hover {
+      background: var(--primary-2);
+      transform: translateY(-2px);
+    }
+    .product-actions .btn-detail {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text);
     }
+    .product-actions .btn-detail:hover {
+      background: rgba(37,99,235,0.08);
+      border-color: var(--primary);
+    }
+
     .no-products {
       text-align: center;
       padding: 60px;
@@ -941,7 +963,7 @@
       .footer-grid{grid-template-columns:1fr 1fr}
       .detail-top{grid-template-columns:1fr}
       .result-grid{grid-template-columns:1fr 1fr}
-      .products-grid{grid-template-columns:repeat(3,1fr)}
+      .products-grid{grid-template-columns:repeat(2,1fr)}
       #autresGrid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width:900px){
@@ -969,8 +991,8 @@
       .product-badge { top: 10px; left: 10px; right: auto; font-size: 0.75rem; padding: 4px 10px; }
       .product-info { width: 100%; padding: 16px; }
       .product-info h3 { font-size: 1.15rem; margin-bottom: 6px; white-space: normal; overflow: visible; }
-      .product-type { display: inline-block; }
-      .product-price { font-size: 1.2rem; margin: 6px 0; }
+      .product-type-tag { display: inline-block; }
+      .product-price { font-size: 1.2rem; margin: 4px 0; }
       .old-price { font-size: 0.95rem; }
       .product-actions { margin-top: 12px; gap: 10px; flex-wrap: wrap; }
       .product-actions .btn { padding: 12px 8px; font-size: 0.95rem; flex: 1; border-radius: 12px; min-width: 100px; }
@@ -1273,7 +1295,7 @@
     let autresList = [];
     let velosCurrentPage = 1;
     let autresCurrentPage = 1;
-    const ITEMS_PER_PAGE = 4;
+    const ITEMS_PER_PAGE = 6;
 
     function addToCart(product, quantity = 1) {
       let cart = JSON.parse(localStorage.getItem('elitebike_cart') || '[]');
@@ -1352,13 +1374,12 @@
     function generateProductCard(product, productId, isOther = false) {
       let mainImg = product.image || product.imageUrl;
       if (!mainImg && product.images && product.images.length > 0) mainImg = product.images[0];
-      if (!mainImg) mainImg = 'https://placehold.co/300x200?text=Image+non+disponible';
+      if (!mainImg) mainImg = 'https://placehold.co/400x300?text=Image+non+disponible';
 
       const currentPrice = formatPrice(product.price || product.newPrice || product.originalPrice || '0');
       const oldPrice = formatPrice(product.oldPrice || (product.originalPrice && currentPrice !== formatPrice(product.originalPrice) ? product.originalPrice : null));
 
       const descText = product.description || product.desc || 'Aucune description disponible.';
-      const qtyAvailable = product.quantity !== undefined ? product.quantity : (product.stock !== undefined ? product.stock : 'N/A');
 
       if (isOther) {
         const brand = product.brand || 'ÉQUIPEMENT'; 
@@ -1408,36 +1429,35 @@
 
       const typeText = product.subCategory || product.type || 'Vélo';
       const stateText = product.state === 'Occasion' ? 'Occasion' : (product.state === 'مستعمل' ? 'Occasion' : 'Neuf');
+      const rating = product.rating || '4.8';
+      const reviewsCount = product.reviewsCount || Math.floor(Math.random() * (80 - 10 + 1)) + 10;
       
       const div = document.createElement('div');
       div.className = 'product-card';
       
-      let specsHtml = '';
-      specsHtml += `<span class="spec-tag"><i class="fa-solid fa-bicycle"></i> ${typeText}</span>`;
-      if (product.city || product.location) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-location-dot"></i> ${product.city || product.location}</span>`;
-      if (product.speeds) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-gauge-high"></i> ${product.speeds}</span>`;
-      if (product.brakes) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-hand"></i> ${product.brakes}</span>`;
-      if (product.wheels) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-circle"></i> ${product.wheels}</span>`;
-      specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-boxes-stacked"></i> Qté: ${qtyAvailable}</span>`;
-      specsHtml += `<span class="spec-tag" style="color: #f59e0b;"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'}</span>`;
-      
       div.innerHTML = `
         <div class="product-image">
           <div class="product-badge">${stateText}</div>
-          <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200?text=Image+non+disponible'">
+          <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/400x300?text=Image+non+disponible'">
         </div>
         <div class="product-info">
           <h3>${product.name || 'Produit'}</h3>
-          <span class="product-type">${typeText}</span>
-          <p class="product-desc-short">${descText}</p>
           <div class="product-price-row">
             <span class="product-price">${currentPrice}</span>
             ${oldPrice && oldPrice !== currentPrice ? `<span class="old-price">${oldPrice}</span>` : ''}
-            <span class="product-rating"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'} <span>(${Math.floor(Math.random()*50)+10})</span></span>
+          </div>
+          <span class="product-type-tag">${typeText}</span>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rate-text">${rating} ★ (${reviewsCount})</span>
           </div>
           <div class="product-actions">
-            <button type="button" class="btn btn-primary add-to-cart-btn"><i class="fa-brands fa-whatsapp"></i> Acheter</button>
-            <button type="button" class="btn btn-outline details-btn">Détails</button>
+            <button type="button" class="btn btn-buy add-to-cart-btn"><i class="fa-brands fa-whatsapp"></i> Acheter</button>
+            <button type="button" class="btn btn-detail details-btn">Détails</button>
           </div>
         </div>
       `;
