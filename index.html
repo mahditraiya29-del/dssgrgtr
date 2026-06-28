@@ -2,7 +2,7 @@
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <meta name="description" content="EliteBike Pro - Boutique moderne de vélos, conseils et choix intelligent selon votre profil." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta name="theme-color" content="#2563eb" />
@@ -53,6 +53,7 @@
       overflow-x:hidden;
       transition:background var(--transition), color var(--transition);
       min-height:100vh;
+      width:100%;
     }
 
     body::before {
@@ -84,7 +85,7 @@
     img{max-width:100%;display:block;height:auto;object-fit:cover}
     button,input,select{font:inherit}
 
-    .container{width:min(1240px, calc(100% - 28px));margin-inline:auto}
+    .container{width:min(1240px, 100% - 28px);margin-inline:auto;padding-left:14px;padding-right:14px;box-sizing:border-box;}
     .section{padding:84px 0}
     .section-title{text-align:center;margin-bottom:34px}
     .section-title h2{font-size:clamp(28px,4vw,44px);margin-bottom:10px;font-weight:900}
@@ -585,7 +586,7 @@
       gap: 15px;
       width: 100%;
       max-width: 350px;
-      margin: 20px auto; /* 👈 تم التعديل هنا لتوسيط الأزرار أفقيًا */
+      margin: 20px 0; /* محاذاة لليسار في الديسكتوب، لكن سنعدلها في الموبايل */
     }
     /* تصميم الأزرار المخصصة للـ Hero فقط (Cases) */
     .hero-buttons .btn-primary {
@@ -1002,20 +1003,27 @@
         grid-template-columns: 1fr;
         padding: 35px 0;
         gap: 25px;
+        text-align: center; /* محاذاة النص للوسط */
       }
       .hero h1 {
         font-size: 2rem;
-        text-align: left; /* 👈 محاذاة النص لليسار كما في الصورة */
+        text-align: center; /* توسيط العنوان */
         margin-bottom: 12px;
       }
       .hero p {
         font-size: 0.95rem;
-        text-align: left; /* 👈 محاذاة الوصف لليسار كما في الصورة */
+        text-align: center; /* توسيط الوصف */
         margin-bottom: 20px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
       }
       
       /* توسيط الأزرار في شاشات الموبايل */
-      .hero-buttons { margin: 20px auto; }
+      .hero-buttons {
+        margin: 20px auto;
+        align-items: center;
+      }
       
       /* تنسيق كارت الإحصائيات الصغير */
       .hero-card {
@@ -1037,6 +1045,7 @@
       .hero-offer-card {
         max-width: 380px;
         margin: 10px auto 0;
+        width: 100%;
       }
       .hero-offer-card .product-image {
         height: 200px; 
@@ -1053,7 +1062,7 @@
 
       .section{padding:64px 0}
       .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
-      .tabs-container{width:100%;justify-content:center}
+      .tabs-container{width:100%;justify-content:center;display:flex;flex-wrap:wrap}
       .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
@@ -1198,7 +1207,7 @@
     }
 
     @media (max-width:480px) {
-      .container{width:min(100% - 18px,1240px)}
+      .container{width:min(100% - 18px,1240px);padding-left:9px;padding-right:9px;}
       .hero h1{font-size:1.75rem}
       .tab-btn{padding:10px 20px;font-size:0.9rem}
       .page-btn{min-width:36px;height:36px;font-size:0.8rem}
@@ -1331,7 +1340,7 @@
       <div>
         <div class="card hero-offer-card">
           <div class="product-image" style="height:360px"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
-          <div style="padding:22px; text-align: center; display: flex; flex-direction: column;">
+          <div style="padding:22px; text-align: center; display: flex; flex-direction: column; align-items: center;">
             <h3 style="margin-bottom:8px;font-size:1.3rem">Offre du moment</h3>
             <p style="color:var(--primary); font-weight:800; font-size:1.4rem; margin-bottom:14px;">jusqu'à 20%</p>
             <a href="#catalog" class="btn btn-primary" style="display:inline-flex; width:auto;">Découvrir</a>
