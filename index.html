@@ -575,58 +575,39 @@
       align-items:center;
       padding:70px 0;
     }
-
-    /* ====== التعديلات الجديدة لتوسيط المحتوى والأزرار ====== */
-    .hero-content > div:first-child {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .hero h1{
-      font-size:clamp(34px,5vw,66px);
-      line-height:1.02;
-      margin-bottom:16px;
-      font-weight:900;
-      text-align:center;
-    }
-    .hero p{
-      font-size:1.08rem;
-      max-width:680px;
-      margin-bottom:26px;
-      text-align:center;
-    }
+    .hero h1{font-size:clamp(34px,5vw,66px);line-height:1.02;margin-bottom:16px;font-weight:900}
+    .hero p{font-size:1.08rem;max-width:680px;margin-bottom:26px}
     
+    /* حاوية الأزرار لترتيبها عمودياً وتوسيطها */
     .hero-buttons {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 15px;
       width: 100%;
       max-width: 350px;
-      margin: 20px auto;
+      margin: 20px auto; /* 👈 تم التعديل هنا لتوسيط الأزرار أفقيًا */
     }
-
+    /* تصميم الأزرار المخصصة للـ Hero فقط (Cases) */
     .hero-buttons .btn-primary {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 10px; /* المسافة بين الأيقونة والنص */
       width: 100%;
       padding: 16px 20px;
-      background: linear-gradient(90deg, #1E90FF, #00BFFF);
+      background: linear-gradient(90deg, #1E90FF, #00BFFF); /* تدرج أزرق */
       color: #ffffff;
       font-size: 16px;
       font-weight: bold;
       text-decoration: none;
       border: none;
-      border-radius: 50px;
-      box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
+      border-radius: 50px; /* الشكل الكبسولي الدائري */
+      box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3); /* ظل خفيف لإبراز الزر */
       transition: all 0.3s ease;
       cursor: pointer;
     }
 
+    /* تأثير عند تمرير الماوس */
     .hero-buttons .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0, 191, 255, 0.5);
@@ -638,9 +619,6 @@
       border-radius:28px;
       padding:24px;
       backdrop-filter:blur(16px);
-      width:100%;
-      max-width:400px;
-      margin:0 auto;
     }
     .hero-stats{
       margin-top:18px;
@@ -1015,6 +993,7 @@
       .nav-links{display:none}
       .menu-toggle-btn{display:grid}
       
+      /* تحسين حجم وقسم الـ Hero بالكامل ليظهر مرتب مثل الصور */
       .hero {
         min-height: auto;
         border-radius: 0 0 24px 24px;
@@ -1026,17 +1005,22 @@
       }
       .hero h1 {
         font-size: 2rem;
+        text-align: left; /* 👈 محاذاة النص لليسار كما في الصورة */
+        margin-bottom: 12px;
       }
       .hero p {
         font-size: 0.95rem;
+        text-align: left; /* 👈 محاذاة الوصف لليسار كما في الصورة */
+        margin-bottom: 20px;
       }
       
+      /* توسيط الأزرار في شاشات الموبايل */
       .hero-buttons { margin: 20px auto; }
       
+      /* تنسيق كارت الإحصائيات الصغير */
       .hero-card {
         padding: 16px;
         border-radius: 20px;
-        max-width: 100%;
       }
       .hero-stats {
         margin-top: 10px;
@@ -1049,6 +1033,7 @@
       .stat h3 { font-size: 1.2rem; }
       .stat p { font-size: 0.8rem; }
 
+      /* تنظيم حجم الكارت الترويجي وزره لمنعه من التمدد بشكل قبيح */
       .hero-offer-card {
         max-width: 380px;
         margin: 10px auto 0;
@@ -1072,6 +1057,7 @@
       .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
+      /* كروت المنتجات السفلية */
       .products-grid {
         grid-template-columns: 1fr;
         gap: 14px;
@@ -1320,7 +1306,6 @@
 
   <section class="hero" id="home">
     <div class="container hero-content">
-      <!-- العمود الأيسر مع توسيط المحتوى -->
       <div>
         <h1>Le vélo parfait pour chaque trajet</h1>
         <p>Boutique moderne avec fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
@@ -1343,12 +1328,9 @@
           </div>
         </div>
       </div>
-      <!-- العمود الأيمن (صورة العرض) -->
       <div>
         <div class="card hero-offer-card">
-          <div class="product-image" style="height:360px">
-            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif">
-          </div>
+          <div class="product-image" style="height:360px"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
           <div style="padding:22px; text-align: center; display: flex; flex-direction: column;">
             <h3 style="margin-bottom:8px;font-size:1.3rem">Offre du moment</h3>
             <p style="color:var(--primary); font-weight:800; font-size:1.4rem; margin-bottom:14px;">jusqu'à 20%</p>
