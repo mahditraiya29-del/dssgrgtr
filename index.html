@@ -2,7 +2,7 @@
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="description" content="EliteBike Pro - Boutique moderne de vélos, conseils et choix intelligent selon votre profil." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta name="theme-color" content="#2563eb" />
@@ -53,7 +53,6 @@
       overflow-x:hidden;
       transition:background var(--transition), color var(--transition);
       min-height:100vh;
-      width:100%;
     }
 
     body::before {
@@ -85,7 +84,7 @@
     img{max-width:100%;display:block;height:auto;object-fit:cover}
     button,input,select{font:inherit}
 
-    .container{width:min(1240px, 100% - 28px);margin-inline:auto;padding-left:14px;padding-right:14px;box-sizing:border-box;}
+    .container{width:min(1240px, calc(100% - 28px));margin-inline:auto}
     .section{padding:84px 0}
     .section-title{text-align:center;margin-bottom:34px}
     .section-title h2{font-size:clamp(28px,4vw,44px);margin-bottom:10px;font-weight:900}
@@ -423,10 +422,9 @@
       border: 1px solid var(--border);
       border-radius: 24px;
       overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
-      height: 100%;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .product-card:hover {
       transform: translateY(-8px);
@@ -435,25 +433,21 @@
     }
     .product-image {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
       position: relative;
-      background: #f0f4ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: rgba(15, 23, 42, 0.03);
     }
-    [data-theme="dark"] .product-image {
-      background: #1a2233;
+    [data-theme="dark"] .product-image { 
+      background: rgba(255, 255, 255, 0.02); 
     }
     .product-image img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       transition: transform 0.5s ease;
-      padding: 8px;
     }
-    .product-card:hover .product-image img { transform: scale(1.03); }
+    .product-card:hover .product-image img { transform: scale(1.05); }
     .product-badge {
       position: absolute;
       top: 12px;
@@ -467,45 +461,29 @@
       z-index: 2;
       backdrop-filter: blur(4px);
     }
-    .product-info {
-      padding: 16px 14px 14px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      gap: 6px;
-    }
-    .product-info h3 {
-      font-size: clamp(0.95rem, 1.2vw, 1.2rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 2px;
-    }
+    .product-info { padding: 14px; display: flex; flex-direction: column; flex-grow: 1; }
+    .product-info h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; overflow-wrap: break-word; }
     .product-type {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--muted);
       background: rgba(37,99,235,.15);
       display: inline-block;
-      padding: 3px 10px;
+      padding: 3px 8px;
       border-radius: 20px;
-      margin-bottom: 4px;
-      align-self: flex-start;
+      margin-bottom: 8px;
     }
     .product-desc-short {
       font-size: 0.85rem;
       color: var(--muted);
-      margin: 4px 0 8px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      line-height: 1.4;
+      margin: 6px 0;
+      line-height: 1.5;
       flex-grow: 1;
     }
     .product-price {
       color: var(--primary);
       font-weight: 800;
       font-size: 1.1rem;
-      margin: 4px 0;
+      margin: 6px 0;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -520,33 +498,28 @@
     .product-specs {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin: 6px 0 2px;
+      gap: 8px;
+      margin: 10px 0;
     }
     .spec-tag {
-      font-size: 0.7rem;
-      background: rgba(37,99,235,0.08);
-      padding: 2px 10px;
+      font-size: 0.75rem;
+      background: rgba(37,99,235,0.1);
+      padding: 4px 10px;
       border-radius: 20px;
-      color: var(--muted);
+      color: var(--primary);
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      white-space: nowrap;
     }
     .product-actions {
       display: flex;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-top: auto;
       padding-top: 10px;
-      flex-wrap: wrap;
     }
-    .product-actions .btn {
-      flex: 1 1 auto;
-      padding: 8px 10px;
-      font-size: clamp(0.7rem, 0.8vw, 0.85rem);
-      min-height: 38px;
-      border-radius: 30px;
-    }
+    .product-actions .btn { flex: 1; padding: 10px 8px; font-size: 0.85rem; min-width: 100px; }
     .no-products {
       text-align: center;
       padding: 60px;
@@ -578,42 +551,7 @@
     }
     .hero h1{font-size:clamp(34px,5vw,66px);line-height:1.02;margin-bottom:16px;font-weight:900}
     .hero p{font-size:1.08rem;max-width:680px;margin-bottom:26px}
-    
-    /* حاوية الأزرار لترتيبها عمودياً وتوسيطها */
-    .hero-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
-      max-width: 350px;
-      margin: 20px 0; /* محاذاة لليسار في الديسكتوب، لكن سنعدلها في الموبايل */
-    }
-    /* تصميم الأزرار المخصصة للـ Hero فقط (Cases) */
-    .hero-buttons .btn-primary {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px; /* المسافة بين الأيقونة والنص */
-      width: 100%;
-      padding: 16px 20px;
-      background: linear-gradient(90deg, #1E90FF, #00BFFF); /* تدرج أزرق */
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      border: none;
-      border-radius: 50px; /* الشكل الكبسولي الدائري */
-      box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3); /* ظل خفيف لإبراز الزر */
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    /* تأثير عند تمرير الماوس */
-    .hero-buttons .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 191, 255, 0.5);
-    }
-
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px}
     .hero-card{
       background:rgba(255,255,255,.14);
       border:1px solid rgba(255,255,255,.24);
@@ -763,8 +701,7 @@
     .modal-body{padding:20px}
     .detail-top{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
     .detail-images{border-radius:22px;overflow:hidden;border:1px solid var(--border)}
-    .detail-images .big{width:100%;height:320px;object-fit:contain;background:#f0f4ff}
-    [data-theme="dark"] .detail-images .big { background:#1a2233; }
+    .detail-images .big{width:100%;height:320px;object-fit:cover}
     .detail-thumbs{display:flex;gap:8px;padding:12px;flex-wrap:wrap}
     .detail-thumbs img{width:68px;height:46px;border-radius:10px;object-fit:cover;cursor:pointer;border:2px solid transparent}
     .detail-thumbs img.active{border-color:var(--primary)}
@@ -844,7 +781,7 @@
 
     .autre-img-box {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 1;
       background: #f8fafc;
       display: flex;
       align-items: center;
@@ -969,9 +906,6 @@
       text-align: center; font-weight: bold; outline: none;
     }
 
-    /* ============================================================
-       RESPONSIVE : priorité mobile & tablette
-       ============================================================ */
     @media (max-width:1100px){
       .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
       .form-grid{grid-template-columns:1fr 1fr}
@@ -983,212 +917,41 @@
     }
     @media (max-width:900px){
       .products-grid{grid-template-columns:repeat(2,1fr)}
-      #autresGrid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      #autresGrid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
     }
-
-    /* ============================================================
-       MOBILE FIRST : تعديلات دقيقة لواجهة الموبايل والأزرار
-       ============================================================ */
     @media (max-width:780px){
       .features-grid,.suggest-grid{grid-template-columns:repeat(2,1fr)!important}
       .nav-links{display:none}
       .menu-toggle-btn{display:grid}
-      
-      /* تحسين حجم وقسم الـ Hero بالكامل ليظهر مرتب مثل الصور */
-      .hero {
-        min-height: auto;
-        border-radius: 0 0 24px 24px;
-      }
-      .hero-content {
-        grid-template-columns: 1fr;
-        padding: 35px 0;
-        gap: 25px;
-        text-align: center; /* محاذاة النص للوسط */
-      }
-      .hero h1 {
-        font-size: 2rem;
-        text-align: center; /* توسيط العنوان */
-        margin-bottom: 12px;
-      }
-      .hero p {
-        font-size: 0.95rem;
-        text-align: center; /* توسيط الوصف */
-        margin-bottom: 20px;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
-      /* توسيط الأزرار في شاشات الموبايل */
-      .hero-buttons {
-        margin: 20px auto;
-        align-items: center;
-      }
-      
-      /* تنسيق كارت الإحصائيات الصغير */
-      .hero-card {
-        padding: 16px;
-        border-radius: 20px;
-      }
-      .hero-stats {
-        margin-top: 10px;
-        gap: 10px;
-      }
-      .stat {
-        padding: 10px;
-        border-radius: 14px;
-      }
-      .stat h3 { font-size: 1.2rem; }
-      .stat p { font-size: 0.8rem; }
-
-      /* تنظيم حجم الكارت الترويجي وزره لمنعه من التمدد بشكل قبيح */
-      .hero-offer-card {
-        max-width: 380px;
-        margin: 10px auto 0;
-        width: 100%;
-      }
-      .hero-offer-card .product-image {
-        height: 200px; 
-        width: 100%;
-      }
-      .hero-offer-card .btn {
-        display: inline-flex;
-        width: auto !important;
-        min-width: 150px;
-        padding: 10px 24px;
-        font-size: 0.9rem;
-        margin-inline: auto;
-      }
-
+      .hero-content{grid-template-columns:1fr;padding:56px 0}
+      .hero-offer-card .product-image{height:auto; aspect-ratio: 4/3; width: 100%;}
       .section{padding:64px 0}
       .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
-      .tabs-container{width:100%;justify-content:center;display:flex;flex-wrap:wrap}
+      .hero h1{font-size:2.35rem}
+      .tabs-container{width:100%;justify-content:center}
       .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
-      /* كروت المنتجات السفلية */
-      .products-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-      .product-card {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        min-height: 170px;
-        height: auto;
-        border-radius: 18px;
-        border: 1px solid var(--border);
-        background: var(--card);
-        overflow: hidden;
-      }
-      .product-card .product-image {
-        width: 40%;
-        height: auto;
-        aspect-ratio: 1 / 1;
-        flex-shrink: 0;
-        min-height: 140px;
-        max-height: 200px;
-        background: #f0f4ff;
-      }
-      [data-theme="dark"] .product-card .product-image {
-        background: #1a2233;
-      }
-      .product-card .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        mix-blend-mode: multiply;
-      }
-      [data-theme="dark"] .product-card .product-image img {
-        mix-blend-mode: normal;
-      }
-      .product-badge {
-        top: 8px;
-        left: 8px;
-        right: auto;
-        font-size: 0.6rem;
-        padding: 3px 8px;
-      }
-      .product-info {
-        width: 60%;
-        padding: 10px 12px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 2px;
-        flex: 1;
-      }
-      .product-info h3 {
-        font-size: 1rem;
-        font-weight: 800;
-        white-space: normal;
-        line-height: 1.2;
-        margin-bottom: 2px;
-      }
-      .product-type {
-        font-size: 0.7rem;
-        padding: 2px 8px;
-        margin-bottom: 2px;
-        align-self: flex-start;
-      }
-      .product-desc-short {
-        -webkit-line-clamp: 1;
-        font-size: 0.75rem;
-        margin: 2px 0 4px;
-      }
-      .product-price {
-        font-size: 1rem;
-        margin: 2px 0;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-      .old-price {
-        font-size: 0.7rem;
-      }
-      .product-specs {
-        margin: 2px 0 4px;
-        gap: 4px;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-      .spec-tag {
-        font-size: 0.6rem;
-        padding: 2px 6px;
-        background: rgba(37,99,235,0.08);
-        color: var(--muted);
-      }
-      .hide-on-mobile { display: none; }
-      .product-actions {
-        margin-top: 4px;
-        padding-top: 6px;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-      .product-actions .btn {
-        flex: 1 1 auto;
-        padding: 6px 8px;
-        font-size: 0.7rem;
-        min-height: 32px;
-        border-radius: 24px;
-      }
-      .product-actions .add-to-cart-btn {
-        background: #2563eb;
-        color: white;
-        border: none;
-        box-shadow: none;
-      }
-      .product-actions .details-btn {
-        background: var(--card);
-        border: 1px solid var(--border);
-        color: var(--text);
-      }
+      .products-grid { grid-template-columns: 1fr; gap: 16px; }
+      .product-card { display: flex; flex-direction: column; height: auto; border-radius: 16px; }
+      .product-card .product-image { width: 100%; height: auto; aspect-ratio: 4 / 3; flex-shrink: 0; }
+      .product-card .product-image img { object-fit: contain; }
+      .product-badge { top: 10px; left: 10px; right: auto; font-size: 0.75rem; padding: 4px 10px; }
+      .product-info { width: 100%; padding: 16px; display: flex; flex-direction: column; }
+      .product-info h3 { font-size: 1.15rem; margin-bottom: 6px; white-space: normal; overflow: visible; }
+      .product-type { display: inline-block; }
+      .product-desc-short { -webkit-line-clamp: unset; margin: 6px 0; display: block; }
+      .product-price { font-size: 1.25rem; margin: 8px 0; gap: 8px; }
+      .old-price { font-size: 0.95rem; }
+      .product-specs { margin: 8px 0; gap: 8px; display: flex; flex-wrap: wrap; align-items: center; overflow: visible; }
+      .spec-tag { background: rgba(37,99,235,0.1); padding: 4px 10px; font-size: 0.8rem; color: var(--primary); }
+      .hide-on-mobile { display: inline-flex; }
+      .product-actions { margin-top: 12px; gap: 10px; display: flex; flex-wrap: wrap; }
+      .product-actions .btn { padding: 12px 8px; font-size: 0.95rem; flex: 1; border-radius: 12px; min-width: 100px; }
+      .product-actions .add-to-cart-btn { background: #2563eb; color: white; border: none; box-shadow: none; }
+      .product-actions .details-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); }
 
-      #autresGrid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px;
-      }
+      #autresGrid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
       .autre-content { padding: 12px; }
       .autre-title { font-size: 0.9rem; margin-bottom: 6px; }
       .autre-price { font-size: 0.95rem; padding: 4px 10px; }
@@ -1205,48 +968,63 @@
       .floating-cart { right: 14px; }
       .floating-wa { left: 14px; }
     }
-
-    @media (max-width:480px) {
-      .container{width:min(100% - 18px,1240px);padding-left:9px;padding-right:9px;}
-      .hero h1{font-size:1.75rem}
+    @media (max-width:480px){
+      .container{width:min(100% - 18px,1240px)}
+      .hero h1{font-size:2rem}
+      .hero-actions{flex-direction:column}
       .tab-btn{padding:10px 20px;font-size:0.9rem}
       .page-btn{min-width:36px;height:36px;font-size:0.8rem}
       .logo { font-size: 1.05rem; gap: 5px; }
       .icon-btn { width: 38px; height: 38px; font-size: 0.9rem; }
       .nav-actions { gap: 6px; }
-
-      .product-card .product-image {
-        min-height: 120px;
-        max-height: 170px;
-      }
-      .product-info h3 { font-size: 0.9rem; }
     }
 
-    /* تحسينات المودال المنبثق */
+    /* تحسينات خاصة بالإعلان المنبثق */
     .modal-backdrop .modal {
       max-width: 95vw;
       width: 100%;
       max-height: 90vh;
     }
-    .modal-backdrop .modal .modal-body { padding: 20px 16px; }
-    .modal-backdrop .modal .modal-body .ad-box { min-height: 100px !important; }
+
+    .modal-backdrop .modal .modal-body {
+      padding: 20px 16px;
+    }
+
+    .modal-backdrop .modal .modal-body .ad-box {
+      min-height: 100px !important;
+    }
+
     .modal-backdrop .modal .modal-body .ad-box img {
       max-height: 200px;
       width: 100%;
       object-fit: contain;
       border-radius: 12px;
     }
+
     @media (max-width: 600px) {
       .modal-backdrop .modal {
         max-width: 98vw;
         border-radius: 20px;
       }
-      .modal-backdrop .modal .modal-header { padding: 12px 14px; }
-      .modal-backdrop .modal .modal-body { padding: 16px 12px; }
-      .modal-backdrop .modal .modal-body h3 { font-size: 1.2rem !important; }
-      .modal-backdrop .modal .modal-body .ad-box { min-height: 80px !important; }
-      .modal-backdrop .modal .modal-body .ad-box img { max-height: 150px; }
-      .modal-backdrop .modal .modal-body .btn { font-size: 0.9rem; padding: 10px 12px; }
+      .modal-backdrop .modal .modal-header {
+        padding: 12px 14px;
+      }
+      .modal-backdrop .modal .modal-body {
+        padding: 16px 12px;
+      }
+      .modal-backdrop .modal .modal-body h3 {
+        font-size: 1.2rem !important;
+      }
+      .modal-backdrop .modal .modal-body .ad-box {
+        min-height: 80px !important;
+      }
+      .modal-backdrop .modal .modal-body .ad-box img {
+        max-height: 150px;
+      }
+      .modal-backdrop .modal .modal-body .btn {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+      }
     }
   </style>
 </head>
@@ -1263,7 +1041,10 @@
       <div class="modal-body" style="text-align: center; padding: 30px 20px;">
         <h3 id="adTitle" style="font-size: 1.5rem; margin-bottom: 10px; color: var(--primary);">Offre Spéciale !</h3>
         <p id="adDescription" style="margin-bottom: 20px; color: var(--muted);">Chargement de l'offre...</p>
-        <div id="adImageContainer" class="ad-box" style="min-height: 150px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden;"></div>
+        
+        <div id="adImageContainer" class="ad-box" style="min-height: 150px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden;">
+          </div>
+        
         <button type="button" class="btn btn-primary" id="continueToSiteBtn" style="width: 100%;">Découvrir les offres</button>
       </div>
     </div>
@@ -1286,6 +1067,7 @@
   <header class="topbar">
     <div class="container nav">
       <a class="logo" href="#home"><i class="fa-solid fa-bicycle"></i><span>EliteBike <span class="accent">Pro</span></span></a>
+      
       <ul class="nav-links">
         <li><a href="#home">Accueil</a></li>
         <li><a href="#catalog">Vélos</a></li>
@@ -1293,6 +1075,7 @@
         <li><a href="#articles">Conseils</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      
       <div class="nav-actions">
         <button type="button" class="icon-btn" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
         <div class="search-container">
@@ -1318,16 +1101,10 @@
       <div>
         <h1>Le vélo parfait pour chaque trajet</h1>
         <p>Boutique moderne avec fiches techniques complètes, recommandation intelligente et conseils d'entretien.</p>
-        
-        <div class="hero-buttons">
-          <a href="#catalog" class="btn-primary">
-            <i class="fa-solid fa-bicycle"></i> Voir les vélos
-          </a>
-          <a href="#smart" class="btn-primary">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> Trouver mon vélo
-          </a>
+        <div class="hero-actions">
+          <a href="#catalog" class="btn btn-primary"><i class="fa-solid fa-bicycle"></i> Voir les vélos</a>
+          <a href="#smart" class="btn btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Trouver mon vélo</a>
         </div>
-        
         <div class="hero-card">
           <div class="hero-stats">
             <div class="stat"><h3>150+</h3><p>Vélos sélectionnés</p></div>
@@ -1339,11 +1116,11 @@
       </div>
       <div>
         <div class="card hero-offer-card">
-          <div class="product-image" style="height:360px"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
-          <div style="padding:22px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          <div class="product-image" style="height:auto; aspect-ratio:4/3;"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
+          <div style="padding:22px; text-align: center;">
             <h3 style="margin-bottom:8px;font-size:1.3rem">Offre du moment</h3>
             <p style="color:var(--primary); font-weight:800; font-size:1.4rem; margin-bottom:14px;">jusqu'à 20%</p>
-            <a href="#catalog" class="btn btn-primary" style="display:inline-flex; width:auto;">Découvrir</a>
+            <a href="#catalog" class="btn btn-primary" style="width:100%">Découvrir</a>
           </div>
         </div>
       </div>
@@ -1371,20 +1148,24 @@
         <h2>Catalogue de <span class="accent">vélos</span></h2>
         <p>Chaque vélo affiche ses caractéristiques et un bouton Détails complet</p>
       </div>
+      
       <div style="display: flex; justify-content: center;">
         <div class="tabs-container">
           <button class="tab-btn active" data-tab="velos">🚲 Vélos</button>
           <button class="tab-btn" data-tab="autres">🪖 Autres</button>
         </div>
       </div>
+      
       <div class="tab-content active" id="velos-tab">
         <div class="pagination-wrapper" id="velosPaginationTop"></div>
         <div class="products-grid" id="velosGrid"></div>
       </div>
+      
       <div class="tab-content" id="autres-tab">
         <div class="pagination-wrapper" id="autresPaginationTop"></div>
         <div id="autresGrid"></div>
       </div>
+      
       <div style="margin-top:32px" class="card">
         <div style="padding:22px">
           <h3 style="margin-bottom:6px">Avis des utilisateurs</h3>
@@ -1594,6 +1375,7 @@
 
         const div = document.createElement('div');
         div.className = 'autre-card-v2';
+        
         div.innerHTML = `
           <div class="autre-img-box">
             <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x300?text=Image'">
@@ -1602,15 +1384,18 @@
             <div class="autre-brand">${brand}</div>
             <h3 class="autre-title">${product.name || 'Produit'}</h3>
             <p class="product-desc-short">${descText}</p>
+            
             <div class="autre-rating">
               <i class="fa-solid fa-star"></i>
               <span class="rate-val">${rating}</span>
               <span class="rev-count">(${reviewsCount} avis)</span>
             </div>
+
             <div class="autre-price-box">
               <span class="autre-price">${currentPrice}</span>
               ${oldPrice ? `<span class="old-price" style="margin-left: 8px;">${oldPrice}</span>` : ''}
             </div>
+
             <div class="autre-actions-bar">
               <button type="button" class="btn btn-add add-to-cart-btn" title="Ajouter au panier">
                 <i class="fa-solid fa-cart-shopping"></i> <span class="btn-text-add">Ajouter</span>
@@ -1625,6 +1410,7 @@
           addToCart(product, 1);
         });
         div.querySelector('.details-btn').addEventListener('click', () => openModal(product));
+        
         return div;
       }
 
@@ -1636,6 +1422,10 @@
       
       let specsHtml = '';
       specsHtml += `<span class="spec-tag"><i class="fa-solid fa-bicycle"></i> ${typeText}</span>`;
+      if (product.city || product.location) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-location-dot"></i> ${product.city || product.location}</span>`;
+      if (product.speeds) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-gauge-high"></i> ${product.speeds}</span>`;
+      if (product.brakes) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-hand"></i> ${product.brakes}</span>`;
+      if (product.wheels) specsHtml += `<span class="spec-tag"><i class="fa-solid fa-circle"></i> ${product.wheels}</span>`;
       specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-boxes-stacked"></i> Qté: ${qtyAvailable}</span>`;
       specsHtml += `<span class="spec-tag" style="color: #f59e0b;"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'}</span>`;
       
@@ -1871,7 +1661,9 @@
               <span class="price" style="color:var(--primary); font-size:1.5rem; font-weight:800;">${currentPrice}</span>
               ${oldPrice && oldPrice !== currentPrice ? `<span style="text-decoration:line-through; color:var(--danger); margin-left:15px; font-weight:600;">${oldPrice}</span>` : ''}
             </div>
+            
             <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem;">${descText}</p>
+            
             <div class="info-list">
               <div class="info-item"><span>Catégorie</span><strong>${product.subCategory || product.type || (isBike ? 'Vélo' : 'Accessoire')}</strong></div>
               <div class="info-item"><span>Quantité dispo</span><strong>${qtyAvailable}</strong></div>
@@ -1880,10 +1672,12 @@
               ${consHtml}
               <div class="info-item"><span>État</span><strong>${product.state === 'Occasion' || product.state === 'مستعمل' ? 'Occasion' : 'Neuf'}</strong></div>
             </div>
+
             <div class="qty-selector">
               <label for="modalQty">Quantité :</label>
               <input type="number" id="modalQty" value="1" min="1" max="99">
             </div>
+
             <button type="button" class="btn btn-success modal-add-to-cart" style="width:100%;margin-top:16px;"><i class="fa-solid fa-cart-plus"></i> Ajouter au panier</button>
           </div>
         </div>
@@ -1922,6 +1716,7 @@
       const searchInput = document.getElementById('searchInput');
       const closeSearch = document.getElementById('closeSearchBtn');
 
+      // ---- كـود تـشـغـيـل الـنـافـذة الإعـلانـيـة الـتـلـقـائـيـة ----
       const autoAdModal = document.getElementById('autoAdModal');
       const closeAutoAdBtn = document.getElementById('closeAutoAdBtn');
       const continueToSiteBtn = document.getElementById('continueToSiteBtn');
@@ -1935,12 +1730,15 @@
       window.addEventListener('load', () => {
         adsRef.once('value').then((snapshot) => {
           const adsData = snapshot.val();
+
           if (adsData) {
             const adsArray = Object.values(adsData).sort((a, b) => b.createdAt - a.createdAt);
             const currentTime = Date.now();
             const activeAd = adsArray.find(ad => ad.expireTime > currentTime);
+
             if (activeAd) {
               document.getElementById('adTitle').textContent = activeAd.title || 'Offre Spéciale !';
+              
               let descHtml = activeAd.desc || '';
               if (activeAd.price) {
                 descHtml += `<br><span style="color:var(--primary); font-weight:800; font-size:1.4rem; display:inline-block; margin-top:10px;">${activeAd.price} DT</span>`;
@@ -1949,6 +1747,7 @@
                 }
               }
               document.getElementById('adDescription').innerHTML = descHtml;
+              
               const imgContainer = document.getElementById('adImageContainer');
               if (activeAd.imageUrl) {
                 imgContainer.innerHTML = `<img src="${activeAd.imageUrl}" style="width:100%; height:100%; object-fit:contain; border-radius:12px;" alt="Ad Image">`;
@@ -1957,6 +1756,7 @@
               } else {
                 imgContainer.style.display = 'none';
               }
+
               setTimeout(() => {
                 if (autoAdModal) autoAdModal.classList.add('show');
               }, 500);
@@ -1972,6 +1772,7 @@
       autoAdModal?.addEventListener('click', (e) => {
         if (e.target === autoAdModal) closeAutoAd();
       });
+      // -----------------------------------------------------
 
       openSidebar?.addEventListener('click', () => { sidebar.classList.add('open'); overlay.classList.add('show'); });
       closeSidebar?.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); });
