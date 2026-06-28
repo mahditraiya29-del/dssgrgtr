@@ -418,28 +418,26 @@
     }
 
     /* ============================================================
-       PRODUCT CARDS - Style exactement comme dans l'image
+       PRODUCT CARDS - Style comme dans source.html
        ============================================================ */
     .product-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       height: 100%;
-      box-shadow: var(--shadow-soft);
     }
     .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.3);
       border-color: rgba(37,99,235,0.3);
     }
 
     .product-image {
-      width: 100%;
-      aspect-ratio: 4 / 3;
+      height: 200px;
       overflow: hidden;
       position: relative;
       background: #f0f4ff;
@@ -453,118 +451,102 @@
     .product-image img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       transition: transform 0.5s ease;
-      padding: 16px;
     }
-    .product-card:hover .product-image img { transform: scale(1.03); }
+    .product-card:hover .product-image img { transform: scale(1.05); }
 
     .product-badge {
       position: absolute;
       top: 12px;
-      left: 12px;
+      right: 12px;
       background: var(--success);
-      color: #fff;
-      padding: 4px 14px;
+      color: white;
+      padding: 5px 12px;
       border-radius: 30px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       z-index: 2;
       backdrop-filter: blur(4px);
-      letter-spacing: 0.5px;
     }
 
     .product-info {
-      padding: 16px 18px 18px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      flex: 1;
-      gap: 4px;
+      height: calc(100% - 200px);
     }
 
     .product-info h3 {
-      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      font-size: 0.95rem;
       font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 2px;
+      margin-bottom: 6px;
     }
 
-    .product-price-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 4px 0 2px;
+    .product-type {
+      font-size: 0.7rem;
+      color: var(--muted);
+      background: rgba(37,99,235,.15);
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      align-self: flex-start;
     }
+
+    .product-desc-short {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 6px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
     .product-price {
       color: var(--primary);
       font-weight: 800;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      margin: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     .old-price {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--danger);
       text-decoration: line-through;
       font-weight: 600;
     }
 
-    .product-type-tag {
-      font-size: 0.75rem;
-      color: var(--muted);
-      background: rgba(37,99,235,.12);
-      display: inline-block;
-      padding: 2px 14px;
-      border-radius: 20px;
-      align-self: flex-start;
-      margin: 2px 0 4px;
-    }
-
-    .product-rating {
+    .product-specs {
       display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.85rem;
-      color: #facc15;
-      margin: 2px 0 4px;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
     }
-    .product-rating .rate-text {
-      color: var(--muted);
-      margin-left: 4px;
-      font-weight: 500;
+    .spec-tag {
+      font-size: 0.65rem;
+      background: rgba(37,99,235,0.1);
+      padding: 3px 8px;
+      border-radius: 20px;
+      color: var(--primary);
     }
 
     .product-actions {
       display: flex;
-      gap: 10px;
-      margin-top: 12px;
-      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 10px;
     }
     .product-actions .btn {
-      flex: 1 1 auto;
-      padding: 10px 12px;
-      font-size: clamp(0.75rem, 0.8vw, 0.85rem);
-      min-height: 40px;
-      border-radius: 30px;
-      font-weight: 700;
-    }
-    .product-actions .btn-buy {
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-    }
-    .product-actions .btn-buy:hover {
-      background: var(--primary-2);
-      transform: translateY(-2px);
-    }
-    .product-actions .btn-detail {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .product-actions .btn-detail:hover {
-      background: rgba(37,99,235,0.08);
-      border-color: var(--primary);
+      flex: 1;
+      padding: 8px 6px;
+      font-size: 0.7rem;
     }
 
     .no-products {
@@ -748,8 +730,7 @@
     .modal-body{padding:20px}
     .detail-top{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
     .detail-images{border-radius:22px;overflow:hidden;border:1px solid var(--border)}
-    .detail-images .big{width:100%;height:320px;object-fit:contain;background:#f0f4ff}
-    [data-theme="dark"] .detail-images .big { background:#1a2233; }
+    .detail-images .big{width:100%;height:320px;object-fit:cover}
     .detail-thumbs{display:flex;gap:8px;padding:12px;flex-wrap:wrap}
     .detail-thumbs img{width:68px;height:46px;border-radius:10px;object-fit:cover;cursor:pointer;border:2px solid transparent}
     .detail-thumbs img.active{border-color:var(--primary)}
@@ -984,18 +965,24 @@
       .tab-btn{padding:12px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
-      .products-grid { grid-template-columns: 1fr; gap: 16px; }
-      .product-card { height: auto; border-radius: 16px; }
-      .product-card .product-image { width: 100%; height: auto; aspect-ratio: 4 / 3; flex-shrink: 0; }
-      .product-card .product-image img { object-fit: contain; }
-      .product-badge { top: 10px; left: 10px; right: auto; font-size: 0.75rem; padding: 4px 10px; }
-      .product-info { width: 100%; padding: 16px; }
-      .product-info h3 { font-size: 1.15rem; margin-bottom: 6px; white-space: normal; overflow: visible; }
-      .product-type-tag { display: inline-block; }
-      .product-price { font-size: 1.2rem; margin: 4px 0; }
-      .old-price { font-size: 0.95rem; }
-      .product-actions { margin-top: 12px; gap: 10px; flex-wrap: wrap; }
-      .product-actions .btn { padding: 12px 8px; font-size: 0.95rem; flex: 1; border-radius: 12px; min-width: 100px; }
+      .products-grid { grid-template-columns: 1fr; gap: 12px; }
+      .product-card { display: flex; flex-direction: row; align-items: stretch; height: 160px; border-radius: 16px; }
+      .product-card .product-image { width: 40%; height: 100%; flex-shrink: 0; }
+      .product-card .product-image img { height: 100%; width: 100%; object-fit: cover; }
+      .product-badge { top: 8px; left: 8px; right: auto; font-size: 0.65rem; padding: 4px 8px; }
+      .product-info { width: 60%; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; }
+      .product-info h3 { font-size: 1rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .product-type { display: none; }
+      .product-desc-short { -webkit-line-clamp: 1; margin: 4px 0; }
+      .product-price { font-size: 1.1rem; margin: 2px 0; gap: 6px; }
+      .old-price { font-size: 0.8rem; }
+      .product-specs { margin: 4px 0; gap: 12px; display: flex; align-items: center; overflow: hidden; }
+      .spec-tag { background: transparent; padding: 0; font-size: 0.75rem; color: var(--muted); }
+      .hide-on-mobile { display: none; }
+      .product-actions { margin-top: auto; gap: 8px; display: flex; }
+      .product-actions .btn { padding: 6px; font-size: 0.8rem; flex: 1; border-radius: 12px; }
+      .product-actions .add-to-cart-btn { background: #2563eb; color: white; border: none; box-shadow: none; }
+      .product-actions .details-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); }
 
       #autresGrid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
       .autre-content { padding: 12px; }
@@ -1130,7 +1117,7 @@
       </div>
       <div>
         <div class="card hero-offer-card">
-          <div class="product-image" style="height:auto; aspect-ratio:4/3;"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
+          <div class="product-image" style="height:360px"><img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop" alt="Vélo sportif"></div>
           <div style="padding:22px; text-align: center;">
             <h3 style="margin-bottom:8px;font-size:1.3rem">Offre du moment</h3>
             <p style="color:var(--primary); font-weight:800; font-size:1.4rem; margin-bottom:14px;">jusqu'à 20%</p>
@@ -1374,12 +1361,13 @@
     function generateProductCard(product, productId, isOther = false) {
       let mainImg = product.image || product.imageUrl;
       if (!mainImg && product.images && product.images.length > 0) mainImg = product.images[0];
-      if (!mainImg) mainImg = 'https://placehold.co/400x300?text=Image+non+disponible';
+      if (!mainImg) mainImg = 'https://placehold.co/300x200?text=Image+non+disponible';
 
       const currentPrice = formatPrice(product.price || product.newPrice || product.originalPrice || '0');
       const oldPrice = formatPrice(product.oldPrice || (product.originalPrice && currentPrice !== formatPrice(product.originalPrice) ? product.originalPrice : null));
 
       const descText = product.description || product.desc || 'Aucune description disponible.';
+      const qtyAvailable = product.quantity !== undefined ? product.quantity : (product.stock !== undefined ? product.stock : 'N/A');
 
       if (isOther) {
         const brand = product.brand || 'ÉQUIPEMENT'; 
@@ -1429,35 +1417,32 @@
 
       const typeText = product.subCategory || product.type || 'Vélo';
       const stateText = product.state === 'Occasion' ? 'Occasion' : (product.state === 'مستعمل' ? 'Occasion' : 'Neuf');
-      const rating = product.rating || '4.8';
-      const reviewsCount = product.reviewsCount || Math.floor(Math.random() * (80 - 10 + 1)) + 10;
       
       const div = document.createElement('div');
       div.className = 'product-card';
       
+      let specsHtml = '';
+      specsHtml += `<span class="spec-tag"><i class="fa-solid fa-bicycle"></i> ${typeText}</span>`;
+      specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-boxes-stacked"></i> Qté: ${qtyAvailable}</span>`;
+      specsHtml += `<span class="spec-tag" style="color: #f59e0b;"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'}</span>`;
+      
       div.innerHTML = `
         <div class="product-image">
           <div class="product-badge">${stateText}</div>
-          <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/400x300?text=Image+non+disponible'">
+          <img src="${mainImg}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200?text=Image+non+disponible'">
         </div>
         <div class="product-info">
           <h3>${product.name || 'Produit'}</h3>
-          <span class="product-type-tag">${typeText}</span>
-          <div class="product-price-row">
-            <span class="product-price">${currentPrice}</span>
+          <span class="product-type">${typeText}</span>
+          <p class="product-desc-short">${descText}</p>
+          <div class="product-price">
+            ${currentPrice}
             ${oldPrice && oldPrice !== currentPrice ? `<span class="old-price">${oldPrice}</span>` : ''}
           </div>
-          <div class="product-rating">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <span class="rate-text">${rating} ★ (${reviewsCount})</span>
-          </div>
+          ${specsHtml ? `<div class="product-specs">${specsHtml}</div>` : ''}
           <div class="product-actions">
-            <button type="button" class="btn btn-buy add-to-cart-btn"><i class="fa-solid fa-cart-plus"></i> Acheter</button>
-            <button type="button" class="btn btn-detail details-btn">Détails</button>
+            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><i class="fa-brands fa-whatsapp"></i> Acheter</button>
+            <button type="button" class="btn btn-outline btn-sm details-btn">Détails</button>
           </div>
         </div>
       `;
