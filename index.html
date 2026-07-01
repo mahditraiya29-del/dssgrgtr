@@ -475,13 +475,13 @@
     }
 
     .product-info h3 {
-      font-size: 0.95rem;
+      font-size: 1.1rem; /* تم التكبير */
       font-weight: 800;
       margin-bottom: 6px;
     }
 
     .product-type {
-      font-size: 0.7rem;
+      font-size: 0.8rem; /* تم التكبير */
       color: var(--muted);
       background: rgba(37,99,235,.15);
       display: inline-block;
@@ -506,7 +506,7 @@
     .product-price {
       color: var(--primary);
       font-weight: 800;
-      font-size: 1.1rem;
+      font-size: 1.2rem; /* تم التكبير */
       margin: 6px 0;
       display: flex;
       align-items: center;
@@ -527,11 +527,14 @@
       margin: 10px 0;
     }
     .spec-tag {
-      font-size: 0.65rem;
+      font-size: 0.75rem; /* تم التكبير */
       background: rgba(37,99,235,0.1);
       padding: 3px 8px;
       border-radius: 20px;
       color: var(--primary);
+    }
+    .spec-tag i {
+      display: inline-block; /* لجعل الأيقونة تظهر */
     }
 
     .product-actions {
@@ -962,16 +965,8 @@
     }
 
     .autre-rating {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      margin-bottom: 14px;
+      display: none; /* إزالة النجوم */
     }
-
-    .autre-rating .fa-star { color: #facc15; }
-    .autre-rating .rate-val { font-weight: 800; color: var(--text); }
-    .autre-rating .rev-count { color: var(--muted); }
 
     .autre-price-box {
       margin-top: auto;
@@ -983,7 +978,7 @@
       background-color: #facc15;
       color: #000;
       font-weight: 900;
-      font-size: 1.1rem;
+      font-size: 1.2rem; /* تم التكبير */
       padding: 6px 14px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(250, 204, 21, 0.2);
@@ -1091,7 +1086,7 @@
       }
       
       .product-info h3 { 
-        font-size: 0.85rem; 
+        font-size: 0.9rem; /* تم التكبير */
         font-weight: 800;
         margin-bottom: 2px; 
         white-space: normal;
@@ -1102,7 +1097,7 @@
       
       .product-type { 
         display: inline-block;
-        font-size: 0.55rem; 
+        font-size: 0.65rem; /* تم التكبير */
         padding: 1px 8px;
         margin-bottom: 2px;
         align-self: flex-start;
@@ -1119,7 +1114,7 @@
       }
       
       .product-price { 
-        font-size: 0.85rem; 
+        font-size: 0.95rem; /* تم التكبير */
         margin: 2px 0; 
         gap: 4px; 
       }
@@ -1140,7 +1135,7 @@
       .spec-tag { 
         background: rgba(37,99,235,0.1); 
         padding: 1px 6px; 
-        font-size: 0.5rem; 
+        font-size: 0.6rem; /* تم التكبير */
         border-radius: 10px;
         color: var(--primary);
         white-space: nowrap;
@@ -1180,7 +1175,7 @@
       #autresGrid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
       .autre-content { padding: 12px; }
       .autre-title { font-size: 0.9rem; margin-bottom: 6px; }
-      .autre-price { font-size: 0.95rem; padding: 4px 10px; }
+      .autre-price { font-size: 1rem; padding: 4px 10px; }
       .autre-actions-bar { gap: 6px; }
       .autre-actions-bar .btn { padding: 8px 4px; font-size: 0.75rem; }
       .autre-actions-bar .btn-text-add { display: none; }
@@ -1253,12 +1248,12 @@
       .product-card { min-height: 140px; }
       .product-card .product-image { min-height: 140px; width: 55%; }
       .product-info { width: 45%; padding: 6px 8px; }
-      .product-info h3 { font-size: 0.75rem; }
+      .product-info h3 { font-size: 0.85rem; }
       .product-desc-short { -webkit-line-clamp: 1; font-size: 0.6rem; }
-      .product-price { font-size: 0.75rem; }
+      .product-price { font-size: 0.85rem; }
       .product-actions .btn { font-size: 0.55rem; padding: 2px 4px; min-height: 22px; }
-      .spec-tag { font-size: 0.45rem; padding: 1px 4px; }
-      .product-type { font-size: 0.5rem; padding: 1px 6px; }
+      .spec-tag { font-size: 0.5rem; padding: 1px 4px; }
+      .product-type { font-size: 0.6rem; padding: 1px 6px; }
     }
 
     .modal-backdrop .modal {
@@ -1673,7 +1668,6 @@
       let specsHtml = '';
       specsHtml += `<span class="spec-tag"><i class="fa-solid fa-bicycle"></i> ${typeText}</span>`;
       specsHtml += `<span class="spec-tag hide-on-mobile"><i class="fa-solid fa-boxes-stacked"></i> Qté: ${qtyAvailable}</span>`;
-      specsHtml += `<span class="spec-tag" style="color: #f59e0b;"><i class="fa-solid fa-star"></i> ${product.rating || '4.8'}</span>`;
       
       div.innerHTML = `
         <div class="product-image">
