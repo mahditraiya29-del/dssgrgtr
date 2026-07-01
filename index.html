@@ -18,7 +18,7 @@
       --primary:#2563eb;
       --primary-2:#0ea5e9;
       --accent:#f97316;
-      --bg:#f8fafc;  /* الوضع النهاري افتراضي */
+      --bg:#f8fafc;
       --card:#ffffff;
       --text:#0f172a;
       --muted:#64748b;
@@ -96,13 +96,13 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-height:56px;  /* تم التكبير */
-      padding:16px 28px;  /* تم التكبير */
+      min-height:56px;
+      padding:16px 28px;
       border-radius:999px;
       border:1px solid transparent;
       cursor:pointer;
       font-weight:700;
-      font-size:1.05rem;  /* تم التكبير */
+      font-size:1.05rem;
       transition:transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
       white-space:nowrap;
     }
@@ -110,7 +110,7 @@
     .btn-outline{background:transparent;border-color:var(--border);color:var(--text)}
     .btn-light{background:rgba(255,255,255,0.1);color:var(--primary);border-color:rgba(255,255,255,0.2);backdrop-filter:blur(8px);}
     .btn-success{background:var(--success);color:#fff}
-    .btn-sm{padding:12px 18px;font-size:0.9rem;min-height:44px;border-radius:12px;}  /* تم التكبير */
+    .btn-sm{padding:12px 18px;font-size:0.95rem;min-height:44px;border-radius:12px;}
     .btn:hover{transform:translateY(-2px);filter:brightness(1.05);}
 
     .topbar{
@@ -167,7 +167,7 @@
 
     .nav-actions{display:flex;align-items:center;gap:8px}
     .icon-btn{
-      width:48px;height:48px;  /* تم التكبير */
+      width:48px;height:48px;
       border:none;border-radius:50%;
       display:grid;place-items:center;
       background:var(--card);
@@ -177,7 +177,7 @@
       position:relative;
       flex-shrink:0;
       transition:all 0.3s;
-      font-size:1.1rem;  /* تم التكبير */
+      font-size:1.1rem;
     }
     .icon-btn:hover{transform:scale(1.05);background:var(--primary);color:white;}
 
@@ -352,11 +352,11 @@
       border: 1px solid var(--border);
     }
     .tab-btn {
-      padding: 16px 36px;  /* تم التكبير */
+      padding: 16px 36px;
       border: none;
       background: transparent;
       border-radius: 50px;
-      font-size: 1.15rem;  /* تم التكبير */
+      font-size: 1.15rem;
       font-weight: 700;
       cursor: pointer;
       transition: all var(--transition);
@@ -484,11 +484,12 @@
     }
 
     .product-type {
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: rgba(37,99,235,.15);
+      font-size: 0.9rem;  /* تم التكبير */
+      font-weight: 700;   /* تم التكبير */
+      color: var(--primary);
+      background: rgba(37,99,235,.12);
       display: inline-block;
-      padding: 3px 8px;
+      padding: 4px 12px;
       border-radius: 20px;
       margin-bottom: 8px;
       align-self: flex-start;
@@ -530,9 +531,10 @@
       margin: 10px 0;
     }
     .spec-tag {
-      font-size: 0.75rem;
+      font-size: 0.8rem;  /* تم التكبير */
+      font-weight: 600;   /* تم التكبير */
       background: rgba(37,99,235,0.1);
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 20px;
       color: var(--primary);
     }
@@ -548,10 +550,11 @@
     }
     .product-actions .btn {
       flex: 1;
-      padding: 12px 8px;  /* تم التكبير */
-      font-size: 0.85rem;  /* تم التكبير */
-      min-height: 44px;  /* تم التكبير */
-      border-radius: 12px;  /* تم التكبير */
+      padding: 12px 10px;
+      font-size: 0.9rem;  /* تم التكبير */
+      font-weight: 800;   /* تم التكبير */
+      min-height: 44px;
+      border-radius: 12px;
     }
 
     .no-products {
@@ -1009,6 +1012,7 @@
     .autre-actions-bar .btn {
       padding: 12px 10px;
       font-size: 0.9rem;
+      font-weight: 800;
       border-radius: 12px;
       flex: 1;
       display: flex;
@@ -1114,8 +1118,9 @@
       
       .product-type { 
         display: inline-block;
-        font-size: 0.65rem;
-        padding: 1px 8px;
+        font-size: 0.7rem;  /* تم التكبير */
+        font-weight: 700;
+        padding: 2px 8px;
         margin-bottom: 2px;
         align-self: flex-start;
       }
@@ -1151,8 +1156,9 @@
       
       .spec-tag { 
         background: rgba(37,99,235,0.1); 
-        padding: 1px 6px; 
-        font-size: 0.6rem;
+        padding: 2px 8px; 
+        font-size: 0.65rem;  /* تم التكبير */
+        font-weight: 600;
         border-radius: 10px;
         color: var(--primary);
         white-space: nowrap;
@@ -1169,11 +1175,12 @@
       }
       
       .product-actions .btn { 
-        padding: 6px 8px;  /* تم التكبير */
-        font-size: 0.7rem;  /* تم التكبير */
+        padding: 8px 10px;  /* تم التكبير */
+        font-size: 0.75rem;  /* تم التكبير */
+        font-weight: 800;   /* تم التكبير */
         flex: 1; 
         border-radius: 8px; 
-        min-height: 32px;  /* تم التكبير */
+        min-height: 36px;  /* تم التكبير */
       }
       
       .product-actions .add-to-cart-btn { 
@@ -1194,7 +1201,7 @@
       .autre-title { font-size: 0.9rem; margin-bottom: 6px; }
       .autre-price { font-size: 1rem; padding: 4px 10px; }
       .autre-actions-bar { gap: 6px; }
-      .autre-actions-bar .btn { padding: 10px 6px; font-size: 0.8rem; min-height: 38px; }
+      .autre-actions-bar .btn { padding: 10px 8px; font-size: 0.8rem; font-weight: 700; min-height: 38px; }
       .autre-actions-bar .btn-text-add { display: none; }
       
       .floating-cart, .floating-wa {
@@ -1269,9 +1276,9 @@
       .product-info h3 { font-size: 0.85rem; }
       .product-desc-short { -webkit-line-clamp: 1; font-size: 0.6rem; }
       .product-price { font-size: 0.85rem; }
-      .product-actions .btn { font-size: 0.6rem; padding: 4px 6px; min-height: 28px; }
-      .spec-tag { font-size: 0.5rem; padding: 1px 4px; }
-      .product-type { font-size: 0.6rem; padding: 1px 6px; }
+      .product-actions .btn { font-size: 0.65rem; padding: 6px 8px; min-height: 30px; }
+      .spec-tag { font-size: 0.55rem; padding: 2px 6px; }
+      .product-type { font-size: 0.65rem; padding: 2px 8px; }
       .btn { font-size: 0.9rem; padding: 12px 20px; min-height: 48px; }
     }
 
@@ -1988,7 +1995,6 @@
       const adsRef = database.ref('elitebike_ads');
 
       window.addEventListener('load', () => {
-        // تعيين الوضع النهاري افتراضيًا
         document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
         themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
@@ -2048,7 +2054,6 @@
       searchInput?.addEventListener('input', (e) => { renderSearchResults(filterAndSearch(e.target.value)); });
       document.addEventListener('click', (e) => { if (!searchDropdown?.contains(e.target) && !searchBtn?.contains(e.target)) searchDropdown?.classList.remove('show'); });
 
-      // التحكم في التبديل بين الوضع النهاري والليلي
       themeToggle?.addEventListener('click', () => {
         const isLight = document.documentElement.getAttribute('data-theme') === 'light';
         const newTheme = isLight ? 'dark' : 'light';
