@@ -18,13 +18,13 @@
       --primary:#2563eb;
       --primary-2:#0ea5e9;
       --accent:#f97316;
-      --bg:#05070f;
-      --card:#0f1322;
-      --text:#f8fafc;
-      --muted:#b1bed4;
-      --border:#20304a;
-      --shadow:0 16px 44px rgba(0,0,0,.30);
-      --shadow-soft:0 8px 20px rgba(0,0,0,.20);
+      --bg:#f8fafc;  /* الوضع النهاري افتراضي */
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --shadow:0 14px 40px rgba(15,23,42,.10);
+      --shadow-soft:0 8px 20px rgba(15,23,42,.08);
       --success:#10b981;
       --warning:#f59e0b;
       --danger:#ef4444;
@@ -33,14 +33,14 @@
       --transition:.28s ease;
     }
 
-    [data-theme="light"]{
-      --bg:#f8fafc;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --border:#e2e8f0;
-      --shadow:0 14px 40px rgba(15,23,42,.10);
-      --shadow-soft:0 8px 20px rgba(15,23,42,.08);
+    [data-theme="dark"]{
+      --bg:#05070f;
+      --card:#0f1322;
+      --text:#f8fafc;
+      --muted:#b1bed4;
+      --border:#20304a;
+      --shadow:0 16px 44px rgba(0,0,0,.30);
+      --shadow-soft:0 8px 20px rgba(0,0,0,.20);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -72,11 +72,11 @@
       background-size: 80px 80px;
       background-repeat: repeat;
     }
-    [data-theme="light"] body::before {
-      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
-                        linear-gradient(225deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
-                        linear-gradient(45deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%),
-                        linear-gradient(315deg, rgba(15, 23, 42, 0.015) 25%, transparent 25%);
+    [data-theme="dark"] body::before {
+      background-image: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%),
+                        linear-gradient(225deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%),
+                        linear-gradient(45deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%),
+                        linear-gradient(315deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%);
     }
 
     a,button{touch-action:manipulation}
@@ -96,12 +96,13 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-height:var(--tap);
-      padding:14px 20px;
+      min-height:56px;  /* تم التكبير */
+      padding:16px 28px;  /* تم التكبير */
       border-radius:999px;
       border:1px solid transparent;
       cursor:pointer;
       font-weight:700;
+      font-size:1.05rem;  /* تم التكبير */
       transition:transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
       white-space:nowrap;
     }
@@ -109,20 +110,20 @@
     .btn-outline{background:transparent;border-color:var(--border);color:var(--text)}
     .btn-light{background:rgba(255,255,255,0.1);color:var(--primary);border-color:rgba(255,255,255,0.2);backdrop-filter:blur(8px);}
     .btn-success{background:var(--success);color:#fff}
-    .btn-sm{padding:8px 14px;font-size:0.8rem;min-height:auto}
+    .btn-sm{padding:12px 18px;font-size:0.9rem;min-height:44px;border-radius:12px;}  /* تم التكبير */
     .btn:hover{transform:translateY(-2px);filter:brightness(1.05);}
 
     .topbar{
       position:sticky;
       top:0;
       z-index:1000;
-      background:rgba(15, 19, 34, 0.85);
+      background:rgba(255, 255, 255, 0.85);
       backdrop-filter:blur(16px);
       border-bottom:1px solid var(--border);
     }
-    [data-theme="light"] .topbar{
-      background:rgba(255,255,255,0.85);
-      border-bottom:1px solid rgba(226,232,240,0.8);
+    [data-theme="dark"] .topbar{
+      background:rgba(15, 19, 34, 0.85);
+      border-bottom:1px solid rgba(32, 48, 74, 0.8);
     }
     
     .nav{
@@ -166,7 +167,7 @@
 
     .nav-actions{display:flex;align-items:center;gap:8px}
     .icon-btn{
-      width:44px;height:44px;
+      width:48px;height:48px;  /* تم التكبير */
       border:none;border-radius:50%;
       display:grid;place-items:center;
       background:var(--card);
@@ -176,6 +177,7 @@
       position:relative;
       flex-shrink:0;
       transition:all 0.3s;
+      font-size:1.1rem;  /* تم التكبير */
     }
     .icon-btn:hover{transform:scale(1.05);background:var(--primary);color:white;}
 
@@ -241,9 +243,9 @@
       background: var(--danger);
       color: white;
       border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      font-size: 10px;
+      width: 20px;
+      height: 20px;
+      font-size: 11px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -309,14 +311,14 @@
       right: 18px;
       bottom: 18px;
       z-index: 999;
-      width: 58px;
-      height: 58px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--primary), var(--primary-2));
       color: #fff;
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
       transition: all 0.3s;
     }
@@ -331,8 +333,8 @@
       background: var(--danger);
       color: white;
       border-radius: 50%;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       font-size: 12px;
       display: flex;
       align-items: center;
@@ -350,11 +352,11 @@
       border: 1px solid var(--border);
     }
     .tab-btn {
-      padding: 14px 32px;
+      padding: 16px 36px;  /* تم التكبير */
       border: none;
       background: transparent;
       border-radius: 50px;
-      font-size: 1.1rem;
+      font-size: 1.15rem;  /* تم التكبير */
       font-weight: 700;
       cursor: pointer;
       transition: all var(--transition);
@@ -393,8 +395,8 @@
       flex-wrap: wrap;
     }
     .page-btn {
-      min-width: 40px;
-      height: 40px;
+      min-width: 44px;
+      height: 44px;
       border: 1px solid var(--border);
       background: var(--card);
       border-radius: 12px;
@@ -402,6 +404,7 @@
       font-weight: 600;
       transition: all var(--transition);
       color: var(--text);
+      font-size: 0.95rem;
     }
     .page-btn.active {
       background: linear-gradient(135deg, var(--primary), var(--primary-2));
@@ -414,7 +417,7 @@
       align-items: center;
       padding: 0 12px;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
 
     .product-card {
@@ -475,13 +478,13 @@
     }
 
     .product-info h3 {
-      font-size: 1.1rem; /* تم التكبير */
+      font-size: 1.1rem;
       font-weight: 800;
       margin-bottom: 6px;
     }
 
     .product-type {
-      font-size: 0.8rem; /* تم التكبير */
+      font-size: 0.8rem;
       color: var(--muted);
       background: rgba(37,99,235,.15);
       display: inline-block;
@@ -506,7 +509,7 @@
     .product-price {
       color: var(--primary);
       font-weight: 800;
-      font-size: 1.2rem; /* تم التكبير */
+      font-size: 1.2rem;
       margin: 6px 0;
       display: flex;
       align-items: center;
@@ -527,14 +530,14 @@
       margin: 10px 0;
     }
     .spec-tag {
-      font-size: 0.75rem; /* تم التكبير */
+      font-size: 0.75rem;
       background: rgba(37,99,235,0.1);
       padding: 3px 8px;
       border-radius: 20px;
       color: var(--primary);
     }
     .spec-tag i {
-      display: inline-block; /* لجعل الأيقونة تظهر */
+      display: inline-block;
     }
 
     .product-actions {
@@ -545,8 +548,10 @@
     }
     .product-actions .btn {
       flex: 1;
-      padding: 8px 6px;
-      font-size: 0.7rem;
+      padding: 12px 8px;  /* تم التكبير */
+      font-size: 0.85rem;  /* تم التكبير */
+      min-height: 44px;  /* تم التكبير */
+      border-radius: 12px;  /* تم التكبير */
     }
 
     .no-products {
@@ -581,6 +586,11 @@
     .hero h1{font-size:clamp(34px,5vw,66px);line-height:1.02;margin-bottom:16px;font-weight:900}
     .hero p{font-size:1.08rem;max-width:680px;margin-bottom:26px}
     .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px}
+    .hero-actions .btn {
+      min-height: 56px;
+      padding: 16px 32px;
+      font-size: 1.1rem;
+    }
     .hero-card{
       background:rgba(255,255,255,.14);
       border:1px solid rgba(255,255,255,.24);
@@ -682,14 +692,14 @@
       left:18px;
       bottom:18px;
       z-index:999;
-      width:58px;
-      height:58px;
+      width:64px;
+      height:64px;
       border-radius:50%;
       display:grid;
       place-items:center;
       background:#25d366;
       color:#fff;
-      font-size:1.7rem;
+      font-size:1.8rem;
       box-shadow:0 12px 30px rgba(37,211,102,.34);
       transition:all 0.3s;
     }
@@ -724,8 +734,9 @@
     }
     .modal-title{font-size:1.25rem;font-weight:900}
     .close-btn{
-      width:42px;height:42px;border:none;border-radius:50%;cursor:pointer;
+      width:44px;height:44px;border:none;border-radius:50%;cursor:pointer;
       background:transparent;color:var(--text);
+      font-size:1.2rem;
     }
     .modal-body{padding:20px}
     
@@ -839,6 +850,8 @@
     .modal-add-to-cart {
       width: 100%;
       margin-top: 16px;
+      min-height: 56px;
+      font-size: 1.05rem;
     }
 
     .toast{
@@ -874,6 +887,10 @@
     .field input:focus, .field select:focus{
       border-color:var(--primary);
       box-shadow:0 0 0 2px rgba(37,99,235,0.2);
+    }
+    .field .btn {
+      min-height: 56px;
+      font-size: 1.05rem;
     }
     .result-box{
       margin-top:18px;border-radius:22px;
@@ -965,7 +982,7 @@
     }
 
     .autre-rating {
-      display: none; /* إزالة النجوم */
+      display: none;
     }
 
     .autre-price-box {
@@ -978,7 +995,7 @@
       background-color: #facc15;
       color: #000;
       font-weight: 900;
-      font-size: 1.2rem; /* تم التكبير */
+      font-size: 1.2rem;
       padding: 6px 14px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(250, 204, 21, 0.2);
@@ -990,8 +1007,8 @@
     }
 
     .autre-actions-bar .btn {
-      padding: 10px;
-      font-size: 0.85rem;
+      padding: 12px 10px;
+      font-size: 0.9rem;
       border-radius: 12px;
       flex: 1;
       display: flex;
@@ -999,6 +1016,7 @@
       justify-content: center;
       gap: 6px;
       white-space: nowrap;
+      min-height: 44px;
     }
 
     .autre-actions-bar .btn-add {
@@ -1014,7 +1032,7 @@
     }
 
     /* ============================================================
-       RESPONSIVE - صورة أكبر على الهواتف
+       RESPONSIVE
        ============================================================ */
     @media (max-width:1100px){
       .features-grid,.articles-grid,.reviews-grid,.suggest-grid{grid-template-columns:1fr 1fr}
@@ -1040,7 +1058,7 @@
       .articles-grid,.reviews-grid,.form-grid,.footer-grid,.result-grid{grid-template-columns:1fr}
       .hero h1{font-size:2.35rem}
       .tabs-container{width:100%;justify-content:center}
-      .tab-btn{padding:12px 24px;font-size:1rem}
+      .tab-btn{padding:14px 24px;font-size:1rem}
       .search-dropdown{width:calc(100% - 30px);top:75px}
 
       .products-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -1053,7 +1071,6 @@
         border-radius: 16px; 
       }
       
-      /* صورة أكبر - 55% من العرض */
       .product-card .product-image { 
         width: 55%; 
         height: auto; 
@@ -1086,7 +1103,7 @@
       }
       
       .product-info h3 { 
-        font-size: 0.9rem; /* تم التكبير */
+        font-size: 0.9rem;
         font-weight: 800;
         margin-bottom: 2px; 
         white-space: normal;
@@ -1097,7 +1114,7 @@
       
       .product-type { 
         display: inline-block;
-        font-size: 0.65rem; /* تم التكبير */
+        font-size: 0.65rem;
         padding: 1px 8px;
         margin-bottom: 2px;
         align-self: flex-start;
@@ -1114,7 +1131,7 @@
       }
       
       .product-price { 
-        font-size: 0.95rem; /* تم التكبير */
+        font-size: 0.95rem;
         margin: 2px 0; 
         gap: 4px; 
       }
@@ -1135,7 +1152,7 @@
       .spec-tag { 
         background: rgba(37,99,235,0.1); 
         padding: 1px 6px; 
-        font-size: 0.6rem; /* تم التكبير */
+        font-size: 0.6rem;
         border-radius: 10px;
         color: var(--primary);
         white-space: nowrap;
@@ -1152,11 +1169,11 @@
       }
       
       .product-actions .btn { 
-        padding: 3px 6px; 
-        font-size: 0.6rem; 
+        padding: 6px 8px;  /* تم التكبير */
+        font-size: 0.7rem;  /* تم التكبير */
         flex: 1; 
         border-radius: 8px; 
-        min-height: 26px;
+        min-height: 32px;  /* تم التكبير */
       }
       
       .product-actions .add-to-cart-btn { 
@@ -1177,13 +1194,13 @@
       .autre-title { font-size: 0.9rem; margin-bottom: 6px; }
       .autre-price { font-size: 1rem; padding: 4px 10px; }
       .autre-actions-bar { gap: 6px; }
-      .autre-actions-bar .btn { padding: 8px 4px; font-size: 0.75rem; }
+      .autre-actions-bar .btn { padding: 10px 6px; font-size: 0.8rem; min-height: 38px; }
       .autre-actions-bar .btn-text-add { display: none; }
       
       .floating-cart, .floating-wa {
-        width: 48px;
-        height: 48px;
-        font-size: 1.4rem;
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
         bottom: 14px;
       }
       .floating-cart { right: 14px; }
@@ -1232,6 +1249,7 @@
       .modal-add-to-cart {
         font-size: 0.95rem;
         padding: 12px;
+        min-height: 48px;
       }
     }
     
@@ -1239,10 +1257,10 @@
       .container{width:min(100% - 18px,1240px)}
       .hero h1{font-size:2rem}
       .hero-actions{flex-direction:column}
-      .tab-btn{padding:10px 20px;font-size:0.9rem}
-      .page-btn{min-width:36px;height:36px;font-size:0.8rem}
+      .tab-btn{padding:12px 20px;font-size:0.9rem}
+      .page-btn{min-width:38px;height:38px;font-size:0.8rem}
       .logo { font-size: 1.05rem; gap: 5px; }
-      .icon-btn { width: 38px; height: 38px; font-size: 0.9rem; }
+      .icon-btn { width: 42px; height: 42px; font-size: 1rem; }
       .nav-actions { gap: 6px; }
       
       .product-card { min-height: 140px; }
@@ -1251,9 +1269,10 @@
       .product-info h3 { font-size: 0.85rem; }
       .product-desc-short { -webkit-line-clamp: 1; font-size: 0.6rem; }
       .product-price { font-size: 0.85rem; }
-      .product-actions .btn { font-size: 0.55rem; padding: 2px 4px; min-height: 22px; }
+      .product-actions .btn { font-size: 0.6rem; padding: 4px 6px; min-height: 28px; }
       .spec-tag { font-size: 0.5rem; padding: 1px 4px; }
       .product-type { font-size: 0.6rem; padding: 1px 6px; }
+      .btn { font-size: 0.9rem; padding: 12px 20px; min-height: 48px; }
     }
 
     .modal-backdrop .modal {
@@ -1969,6 +1988,11 @@
       const adsRef = database.ref('elitebike_ads');
 
       window.addEventListener('load', () => {
+        // تعيين الوضع النهاري افتراضيًا
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+
         adsRef.once('value').then((snapshot) => {
           const adsData = snapshot.val();
 
@@ -2024,13 +2048,10 @@
       searchInput?.addEventListener('input', (e) => { renderSearchResults(filterAndSearch(e.target.value)); });
       document.addEventListener('click', (e) => { if (!searchDropdown?.contains(e.target) && !searchBtn?.contains(e.target)) searchDropdown?.classList.remove('show'); });
 
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
-      else document.documentElement.setAttribute('data-theme', 'dark');
-      
+      // التحكم في التبديل بين الوضع النهاري والليلي
       themeToggle?.addEventListener('click', () => {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        const newTheme = isDark ? 'light' : 'dark';
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        const newTheme = isLight ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
